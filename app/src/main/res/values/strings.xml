@@ -52,6 +52,8 @@
 
     <string name="icono">icono</string>
     <string name="Info">I N F O</string>
+    <string name="action_Actualizar">Actualizar</string>
+
     <string name="Texto_Info">
       <b>D O M Y\n</b>
         * V1  Cosmos\n

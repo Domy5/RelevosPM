@@ -1,15 +1,8 @@
 package domy.com.relevospm.login;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import org.apache.http.NameValuePair;
-import org.apache.http.message.BasicNameValuePair;
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
@@ -20,16 +13,28 @@ import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.RadioGroup;
+import android.widget.Switch;
 import android.widget.Toast;
+
+import org.apache.http.message.BasicNameValuePair;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import domy.com.relevospm.Main_Seleccionar_Dia;
+import domy.com.relevospm.R;
 
 public class Login extends Activity implements OnClickListener {
 
-    private EditText user, pass;
-    private Button mSubmit, mRegister;
-
-    private ProgressDialog pDialog;
-
+    private static final String LOGIN_URL = "http://domimtz.synology.me/bd/login.php";
+    // La respuesta del JSON es
+    private static final String TAG_SUCCESS = "success";
+    private static final String TAG_MESSAGE = "message";
     // Clase JSONParser
     JSONParser jsonParser = new JSONParser();
 
@@ -39,12 +44,11 @@ public class Login extends Activity implements OnClickListener {
     // buscar su IP
     // y poner de la siguiente manera
     // "http://xxx.xxx.x.x:1234/cas/login.php";
+    private EditText user, pass;
+    private Button mSubmit, mRegister;
+    private ProgressDialog pDialog;
 
-    private static final String LOGIN_URL = "http://domimtz.synology.me/bd/login.php";
-
-    // La respuesta del JSON es
-    private static final String TAG_SUCCESS = "success";
-    private static final String TAG_MESSAGE = "message";
+    private Switch mySwitch;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,6 +60,13 @@ public class Login extends Activity implements OnClickListener {
         user = (EditText) findViewById(R.id.username);
         pass = (EditText) findViewById(R.id.password);
 
+        mySwitch = (Switch) findViewById(R.id.switch1);
+
+        SharedPreferences  preferencias = getSharedPreferences("datos", Context.MODE_PRIVATE);
+        user.setText( preferencias.getString("Usuario",""));
+        pass.setText( preferencias.getString("Password",""));
+        mySwitch.setChecked( preferencias.getBoolean("Switch",false));
+
         // setup buttons
         mSubmit = (Button) findViewById(R.id.login);
         mRegister = (Button) findViewById(R.id.register);
@@ -63,6 +74,30 @@ public class Login extends Activity implements OnClickListener {
         // register listeners
         mSubmit.setOnClickListener(this);
         mRegister.setOnClickListener(this);
+
+        Boolean AutoLogien = getIntent().getBooleanExtra("AutoLogin",true);
+
+        if (mySwitch.isChecked() && AutoLogien ){
+
+            mSubmit.performClick();
+        }
+
+
+        //set the switch to ON
+       // mySwitch.setChecked(true);
+        //attach a listener to check for changes in state
+
+        // esto no hace nada
+        mySwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+
+                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                    if (isChecked) {
+                      System.out.print("zzzzzzzzzzzzzzzcc " + "on");
+                    } else {
+                        System.out.print("zzzzzzzzzzzzzzzcc " + "off");
+                    }
+                }
+            });
 
     }
 
@@ -89,8 +124,7 @@ public class Login extends Activity implements OnClickListener {
         protected void onPreExecute() {
             super.onPreExecute();
             pDialog = new ProgressDialog(Login.this);
-         //   pDialog.setMessage("Attempting login...");
-            pDialog.setMessage("El intento de inicio de sesión...");
+            pDialog.setMessage("Intentando el Inicio de sesión...");
             pDialog.setIndeterminate(false);
             pDialog.setCancelable(true);
             pDialog.show();
@@ -120,13 +154,17 @@ public class Login extends Activity implements OnClickListener {
                 if (success == 1) {
                     Log.d("Login Successful!", json.toString());
                     // save user data
-                    SharedPreferences sp = PreferenceManager
-                            .getDefaultSharedPreferences(Login.this);
-                    Editor edit = sp.edit();
-                    edit.putString("username", username);
-                    edit.commit();
 
-                    Intent i = new Intent(Login.this, ReadComments.class);
+                    SharedPreferences preferencias = getSharedPreferences("datos",Context.MODE_PRIVATE);
+                    Editor editor = preferencias.edit();
+                    editor.putString("Usuario", user.getText().toString());
+                    editor.putString("Password", pass.getText().toString());
+                    editor.putBoolean("Switch", mySwitch.isChecked());
+
+                    editor.commit();
+
+
+                    Intent i = new Intent(Login.this, Main_Seleccionar_Dia.class);
                     finish();
                     startActivity(i);
                     return json.getString(TAG_MESSAGE);

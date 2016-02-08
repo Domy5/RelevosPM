@@ -1,21 +1,19 @@
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    >
+    android:layout_height="match_parent">
 
     <LinearLayout
-        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:baselineAligned="true">
+        android:baselineAligned="true"
+        android:orientation="vertical">
 
         <TextView
             android:id="@+id/textView2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="@string/App"
+            android:text="@string/App_Registro"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:textStyle="bold" />
 
@@ -23,55 +21,100 @@
             android:id="@+id/imageView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:src="@drawable/arrowstars"
-            android:contentDescription="@string/imagen_login" />
+            android:contentDescription="@string/imagen_login"
+            android:src="@drawable/cosmos" />
 
         <TextView
             android:id="@+id/textView1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/Usuario"
-            android:layout_gravity="center" />
+            android:layout_gravity="center"
+            android:text="@string/Usuario" />
 
-        <EditText
+        <!--EditText
             android:id="@+id/username"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:ems="10"
             android:layout_gravity="center"
-            android:inputType="text" />
+            android:ems="10"
+            android:inputType="text" /-->
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center">
+
+            <EditText
+                android:id="@+id/username"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="@string/Usuario"
+
+                android:imeActionLabel="@string/Password"
+                android:imeOptions="actionUnspecified"
+                android:inputType="text"
+                android:maxLines="1"
+                android:singleLine="true" />
+
+        </android.support.design.widget.TextInputLayout>
 
         <TextView
             android:id="@+id/TextView01"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/Password"
-            android:layout_gravity="center" />
+            android:layout_gravity="center"
+            android:text="@string/Password" />
 
-        <EditText
+        <!--EditText
             android:id="@+id/password"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:ems="10"
-            android:inputType="textPassword"
+            android:inputType="textPassword">
+
+        </EditText-->
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_gravity="center">
 
-        </EditText>
+            <EditText
+                android:id="@+id/password"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="@string/Password"
+                android:imeActionId="@+id/login"
+                android:imeActionLabel="@string/Password"
+                android:imeOptions="actionUnspecified"
+                android:inputType="textPassword"
+                android:maxLines="1"
+                android:singleLine="true" />
+
+        </android.support.design.widget.TextInputLayout>
 
         <Button
             android:id="@+id/login"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
 
-            android:text="@string/Login"
-            android:layout_gravity="center" />
+            android:layout_gravity="center"
+            android:text="@string/Login" />
 
         <Button
             android:id="@+id/register"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:layout_marginBottom="25dp"
-            android:text="@string/Registar"
+            android:text="@string/Registrar" />
+
+        <Switch
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/login_automatico"
+            android:id="@+id/switch1"
             android:layout_gravity="center" />
     </LinearLayout>
 

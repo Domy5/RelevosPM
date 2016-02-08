@@ -1,9 +1,15 @@
 package domy.com.relevospm;
 
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -18,6 +24,7 @@ import domy.com.relevospm.login.Login;
 
 public class Main_Seleccionar_Dia extends AppCompatActivity {
 
+    private static final String TAG ="PERMISOS " ;
     String GRUPOTRABAJO = "";
 
     String FECHA = "";
@@ -46,8 +53,40 @@ public class Main_Seleccionar_Dia extends AppCompatActivity {
         DiaDeHoy = ss.format(new Date());
 
         Boton_Ver_Hoy.setText("HOY --> " + DiaDeHoy);
+    }
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+            Log.v(TAG, "Permission: " + permissions[0] + "was " + grantResults[0]);
+            //resume tasks needing this permission
+        }
 
     }
+
+    public  boolean isStoragePermissionGranted() {
+            if (Build.VERSION.SDK_INT >= 23) {
+                if (checkSelfPermission(android.Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                        == PackageManager.PERMISSION_GRANTED) {
+                    Log.v(TAG,"Permission is granted");
+                    return true;
+                } else {
+
+                    Log.v(TAG,"Permission is revoked");
+                    ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
+                    return false;
+                }
+            }
+            else { //permission is automatically granted on sdk<23 upon installation
+                Log.v(TAG,"Permission is granted");
+                return true;
+            }
+
+
+        }
+
+
+
 
     public void initializeCalendar() {
         calendar = (CalendarView) findViewById(R.id.calendar);
@@ -184,7 +223,23 @@ public class Main_Seleccionar_Dia extends AppCompatActivity {
             return true;
         }
 
+        if (id == R.id.action_Actualizar) {
+
+            isStoragePermissionGranted();
+
+            UpdateApp atualizaApp = new UpdateApp();
+            atualizaApp.setContext(getApplicationContext());
+            atualizaApp.execute("http://domy.asuscomm.com/app-debug.apk");
+
+           // Intent promptInstall = new Intent(Intent.ACTION_VIEW)
+            //        .setDataAndType(Uri.parse("/mnt/sdcard/download/app.apk"),
+            //                "application/vnd.android.package-archive");
+            //startActivity(promptInstall);
+
+            return true;
+        }
         return super.onOptionsItemSelected(item);
     }
+
 
 }

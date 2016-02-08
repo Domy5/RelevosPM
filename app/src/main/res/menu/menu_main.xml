@@ -8,8 +8,16 @@
         android:title="@string/action_Opciones"
         app:showAsAction="never" />
     <item
+        android:id="@+id/action_Actualizar"
+        android:orderInCategory="200"
+        android:title="@string/action_Actualizar"
+        app:showAsAction="never" />
+    <item
         android:id="@+id/action_Infor"
         android:orderInCategory="200"
         android:title="@string/action_Info"
         app:showAsAction="never" />
+
+
+
 </menu>

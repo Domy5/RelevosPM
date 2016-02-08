@@ -1,41 +1,61 @@
 package domy.com.relevospm.login;
 
-import java.util.ArrayList;
-import java.util.List;
-import org.apache.http.NameValuePair;
-import org.apache.http.message.BasicNameValuePair;
-import org.json.JSONException;
-import org.json.JSONObject;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-public class Register extends Activity implements OnClickListener {
-    private EditText user, pass;
-    private Button mRegister;
+import org.apache.http.message.BasicNameValuePair;
+import org.json.JSONException;
+import org.json.JSONObject;
 
-    // Progress Dialog
-    private ProgressDialog pDialog;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
+import domy.com.relevospm.R;
+
+public class Register extends Activity implements OnClickListener {
+    //testing on Emulator:
+    private static final String REGISTER_URL = "http://domimtz.synology.me/bd/register.php";
+    //ids
+    private static final String TAG_SUCCESS = "success";
+    private static final String TAG_MESSAGE = "message";
+
+    private  static String u = "";
+    private  static String p = "";
+
+    private static final Set<String> DNE = new HashSet<String>(Arrays.asList(
+            new String[] { "02660", "02870", "02998", "03074", "03289", "03906", "04003",
+            "04105", "04114", "04252", "04265", "04313", "04324", "04814", "04839", "04870",
+            "04936", "05033", "05122", "05134", "05139", "05160", "05201", "05238", "05239",
+            "05242", "05244", "05268", "05291", "05293", "05538", "05540", "05550", "05557",
+            "05740", "15279", "15315", "15336", "15346", "15354", "15355", "15373", "15492",
+            "15591", "15594", "15597", "15704", "15757", "15814", "15906", "15908", "15910",
+            "15944", "15974", "16049", "16142", "16151", "16311", "16484", "16589", "16637",
+            "16955", "17074", "17233", "17367", "17477", "17904", "18203", "18267", "18316",
+            "18327", "18352", "18366", "18647", "18951",}));
 
     // JSON parser class
     JSONParser jsonParser = new JSONParser();
 
     //si lo trabajan de manera local en xxx.xxx.x.x va su ip local
     // private static final String REGISTER_URL = "http://xxx.xxx.x.x:1234/cas/register.php";
-
-    //testing on Emulator:
-    private static final String REGISTER_URL = "http://domimtz.synology.me/bd/register.php";
-
-    //ids
-    private static final String TAG_SUCCESS = "success";
-    private static final String TAG_MESSAGE = "message";
+    private EditText user, pass;
+    private Button mRegister;
+    // Progress Dialog
+    private ProgressDialog pDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,11 +63,10 @@ public class Register extends Activity implements OnClickListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.register);
 
-        user = (EditText)findViewById(R.id.username);
-        pass = (EditText)findViewById(R.id.password);
+        user = (EditText) findViewById(R.id.username);
+        pass = (EditText) findViewById(R.id.password);
 
-
-        mRegister = (Button)findViewById(R.id.register);
+        mRegister = (Button) findViewById(R.id.register);
         mRegister.setOnClickListener(this);
 
     }
@@ -56,7 +75,22 @@ public class Register extends Activity implements OnClickListener {
     public void onClick(View v) {
         // TODO Auto-generated method stub
 
+        if(DNE.contains(user.getText().toString())){
+
         new CreateUser().execute();
+
+        }
+        else{
+            Toast toast1 =
+            Toast.makeText(getApplicationContext(),
+                            "No es un Numero valido "
+
+                    , Toast.LENGTH_LONG);
+
+            toast1.setGravity(Gravity.CENTER,0,0);
+
+            toast1.show();
+        }
 
     }
 
@@ -66,7 +100,7 @@ public class Register extends Activity implements OnClickListener {
         protected void onPreExecute() {
             super.onPreExecute();
             pDialog = new ProgressDialog(Register.this);
-            pDialog.setMessage("Creating User...");
+            pDialog.setMessage("Creando Usuario en BD...");
             pDialog.setIndeterminate(false);
             pDialog.setCancelable(true);
             pDialog.show();
@@ -77,13 +111,15 @@ public class Register extends Activity implements OnClickListener {
             // TODO Auto-generated method stub
             // Check for success tag
             int success;
-            String username = user.getText().toString();
-            String password = pass.getText().toString();
+
+            u = user.getText().toString();
+            p = pass.getText().toString();
+
             try {
                 // Building Parameters
                 List params = new ArrayList();
-                params.add(new BasicNameValuePair("username", username));
-                params.add(new BasicNameValuePair("password", password));
+                params.add(new BasicNameValuePair("username", u));
+                params.add(new BasicNameValuePair("password", p));
 
                 Log.d("request!", "starting");
 
@@ -92,16 +128,16 @@ public class Register extends Activity implements OnClickListener {
                         REGISTER_URL, "POST", params);
 
                 // full json response
-                Log.d("Registering attempt", json.toString());
+                Log.d("intento de registrarse", json.toString());
 
                 // json success element
                 success = json.getInt(TAG_SUCCESS);
                 if (success == 1) {
-                    Log.d("User Created!", json.toString());
+                    Log.d("Usuario Creado!", json.toString());
                     finish();
                     return json.getString(TAG_MESSAGE);
-                }else{
-                    Log.d("Registering Failure!", json.getString(TAG_MESSAGE));
+                } else {
+                    Log.d("Registo Fallido!", json.getString(TAG_MESSAGE));
                     return json.getString(TAG_MESSAGE);
 
                 }
@@ -116,7 +152,7 @@ public class Register extends Activity implements OnClickListener {
         protected void onPostExecute(String file_url) {
             // dismiss the dialog once product deleted
             pDialog.dismiss();
-            if (file_url != null){
+            if (file_url != null) {
                 Toast.makeText(Register.this, file_url, Toast.LENGTH_LONG).show();
             }
         }

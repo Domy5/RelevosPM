@@ -3,6 +3,10 @@
     package="domy.com.relevospm">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <!--uses-permission android:name="android.permission.INSTALL_PACKAGES" /-->
+    <!--uses-permission android:name="android.permission.DELETE_PACKAGES" /-->
+
 
     <application
         android:allowBackup="true"
@@ -23,23 +27,33 @@
 
         <activity
             android:name=".Main_Seleccionar_Dia"
-            android:label="@string/Calendario"></activity>
+            android:label="@string/Calendario">
+
+        </activity>
 
         <activity
             android:name=".Dialog_Info"
-            android:label="@string/Info"></activity>
+            android:label="@string/Info">
+
+        </activity>
 
         <activity
             android:name=".login.Login"
-            android:label="@string/Login"></activity>
+            android:label="@string/Login">
+
+        </activity>
 
         <activity
             android:name=".Tabla_Diaria"
-            android:label="@string/app_Relevos"></activity>
+            android:label="@string/app_Relevos">
+
+        </activity>
 
         <activity
             android:name=".login.Register"
-            android:label="@string/Login"></activity>
+            android:label="@string/Login">
+
+        </activity>
 
     </application>
 
