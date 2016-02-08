@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/principal"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:weightSum="10">
+
+    <LinearLayout
+        android:id="@+id/Layout"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="10"
+        android:baselineAligned="true"
+        android:orientation="vertical">
+
+        <CalendarView
+            android:id="@+id/calendar"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="8"
+            android:firstDayOfWeek="2"
+            android:showWeekNumber="false" />
+
+        <Button
+            android:id="@+id/Boton_Ver_Hoy"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:onClick="lanzar_dia_hoy"
+            android:text="@string/Ver_Hoy" />
+
+        <Button
+            android:id="@+id/Boton_Ver_Lineas"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:onClick="lanzar_dia"
+            android:text="@string/Ver_Lineas" />
+
+    </LinearLayout>
+
+</LinearLayout>

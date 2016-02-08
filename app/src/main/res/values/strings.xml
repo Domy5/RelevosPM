@@ -1,0 +1,71 @@
+<resources>
+
+    <string name="app_name">C O S M O S</string>
+    <string name="app_Relevos">Relevos PCC</string>
+    <string name="action_Opciones">"Opciones de Registro"</string>
+    <string name="action_Info">"Infor&#8230;"</string>
+    <string name="P0">""</string>
+
+    <string name="L_1">"L 1"</string>
+    <string name="L_2">"L 2"</string>
+    <string name="L_3">"L 3"</string>
+    <string name="L_4">"L 4"</string>
+    <string name="L_5">"L 5"</string>
+    <string name="L_6">"L 6"</string>
+    <string name="L_7">"L 7"</string>
+    <string name="L_8">"L 8"</string>
+    <string name="L_9">"L 9"</string>
+    <string name="L_10">"L 10"</string>
+    <string name="L_11">"L 11"</string>
+    <string name="L_12">"L 12"</string>
+    <string name="RVA_1">"RVA 1"</string>
+    <string name="RVA_2">"RVA 2"</string>
+    <string name="RVA_3">"RVA 3"</string>
+    <string name="RVA_4">"RVA 4"</string>
+    <string name="RVA_5">"RVA 5"</string>
+    <string name="RVA_6">"RVA 6"</string>
+
+    <string name="F">"Aqui la Fecha"</string>
+    <string name="XXXXXX">"X"</string>
+    <string name="MAÑANA">"M"</string>
+    <string name="TARDE">"T"</string>
+    <string name="NOCHE">"N"</string>
+
+    <string name="Calendario">"Calendario"</string>
+    <string name="Lineas">"Lineas"</string>
+    <string name="Ver_Lineas">"Ver Lineas"</string>
+    <string name="Ver_Hoy">Ver Hoy</string>
+    <string name="c_o_s_m_o_s">C O S M O S</string>
+    <string name="imagen_de_splash">imagen de splash</string>
+
+
+    <string name="Splash_por">By :</string>
+    <string name="Splash_nombre">D O M Y</string>
+
+    <string name="Usuario">Usuario</string>
+    <string name="Password">Password</string>
+    <string name="Login">Login</string>
+    <string name="Registrar">Registrar</string>
+    <string name="App_Registro">Acceso a C O S M O S</string>
+    <string name="imagen_login">Imagen_login</string>
+    <string name="imagen">imagen</string>
+
+    <string name="icono">icono</string>
+    <string name="Info">I N F O</string>
+    <string name="Texto_Info">
+      <b>D O M Y\n</b>
+        * V1  Cosmos\n
+        - datos agentes fijos\n
+        - boton cambio numeros por nombre\n
+        - splash\n
+        - layout-land\n
+        - login BD\n
+        - login auto\n
+        - layout-land\n
+        - layout-land\n
+
+
+    </string>
+    <string name="login_automatico">Login Automatico</string>
+
+</resources>

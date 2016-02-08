@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+
+    <color name="L1">#30a2db</color>
+    <color name="L2">#cb041d</color>
+    <color name="L3">#fde014</color>
+    <color name="L4">#934248</color>
+    <color name="L5">#8cb20c</color>
+    <color name="L6">#9ea3a5</color>
+    <color name="L7">#f9a54a</color>
+    <color name="L8">#f07ba0</color>
+    <color name="L9">#a2228c</color>
+    <color name="L10">#084593</color>
+    <color name="L11">#008a43</color>
+    <color name="L12">#a29801</color>
+    <color name="RVA">#c7c7bc</color>
+
+    <color name="L1light">#90c6e1</color>
+    <color name="L2light">#cc7d87</color>
+    <color name="L3light">#d4ca87</color>
+    <color name="L4light">#c18388</color>
+    <color name="L5light">#a9b778</color>
+    <color name="L6light">#d0d2d2</color>
+    <color name="L7light">#e7c198</color>
+    <color name="L8light">#f1a7be</color>
+    <color name="L9light">#d689c8</color>
+    <color name="L10light">#8daacf</color>
+    <color name="L11light">#8bcaaa</color>
+    <color name="L12light">#d1cc89</color>
+    <color name="RVAlight">#e2e2e2</color>
+
+    <color name="transparent">#00FFFFFF</color>
+    <color name="grey">#6e6c6c</color>
+    <color name="blanco">#ffffff</color>
+    <color name="green">#55ff00</color>
+    <color name="darkgreen">#2c7424</color>
+
+    <color name="M">#ff6f00</color>
+    <color name="T">#132af5</color>
+    <color name="N">#930582</color>
+
+</resources>

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical"
+    android:weightSum="1"
+    tools:context=".SplashActivity">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal|top"
+        android:background="#000000"
+        android:text="@string/c_o_s_m_o_s"
+        android:textAlignment="center"
+        android:textColor="#ff0000"
+        android:textIsSelectable="true"
+        android:textSize="50sp"
+        android:textStyle="bold|italic" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:layout_weight="0.94"
+        android:background="#000000"
+        android:contentDescription="@string/imagen_de_splash"
+        android:src="@drawable/cosmos" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal|bottom"
+        android:background="#000000"
+        android:text="@string/Splash_por"
+        android:textAlignment="viewStart"
+        android:textColor="#ff0000"
+        android:textIsSelectable="true"
+        android:textSize="50sp"
+        android:textStyle="bold|italic" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:background="#000000"
+        android:text="@string/Splash_nombre"
+        android:textAlignment="center"
+        android:textColor="#ff0000"
+        android:textIsSelectable="true"
+        android:textSize="50sp"
+        android:textStyle="bold|italic" />
+
+</LinearLayout>

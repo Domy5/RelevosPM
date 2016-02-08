@@ -1,0 +1,795 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/tableLayout1"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:context=".Tabla_Diaria">
+
+    <TableLayout
+        android:id="@+id/tableLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentStart="true"
+        android:stretchColumns="*">
+
+        <TableRow
+
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/TextFecha"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_column="0"
+                android:layout_span="4"
+                android:text="@string/F"
+                android:textAlignment="center" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_margin="5dp">
+
+            <Button
+
+                android:id="@+id/x"
+                style="@style/AppTheme"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/grey"
+                android:onClick="BotonPasar"
+                android:text="@string/XXXXXX" />
+
+            <Button
+
+                android:id="@+id/MAÑANA"
+                style="@style/AppTheme"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/M"
+                android:text="@string/MAÑANA" />
+
+            <Button
+
+                android:id="@+id/TARDE"
+                style="@style/AppTheme"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/T"
+                android:text="@string/TARDE" />
+
+            <Button
+
+                android:id="@+id/NOCHE"
+                style="@style/AppTheme"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/N"
+                android:text="@string/NOCHE" />
+        </TableRow>
+
+
+        <ScrollView
+
+            android:scrollbars="none">
+
+            <TableLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:stretchColumns="*">
+
+                <TableRow
+                    android:id="@+id/tableRow"
+                    android:layout_width="5dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin="5dp">
+
+                    <Button
+                        android:id="@+id/button2"
+                        style="@style/AppTheme"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@color/L1"
+                        android:text="@string/L_1" />
+
+                    <Button
+                        android:id="@+id/BotonMananaLinea1"
+                        style="@style/AppTheme"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@color/L1light"
+                        android:text="@string/P0" />
+
+                    <Button
+                        android:id="@+id/BotonTardeLinea1"
+                        style="@style/AppTheme"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@color/L1light"
+                        android:text="@string/P0" />
+
+                    <Button
+                        android:id="@+id/BotonNocheLinea1"
+                        style="@style/AppTheme"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@color/L1light"
+                        android:text="@string/P0" />
+                </TableRow>
+
+                <TableRow
+                    android:id="@+id/tableRow19"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin="5dp">
+
+                    <Button
+                        android:id="@+id/button6"
+                        style="@style/AppTheme"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@color/L2"
+                        android:text="@string/L_2" />
+
+                    <Button
+                        android:id="@+id/BotonMananaLinea2"
+                        style="@style/AppTheme"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@color/L2light"
+                        android:text="@string/P0" />
+
+                    <Button
+                        android:id="@+id/BotonTardeLinea2"
+                        style="@style/AppTheme"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@color/L2light"
+                        android:text="@string/P0" />
+
+                    <Button
+                        android:id="@+id/BotonNocheLinea2"
+                        style="@style/AppTheme"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@color/L2light"
+                        android:text="@string/P0" />
+                </TableRow>
+
+                <TableRow
+                    android:id="@+id/tableRow20"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin="5dp">
+
+                    <Button
+                        android:id="@+id/button10"
+                        style="@style/AppTheme"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@color/L3"
+                        android:text="@string/L_3" />
+
+                    <Button
+                        android:id="@+id/BotonMananaLinea3"
+                        style="@style/AppTheme"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@color/L3light"
+                        android:text="@string/P0" />
+
+                    <Button
+                        android:id="@+id/BotonTardeLinea3"
+                        style="@style/AppTheme"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@color/L3light"
+                        android:text="@string/P0" />
+
+                    <Button
+                        android:id="@+id/BotonNocheLinea3"
+                        style="@style/AppTheme"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@color/L3light"
+                        android:text="@string/P0" />
+                </TableRow>
+
+                <TableRow
+                    android:id="@+id/tableRow21"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin="5dp">
+
+                    <Button
+                        android:id="@+id/button14"
+                        style="@style/AppTheme"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@color/L4"
+                        android:text="@string/L_4" />
+
+                    <Button
+                        android:id="@+id/BotonMananaLinea4"
+                        style="@style/AppTheme"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@color/L4light"
+                        android:text="@string/P0" />
+
+                    <Button
+                        android:id="@+id/BotonTardeLinea4"
+                        style="@style/AppTheme"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@color/L4light"
+                        android:text="@string/P0" />
+
+                    <Button
+                        android:id="@+id/BotonNocheLinea4"
+                        style="@style/AppTheme"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@color/L4light"
+                        android:text="@string/P0" />
+                </TableRow>
+
+                <TableRow
+                    android:id="@+id/tableRow22"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin="5dp">
+
+                    <Button
+                        android:id="@+id/button18"
+                        style="@style/AppTheme"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@color/L5"
+                        android:text="@string/L_5" />
+
+                    <Button
+                        android:id="@+id/BotonMananaLinea5"
+                        style="@style/AppTheme"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@color/L5light"
+                        android:text="@string/P0" />
+
+                    <Button
+                        android:id="@+id/BotonTardeLinea5"
+                        style="@style/AppTheme"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@color/L5light"
+                        android:text="@string/P0" />
+
+                    <Button
+                        android:id="@+id/BotonNocheLinea5"
+                        style="@style/AppTheme"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@color/L5light"
+                        android:text="@string/P0" />
+                </TableRow>
+
+                <TableRow
+                    android:id="@+id/tableRow23"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin="5dp">
+
+                    <Button
+                        android:id="@+id/button22"
+                        style="@style/AppTheme"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@color/L6"
+                        android:text="@string/L_6" />
+
+                    <Button
+                        android:id="@+id/BotonMananaLinea6"
+                        style="@style/AppTheme"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@color/L6light"
+                        android:text="@string/P0" />
+
+                    <Button
+                        android:id="@+id/BotonTardeLinea6"
+                        style="@style/AppTheme"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@color/L6light"
+                        android:text="@string/P0" />
+
+                    <Button
+                        android:id="@+id/BotonNocheLinea6"
+                        style="@style/AppTheme"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@color/L6light"
+                        android:text="@string/P0" />
+                </TableRow>
+
+                <TableRow
+                    android:id="@+id/tableRow24"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin="5dp">
+
+                    <Button
+                        android:id="@+id/button26"
+                        style="@style/AppTheme"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@color/L7"
+                        android:text="@string/L_7" />
+
+                    <Button
+                        android:id="@+id/BotonMananaLinea7"
+                        style="@style/AppTheme"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@color/L7light"
+                        android:text="@string/P0" />
+
+                    <Button
+                        android:id="@+id/BotonTardeLinea7"
+                        style="@style/AppTheme"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@color/L7light"
+                        android:text="@string/P0" />
+
+                    <Button
+                        android:id="@+id/BotonNocheLinea7"
+                        style="@style/AppTheme"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@color/L7light"
+                        android:text="@string/P0" />
+                </TableRow>
+
+                <TableRow
+                    android:id="@+id/tableRow25"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin="5dp">
+
+                    <Button
+                        android:id="@+id/button30"
+                        style="@style/AppTheme"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@color/L8"
+                        android:text="@string/L_8" />
+
+                    <Button
+                        android:id="@+id/BotonMananaLinea8"
+                        style="@style/AppTheme"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@color/L8light"
+                        android:text="@string/P0" />
+
+                    <Button
+                        android:id="@+id/BotonTardeLinea8"
+                        style="@style/AppTheme"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@color/L8light"
+                        android:text="@string/P0" />
+
+                    <Button
+                        android:id="@+id/BotonNocheLinea8"
+                        style="@style/AppTheme"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@color/L8light"
+                        android:text="@string/P0" />
+                </TableRow>
+
+                <TableRow
+                    android:id="@+id/tableRow26"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin="5dp">
+
+                    <Button
+                        android:id="@+id/button34"
+                        style="@style/AppTheme"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@color/L9"
+                        android:text="@string/L_9" />
+
+                    <Button
+                        android:id="@+id/BotonMananaLinea9"
+                        style="@style/AppTheme"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@color/L9light"
+                        android:text="@string/P0" />
+
+                    <Button
+                        android:id="@+id/BotonTardeLinea9"
+                        style="@style/AppTheme"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@color/L9light"
+                        android:text="@string/P0" />
+
+                    <Button
+                        android:id="@+id/BotonNocheLinea9"
+                        style="@style/AppTheme"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@color/L9light"
+                        android:text="@string/P0" />
+                </TableRow>
+
+                <TableRow
+                    android:id="@+id/tableRow27"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin="5dp">
+
+                    <Button
+                        android:id="@+id/button38"
+                        style="@style/AppTheme"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@color/L10"
+                        android:text="@string/L_10" />
+
+                    <Button
+                        android:id="@+id/BotonMananaLinea10"
+                        style="@style/AppTheme"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@color/L10light"
+                        android:text="@string/P0" />
+
+                    <Button
+                        android:id="@+id/BotonTardeLinea10"
+                        style="@style/AppTheme"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@color/L10light"
+                        android:text="@string/P0" />
+
+                    <Button
+                        android:id="@+id/BotonNocheLinea10"
+                        style="@style/AppTheme"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@color/L10light"
+                        android:text="@string/P0" />
+                </TableRow>
+
+                <TableRow
+                    android:id="@+id/tableRow28"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin="5dp">
+
+                    <Button
+                        android:id="@+id/button42"
+                        style="@style/AppTheme"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@color/L11"
+                        android:text="@string/L_11" />
+
+                    <Button
+                        android:id="@+id/BotonMananaLinea11"
+                        style="@style/AppTheme"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@color/L11light"
+                        android:text="@string/P0" />
+
+                    <Button
+                        android:id="@+id/BotonTardeLinea11"
+                        style="@style/AppTheme"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@color/L11light"
+                        android:text="@string/P0" />
+
+                    <Button
+                        android:id="@+id/BotonNocheLinea11"
+                        style="@style/AppTheme"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@color/L11light"
+                        android:text="@string/P0" />
+                </TableRow>
+
+                <TableRow
+                    android:id="@+id/tableRow29"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin="5dp">
+
+                    <Button
+                        android:id="@+id/button46"
+                        style="@style/AppTheme"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@color/L12"
+                        android:text="@string/L_12" />
+
+                    <Button
+                        android:id="@+id/BotonMananaLinea12"
+                        style="@style/AppTheme"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@color/L12light"
+                        android:text="@string/P0" />
+
+                    <Button
+                        android:id="@+id/BotonTardeLinea12"
+                        style="@style/AppTheme"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@color/L12light"
+                        android:text="@string/P0" />
+
+                    <Button
+                        android:id="@+id/BotonNocheLinea12"
+                        style="@style/AppTheme"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@color/L12light"
+                        android:text="@string/P0" />
+                </TableRow>
+
+                <TableRow
+                    android:id="@+id/tableRow30"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin="5dp">
+
+                    <Button
+                        android:id="@+id/button50"
+                        style="@style/AppTheme"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@color/RVA"
+                        android:text="@string/RVA_1" />
+
+                    <Button
+                        android:id="@+id/BotonMananaRVA1"
+                        style="@style/AppTheme"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@color/RVAlight"
+                        android:text="@string/P0" />
+
+                    <Button
+                        android:id="@+id/BotonTardeRVA1"
+                        style="@style/AppTheme"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@color/RVAlight"
+                        android:text="@string/P0" />
+
+                    <Button
+                        android:id="@+id/BotonNocheRVA1"
+                        style="@style/AppTheme"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@color/RVAlight"
+                        android:text="@string/P0" />
+                </TableRow>
+
+                <TableRow
+                    android:id="@+id/tableRow31"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin="5dp">
+
+                    <Button
+                        android:id="@+id/button54"
+                        style="@style/AppTheme"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@color/RVA"
+                        android:text="@string/RVA_2" />
+
+                    <Button
+                        android:id="@+id/BotonMananaRVA2"
+                        style="@style/AppTheme"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@color/RVAlight"
+                        android:text="@string/P0" />
+
+                    <Button
+                        android:id="@+id/BotonTardeRVA2"
+                        style="@style/AppTheme"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@color/RVAlight"
+                        android:text="@string/P0" />
+
+                    <Button
+                        android:id="@+id/BotonNocheRVA2"
+                        style="@style/AppTheme"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@color/RVAlight"
+                        android:text="@string/P0" />
+                </TableRow>
+
+                <TableRow
+                    android:id="@+id/tableRow32"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin="5dp">
+
+                    <Button
+                        android:id="@+id/button58"
+                        style="@style/AppTheme"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@color/RVA"
+                        android:text="@string/RVA_3" />
+
+                    <Button
+                        android:id="@+id/BotonMananaRVA3"
+                        style="@style/AppTheme"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@color/RVAlight"
+                        android:text="@string/P0" />
+
+                    <Button
+                        android:id="@+id/BotonTardeRVA3"
+                        style="@style/AppTheme"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@color/RVAlight"
+                        android:text="@string/P0" />
+
+                    <Button
+                        android:id="@+id/BotonNocheRVA3"
+                        style="@style/AppTheme"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@color/RVAlight"
+                        android:text="@string/P0" />
+                </TableRow>
+
+                <TableRow
+                    android:id="@+id/tableRow33"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin="5dp">
+
+                    <Button
+                        android:id="@+id/button62"
+                        style="@style/AppTheme"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@color/RVA"
+                        android:text="@string/RVA_4" />
+
+                    <Button
+                        android:id="@+id/BotonMananaRVA4"
+                        style="@style/AppTheme"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@color/RVAlight"
+                        android:text="@string/P0" />
+
+                    <Button
+                        android:id="@+id/BotonTardeRVA4"
+                        style="@style/AppTheme"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@color/RVAlight"
+                        android:text="@string/P0" />
+
+                    <Button
+                        android:id="@+id/BotonNocheRVA4"
+                        style="@style/AppTheme"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@color/RVAlight"
+                        android:text="@string/P0" />
+                </TableRow>
+
+                <TableRow
+                    android:id="@+id/tableRow34"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin="5dp">
+
+                    <Button
+                        android:id="@+id/button66"
+                        style="@style/AppTheme"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@color/RVA"
+                        android:text="@string/RVA_5" />
+
+                    <Button
+                        android:id="@+id/BotonMananaRVA5"
+                        style="@style/AppTheme"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@color/RVAlight"
+                        android:text="@string/P0" />
+
+                    <Button
+                        android:id="@+id/BotonTardeRVA5"
+                        style="@style/AppTheme"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@color/RVAlight"
+                        android:text="@string/P0" />
+
+                    <Button
+                        android:id="@+id/BotonNocheRVA5"
+                        style="@style/AppTheme"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@color/RVAlight"
+                        android:text="@string/P0" />
+                </TableRow>
+
+                <TableRow
+                    android:id="@+id/tableRow35"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin="5dp">
+
+                    <Button
+                        android:id="@+id/button70"
+                        style="@style/AppTheme"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@color/RVA"
+                        android:text="@string/RVA_6" />
+
+                    <Button
+                        android:id="@+id/BotonMananaRVA6"
+                        style="@style/AppTheme"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@color/RVAlight"
+                        android:text="@string/P0" />
+
+                    <Button
+                        android:id="@+id/BotonTardeRVA6"
+                        style="@style/AppTheme"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@color/RVAlight"
+                        android:text="@string/P0" />
+
+                    <Button
+                        android:id="@+id/BotonNocheRVA6"
+                        style="@style/AppTheme"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@color/RVAlight"
+                        android:text="@string/P0" />
+                </TableRow>
+            </TableLayout>
+        </ScrollView>
+    </TableLayout>
+
+</RelativeLayout>
