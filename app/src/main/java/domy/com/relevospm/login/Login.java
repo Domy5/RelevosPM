@@ -24,6 +24,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import domy.com.relevospm.Main_Seleccionar_Dia;
@@ -74,10 +75,11 @@ public class Login extends Activity implements OnClickListener {
         // register listeners
         mSubmit.setOnClickListener(this);
         mRegister.setOnClickListener(this);
+      //  mySwitch.setOnClickListener(this);
 
-        Boolean AutoLogien = getIntent().getBooleanExtra("AutoLogin",true);
+        Boolean AutoLogin = getIntent().getBooleanExtra("AutoLogin",true);
 
-        if (mySwitch.isChecked() && AutoLogien ){
+        if (mySwitch.isChecked() && AutoLogin ){
 
             mSubmit.performClick();
         }
@@ -91,11 +93,8 @@ public class Login extends Activity implements OnClickListener {
         mySwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
 
                 public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                    if (isChecked) {
-                      System.out.print("zzzzzzzzzzzzzzzcc " + "on");
-                    } else {
-                        System.out.print("zzzzzzzzzzzzzzzcc " + "off");
-                    }
+
+
                 }
             });
 
@@ -106,7 +105,10 @@ public class Login extends Activity implements OnClickListener {
         // TODO Auto-generated method stub
         switch (v.getId()) {
             case R.id.login:
-                new AttemptLogin().execute();
+              //  new AttemptLogin().execute();
+
+                new AttemptLogin(user.getText().toString(), pass.getText().toString(), mySwitch.isChecked()).execute();
+
                 break;
             case R.id.register:
                 Intent i = new Intent(this, Register.class);
@@ -120,26 +122,28 @@ public class Login extends Activity implements OnClickListener {
 
     class AttemptLogin extends AsyncTask<String, String, String> {
 
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-            pDialog = new ProgressDialog(Login.this);
-            pDialog.setMessage("Intentando el Inicio de sesión...");
-            pDialog.setIndeterminate(false);
-            pDialog.setCancelable(true);
-            pDialog.show();
+        String username;
+        String password;
+        boolean myS;
+
+        public AttemptLogin(String username1, String password1, boolean myS1) {
+            username = username1;
+            password = password1;
+            myS = myS1;
+
         }
 
         @Override
         protected String doInBackground(String... args) {
+
             int success;
-            String username = user.getText().toString();
-            String password = pass.getText().toString();
+
             try {
                 // Building Parameters
                 List params = new ArrayList();
                 params.add(new BasicNameValuePair("username", username));
                 params.add(new BasicNameValuePair("password", password));
+
 
                 Log.d("request!", "starting");
                 // getting product details by making HTTP request
@@ -151,18 +155,19 @@ public class Login extends Activity implements OnClickListener {
 
                 // json success tag
                 success = json.getInt(TAG_SUCCESS);
+
                 if (success == 1) {
                     Log.d("Login Successful!", json.toString());
                     // save user data
 
                     SharedPreferences preferencias = getSharedPreferences("datos",Context.MODE_PRIVATE);
                     Editor editor = preferencias.edit();
-                    editor.putString("Usuario", user.getText().toString());
-                    editor.putString("Password", pass.getText().toString());
-                    editor.putBoolean("Switch", mySwitch.isChecked());
+                    editor.putString("Usuario", username);
+                    editor.putString("Password", password);
+                    editor.putBoolean("Switch", myS);
 
-                    editor.commit();
-
+                   // editor.commit();
+                    editor.apply();
 
                     Intent i = new Intent(Login.this, Main_Seleccionar_Dia.class);
                     finish();
@@ -179,7 +184,19 @@ public class Login extends Activity implements OnClickListener {
             return null;
 
         }
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            pDialog = new ProgressDialog(Login.this);
+            pDialog.setMessage("Intentando el Inicio de sesión...");
+            pDialog.setIndeterminate(false);
+            pDialog.setCancelable(true);
+            pDialog.show();
+        }
 
+
+
+        @Override
         protected void onPostExecute(String file_url) {
             // dismiss the dialog once product deleted
             pDialog.dismiss();
@@ -187,5 +204,10 @@ public class Login extends Activity implements OnClickListener {
                 Toast.makeText(Login.this, file_url, Toast.LENGTH_LONG).show();
             }
         }
+
+
+      //  @Override
+      //  protected void onProgressUpdate(Void... values) {}
+
     }
 }
