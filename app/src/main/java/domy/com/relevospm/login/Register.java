@@ -33,9 +33,6 @@ public class Register extends Activity implements OnClickListener {
     private static final String TAG_SUCCESS = "success";
     private static final String TAG_MESSAGE = "message";
 
-    private  static String u = "";
-    private  static String p = "";
-
     private static final Set<String> DNE = new HashSet<String>(Arrays.asList(
             new String[] { "02660", "02870", "02998", "03074", "03289", "03906", "04003",
             "04105", "04114", "04252", "04265", "04313", "04324", "04814", "04839", "04870",
@@ -45,7 +42,7 @@ public class Register extends Activity implements OnClickListener {
             "15591", "15594", "15597", "15704", "15757", "15814", "15906", "15908", "15910",
             "15944", "15974", "16049", "16142", "16151", "16311", "16484", "16589", "16637",
             "16955", "17074", "17233", "17367", "17477", "17904", "18203", "18267", "18316",
-            "18327", "18352", "18366", "18647", "18951",}));
+            "18327", "18352", "18366", "18647", "18951"}));
 
     // JSON parser class
     JSONParser jsonParser = new JSONParser();
@@ -77,7 +74,7 @@ public class Register extends Activity implements OnClickListener {
 
         if(DNE.contains(user.getText().toString())){
 
-        new CreateUser().execute();
+        new CreateUser(user.getText().toString(),pass.getText().toString()).execute();
 
         }
         else{
@@ -96,6 +93,14 @@ public class Register extends Activity implements OnClickListener {
 
     class CreateUser extends AsyncTask<String, String, String> {
 
+        String username;
+        String password;
+
+        public CreateUser(String username1, String password1) {
+            username = username1;
+            password = password1;
+
+        }
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
@@ -112,14 +117,11 @@ public class Register extends Activity implements OnClickListener {
             // Check for success tag
             int success;
 
-            u = user.getText().toString();
-            p = pass.getText().toString();
-
             try {
                 // Building Parameters
                 List params = new ArrayList();
-                params.add(new BasicNameValuePair("username", u));
-                params.add(new BasicNameValuePair("password", p));
+                params.add(new BasicNameValuePair("username", username));
+                params.add(new BasicNameValuePair("password", password));
 
                 Log.d("request!", "starting");
 
