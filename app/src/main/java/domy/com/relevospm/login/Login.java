@@ -37,7 +37,7 @@ public class Login extends Activity implements OnClickListener {
     private static final String TAG_SUCCESS = "success";
     private static final String TAG_MESSAGE = "message";
     // Clase JSONParser
-    JSONParser jsonParser = new JSONParser();
+    JSONParser2 jsonParser2 = new JSONParser2();
 
 
     // si trabajan de manera local "localhost" :
@@ -140,14 +140,21 @@ public class Login extends Activity implements OnClickListener {
 
             try {
                 // Building Parameters
-                List params = new ArrayList();
-                params.add(new BasicNameValuePair("username", username));
-                params.add(new BasicNameValuePair("password", password));
+            //    List params = new ArrayList();
+            //    params.add(new BasicNameValuePair("username", username));
+            //    params.add(new BasicNameValuePair("password", password));
 
+
+                HashMap<String, String> params = new HashMap<>();
+                // params.put("name", args[0]);
+                // params.put("password", args[1]);
+
+                params.put("username", username);
+                params.put("password", password);
 
                 Log.d("request!", "starting");
                 // getting product details by making HTTP request
-                JSONObject json = jsonParser.makeHttpRequest(LOGIN_URL, "POST",
+                JSONObject json = jsonParser2.makeHttpRequest(LOGIN_URL, "POST",
                         params);
 
                 // check your log for json response

@@ -20,7 +20,7 @@ public class BD_Lineas_Fijas extends SQLiteOpenHelper {
     //Ruta por defecto de las bases de datos en el sistema Android
     //  private static String DB_PATH =      "/data/data/domy.com.relevospm/databases/";
 
-    private static String DB_NAME = "linea.s3db";
+    private static String DB_NAME = "linea_rev1.s3db";
     private final Context myContext;
     private String DB_PATH;
     private SQLiteDatabase myDataBase;
@@ -31,7 +31,6 @@ public class BD_Lineas_Fijas extends SQLiteOpenHelper {
      * Toma referencia hacia el contexto de la aplicación que lo invoca para poder acceder a los 'assets' y 'resources' de la aplicación.
      * Crea un objeto DBOpenHelper que nos permitirá controlar la apertura de la base de datos.
      *
-     * @param context
      */
     public BD_Lineas_Fijas(Context context) {
 
@@ -92,7 +91,8 @@ public class BD_Lineas_Fijas extends SQLiteOpenHelper {
             checkDB.close();
 
         }
-        return checkDB != null ? true : false;
+        //   return checkDB != null ? true : false;
+           return checkDB != null;
     }
 
     /**

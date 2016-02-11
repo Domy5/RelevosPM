@@ -20,6 +20,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -45,7 +46,7 @@ public class Register extends Activity implements OnClickListener {
             "18327", "18352", "18366", "18647", "18951"}));
 
     // JSON parser class
-    JSONParser jsonParser = new JSONParser();
+    JSONParser2 jsonParser2 = new JSONParser2();
 
     //si lo trabajan de manera local en xxx.xxx.x.x va su ip local
     // private static final String REGISTER_URL = "http://xxx.xxx.x.x:1234/cas/register.php";
@@ -119,14 +120,21 @@ public class Register extends Activity implements OnClickListener {
 
             try {
                 // Building Parameters
-                List params = new ArrayList();
-                params.add(new BasicNameValuePair("username", username));
-                params.add(new BasicNameValuePair("password", password));
+               // List params = new ArrayList();
+               // params.add(new BasicNameValuePair("username", username));
+               // params.add(new BasicNameValuePair("password", password));
+
+                HashMap<String, String> params = new HashMap<>();
+              //  params.put("name", args[0]);
+             //   params.put("password", args[1]);
+
+                params.put("username", username);
+                params.put("password", password);
 
                 Log.d("request!", "starting");
 
                 //Posting user data to script
-                JSONObject json = jsonParser.makeHttpRequest(
+                JSONObject json = jsonParser2.makeHttpRequest(
                         REGISTER_URL, "POST", params);
 
                 // full json response
