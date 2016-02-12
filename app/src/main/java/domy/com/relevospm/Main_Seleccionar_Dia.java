@@ -201,28 +201,18 @@ public class Main_Seleccionar_Dia extends AppCompatActivity {
             return true;
         }
 
-        if (id == R.id.action_Infor) {
+        if (id == R.id.action_Actualizar) {
 
-            //  Intent i = new Intent(this, Dialog_Info.class);
-             Intent i = new Intent(this, SelfInstall01Activity.class);
-
+            Intent i = new Intent(this, SelfInstall01Activity.class);
             startActivity(i);
 
             return true;
         }
 
-        if (id == R.id.action_Actualizar) {
+        if (id == R.id.action_Infor) {
 
-            isStoragePermissionGranted();
-
-            UpdateApp atualizaApp = new UpdateApp();
-            atualizaApp.setContext(getApplicationContext());
-            atualizaApp.execute("http://domy.asuscomm.com/app-debug.apk");
-
-           // Intent promptInstall = new Intent(Intent.ACTION_VIEW)
-            //        .setDataAndType(Uri.parse("/mnt/sdcard/download/app.apk"),
-            //                "application/vnd.android.package-archive");
-            //startActivity(promptInstall);
+            Intent i = new Intent(this, Dialog_Info.class);
+            startActivity(i);
 
             return true;
         }

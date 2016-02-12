@@ -11,7 +11,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Estado de la App instalada :"
+            android:text="Estado de la App instalada : "
             android:id="@+id/textView4"
             android:layout_gravity="left" />
 
@@ -20,6 +20,7 @@
             android:layout_height="wrap_content"
             android:text=""
             android:id="@+id/tvApkStatus" />
+
     </LinearLayout>
 
     <LinearLayout
@@ -30,7 +31,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Version Nueva en Servidor :"
+            android:text="Version Nueva en Servidor : "
             android:id="@+id/textView5" />
 
         <TextView
@@ -40,12 +41,26 @@
             android:id="@+id/tvInstallVersion" />
     </LinearLayout>
 
-    <Button
+    <LinearLayout
+        android:orientation="horizontal"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Comprobar..."
-        android:id="@+id/btnCheckUpdates"
-        android:layout_gravity="center" />
+        android:layout_height="wrap_content">
+
+        <Button
+            style="@style/Base.AlertDialog.AppCompat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Cancelar"
+            android:id="@+id/btnCancelar" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="   Comprobar...   "
+            android:id="@+id/btnUpdates"
+            android:layout_gravity="center"
+            style="@style/AlertDialog.AppCompat" />
+    </LinearLayout>
 </LinearLayout>
 
 
