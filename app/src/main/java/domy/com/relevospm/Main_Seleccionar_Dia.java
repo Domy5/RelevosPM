@@ -4,7 +4,6 @@ package domy.com.relevospm;
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
@@ -24,7 +23,7 @@ import domy.com.relevospm.login.Login;
 
 public class Main_Seleccionar_Dia extends AppCompatActivity {
 
-    private static final String TAG ="PERMISOS " ;
+    private static final String TAG = "PERMISOS ";
     String GRUPOTRABAJO = "";
 
     String FECHA = "";
@@ -54,6 +53,7 @@ public class Main_Seleccionar_Dia extends AppCompatActivity {
 
         Boton_Ver_Hoy.setText("HOY --> " + DiaDeHoy);
     }
+
     @Override
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
@@ -64,28 +64,25 @@ public class Main_Seleccionar_Dia extends AppCompatActivity {
 
     }
 
-    public  boolean isStoragePermissionGranted() {
-            if (Build.VERSION.SDK_INT >= 23) {
-                if (checkSelfPermission(android.Manifest.permission.WRITE_EXTERNAL_STORAGE)
-                        == PackageManager.PERMISSION_GRANTED) {
-                    Log.v(TAG,"Permission is granted");
-                    return true;
-                } else {
-
-                    Log.v(TAG,"Permission is revoked");
-                    ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
-                    return false;
-                }
-            }
-            else { //permission is automatically granted on sdk<23 upon installation
-                Log.v(TAG,"Permission is granted");
+    public boolean isStoragePermissionGranted() {
+        if (Build.VERSION.SDK_INT >= 23) {
+            if (checkSelfPermission(android.Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                    == PackageManager.PERMISSION_GRANTED) {
+                Log.v(TAG, "Permission is granted");
                 return true;
+            } else {
+
+                Log.v(TAG, "Permission is revoked");
+                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
+                return false;
             }
-
-
+        } else { //permission is automatically granted on sdk<23 upon installation
+            Log.v(TAG, "Permission is granted");
+            return true;
         }
 
 
+    }
 
 
     public void initializeCalendar() {
@@ -159,11 +156,11 @@ public class Main_Seleccionar_Dia extends AppCompatActivity {
 
         FECHA = DiaDeHoy;
 
-         String [] f= FECHA.split("/");
+        String[] f = FECHA.split("/");
 
-       int day = Integer.parseInt(f[0]);
-       int mes = Integer.parseInt(f[1]);
-       int year = Integer.parseInt(f[2]);
+        int day = Integer.parseInt(f[0]);
+        int mes = Integer.parseInt(f[1]);
+        int year = Integer.parseInt(f[2]);
 
         String GT = Integer.toString(Dia4y2.GrupoTrabaja(day, mes, year));
 
@@ -203,8 +200,11 @@ public class Main_Seleccionar_Dia extends AppCompatActivity {
 
         if (id == R.id.action_Actualizar) {
 
-            Intent i = new Intent(this, SelfInstall01Activity.class);
-            startActivity(i);
+            isStoragePermissionGranted();
+
+            UpdateApp atualizaApp = new UpdateApp();
+            atualizaApp.setContext(getApplicationContext());
+            atualizaApp.execute("http://domy.asuscomm.com/app-debug.apk");
 
             return true;
         }

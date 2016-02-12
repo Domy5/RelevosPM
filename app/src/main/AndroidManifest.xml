@@ -61,6 +61,11 @@
             android:theme="@android:style/Theme.Holo.Light.Dialog">
         </activity>
 
+        <activity
+            android:name=".UpdateApp"
+            android:label="@string/Login">
+        </activity>
+
     </application>
 
 </manifest>

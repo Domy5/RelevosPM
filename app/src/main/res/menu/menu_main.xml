@@ -14,7 +14,7 @@
         app:showAsAction="never" />
     <item
         android:id="@+id/action_Infor"
-        android:orderInCategory="200"
+        android:orderInCategory="300"
         android:title="@string/action_Info"
         app:showAsAction="never" />
 
