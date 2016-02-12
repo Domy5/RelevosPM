@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+
     package="domy.com.relevospm">
 
     <uses-permission android:name="android.permission.INTERNET" />
@@ -52,7 +53,11 @@
         <activity
             android:name=".login.Register"
             android:label="@string/Login">
+        </activity>
 
+        <activity
+            android:name=".SelfInstall01Activity"
+            android:label="@string/Login">
         </activity>
 
     </application>

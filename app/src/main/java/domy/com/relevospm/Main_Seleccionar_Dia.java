@@ -203,20 +203,8 @@ public class Main_Seleccionar_Dia extends AppCompatActivity {
 
         if (id == R.id.action_Infor) {
 
-            //  AlertDialog.Builder dialogo1 = new AlertDialog.Builder(this);
-            //  dialogo1.setTitle("Infor");
-            //  dialogo1.setMessage("¿  ?");
-            // dialogo1.setCancelable(false);
-
-            // dialogo1.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-            //     public void onClick(DialogInterface dialogo1, int id) {
-            //          dialogo1.cancel();
-            //      }
-            //  });
-
-            //  dialogo1.show();
-
-            Intent i = new Intent(this, Dialog_Info.class);
+            //  Intent i = new Intent(this, Dialog_Info.class);
+             Intent i = new Intent(this, SelfInstall01Activity.class);
 
             startActivity(i);
 

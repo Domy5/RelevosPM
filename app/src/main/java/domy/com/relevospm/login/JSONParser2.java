@@ -50,9 +50,6 @@ public class JSONParser2 {
             try {
                 urlObj = new URL(url);
 
-                Log.d("urlllll",urlObj.toString());
-                Log.d("urlllll",sbParams.toString());
-
                 conn = (HttpURLConnection) urlObj.openConnection();
 
                 conn.setDoOutput(true);
@@ -83,9 +80,6 @@ public class JSONParser2 {
             if (sbParams.length() != 0) {
                 url += "?" + sbParams.toString();
             }
-
-            Log.d("urlllll",urlObj.toString());
-            Log.d("urlllll",sbParams.toString());
 
             try {
                 urlObj = new URL(url);
