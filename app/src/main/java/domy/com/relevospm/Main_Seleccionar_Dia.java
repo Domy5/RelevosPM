@@ -19,6 +19,8 @@ import android.widget.Toast;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import domy.com.relevospm.Utiles.Dia4y2;
+import domy.com.relevospm.Utiles.UpdateApp;
 import domy.com.relevospm.login.Login;
 
 public class Main_Seleccionar_Dia extends AppCompatActivity {
@@ -42,7 +44,6 @@ public class Main_Seleccionar_Dia extends AppCompatActivity {
         //sets the main layout of the activity
         setContentView(R.layout.activity_main);
 
-
         initializeCalendar();
 
         Boton_Ver_Hoy = (Button) findViewById(R.id.Boton_Ver_Hoy);
@@ -63,27 +64,6 @@ public class Main_Seleccionar_Dia extends AppCompatActivity {
         }
 
     }
-
-    public boolean isStoragePermissionGranted() {
-        if (Build.VERSION.SDK_INT >= 23) {
-            if (checkSelfPermission(android.Manifest.permission.WRITE_EXTERNAL_STORAGE)
-                    == PackageManager.PERMISSION_GRANTED) {
-                Log.v(TAG, "Permission is granted");
-                return true;
-            } else {
-
-                Log.v(TAG, "Permission is revoked");
-                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
-                return false;
-            }
-        } else { //permission is automatically granted on sdk<23 upon installation
-            Log.v(TAG, "Permission is granted");
-            return true;
-        }
-
-
-    }
-
 
     public void initializeCalendar() {
         calendar = (CalendarView) findViewById(R.id.calendar);
@@ -115,7 +95,7 @@ public class Main_Seleccionar_Dia extends AppCompatActivity {
 
                 int Mes = month + 1;
 
-                int GL = domy.com.relevospm.Dia4y2.GrupoLibra(day, Mes, year);
+                int GL = Dia4y2.GrupoLibra(day, Mes, year);
                 String GT = Integer.toString(Dia4y2.GrupoTrabaja(day, Mes, year));
 
                 GRUPOTRABAJO = GT.substring(0, 1) + " y " + GT.substring(1, 2);
@@ -173,6 +153,25 @@ public class Main_Seleccionar_Dia extends AppCompatActivity {
         startActivity(i);
     }
 
+    public boolean isStoragePermissionGranted() {
+        if (Build.VERSION.SDK_INT >= 23) {
+            if (checkSelfPermission(android.Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                    == PackageManager.PERMISSION_GRANTED) {
+                Log.v(TAG, "Permission is granted");
+                return true;
+            } else {
+
+                Log.v(TAG, "Permission is revoked");
+                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
+                return false;
+            }
+        } else { //permission is automatically granted on sdk<23 upon installation
+            Log.v(TAG, "Permission is granted");
+            return true;
+        }
+
+
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

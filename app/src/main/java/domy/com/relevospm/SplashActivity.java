@@ -8,16 +8,16 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.StrictMode;
 import android.support.v4.app.ActivityCompat;
 import android.util.Log;
-import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -27,6 +27,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
+import domy.com.relevospm.Utiles.UpdateApp;
 import domy.com.relevospm.login.Login;
 
 public class SplashActivity extends Activity {
@@ -80,18 +81,39 @@ public class SplashActivity extends Activity {
 
         setContentView(R.layout.splash);
 
-        GetVersionFromServer(BuildVersionPath);
 
+        if(isOnline()) {
 
-        tvVerSer = (TextView) findViewById(R.id.versionServidor);
-        tvVerSer.setText(" NameServer :" + VersionName + " CodeServer :" + VersionCode);
+            GetVersionFromServer(BuildVersionPath);
+            checkInstalledApp(AppName);
 
-        tvVerApp = (TextView) findViewById(R.id.versionApp);
-        tvVerApp.setText(" NameApp    :" + versionNameApp + " CodeApp    :" + versionCodeApp);
+            tvVerSer = (TextView) findViewById(R.id.versionServidor);
+            tvVerSer.setText(" NameServer : " + VersionName + " CodeServer : " + VersionCode);
 
-        checkInstalledApp(AppName);
+            tvVerApp = (TextView) findViewById(R.id.versionApp);
+            tvVerApp.setText(" NameApp    : " + versionNameApp + " CodeApp    : " + versionCodeApp);
 
+        }else{
 
+            DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    switch (which) {
+                        case DialogInterface.BUTTON_POSITIVE:
+
+                            finish();
+
+                            break;
+
+                    }
+                }
+            };
+
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setMessage("No hay INTERNET ! ! ! ! ! \n\nIntenta conectarte y vuelve a intentarlo...")
+                    .setPositiveButton("OK. salir", dialogClickListener).show();
+
+        }
 
     }
 
@@ -254,4 +276,16 @@ public class SplashActivity extends Activity {
 
     }
 
+    public boolean isOnline() {
+
+        ConnectivityManager cm = (ConnectivityManager) this.getSystemService(Context.CONNECTIVITY_SERVICE);
+
+        NetworkInfo netInfo = cm.getActiveNetworkInfo();
+
+        if (netInfo != null && netInfo.isConnectedOrConnecting()) {
+            return true;
+        }
+
+        return false;
+    }
 }

@@ -1,6 +1,8 @@
-package domy.com.relevospm.login;
+package domy.com.relevospm.Utiles;
 
 import android.util.Log;
+
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import java.io.BufferedInputStream;
@@ -15,21 +17,24 @@ import java.net.URL;
 import java.net.URLEncoder;
 import java.util.HashMap;
 
-public class JSONParser2 {
+public class JSONParser3 {
 
     String charset = "UTF-8";
     HttpURLConnection conn;
     DataOutputStream wr;
     StringBuilder result;
+    String resulto;
     URL urlObj;
-    JSONObject jObj = null;
+    JSONArray jObjA = null;
+
     StringBuilder sbParams;
     String paramsString;
 
-    public JSONObject makeHttpRequest(String url, String method,
+    public JSONArray makeHttpRequest(String url, String method,
                                       HashMap<String, String> params) {
 
-        sbParams = new StringBuilder();
+        StringBuilder sbParams = new StringBuilder();
+
         int i = 0;
         for (String key : params.keySet()) {
             try {
@@ -120,14 +125,24 @@ public class JSONParser2 {
 
         conn.disconnect();
 
+        /*
+        if( result.toString().substring(0,1 ) == "["){
+            resulto = result.toString().substring(1,result.toString().length()-1);
+            Log.d("JSON Parser", "result: " + resulto.toString());
+        }else {
+            resulto = result.toString();
+        }*/
+
         // try parse the string to a JSON object
         try {
-            jObj = new JSONObject(result.toString());
+
+            jObjA = new JSONArray(result.toString().trim());
+
         } catch (JSONException e) {
             Log.e("JSON Parser", "Error parsing data " + e.toString());
         }
 
         // return JSON Object
-        return jObj;
+        return jObjA;
     }
 }

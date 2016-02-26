@@ -52,19 +52,19 @@
 
     <string name="icono">icono</string>
     <string name="Info">I N F O</string>
-    <string name="action_Actualizar">Actualizar</string>
+    <string name="action_Actualizar">Actualizacion Forzada</string>
 
     <string name="Texto_Info">
       <b>D O M Y\n</b>
-        * V1  Cosmos\n
-        - datos agentes fijos\n
-        - boton cambio numeros por nombre\n
-        - splash\n
-        - layout-land\n
-        - login BD\n
-        - login auto\n
-        - layout-land\n
-        - layout-land\n
+        * V 1.0  Cosmos\n
+        - Datos agentes fijos\n
+        - Boton cambio numeros por nombre\n
+        - Splash\n
+        - Login BD\n
+        - Login auto\n
+        - Layout-land\n
+        - Comprobar Internet al iniciar\n
+        - Comprobar Actualizacion al iniciar\n
 
 
     </string>

@@ -14,6 +14,8 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.Vector;
 
+import domy.com.relevospm.Utiles.dia;
+
 public class BD_Lineas_Fijas extends SQLiteOpenHelper {
 
 
@@ -159,7 +161,7 @@ public class BD_Lineas_Fijas extends SQLiteOpenHelper {
     //Todo: meter el metodo para ver registros
     public Vector getDatosDne(String fecha) {
 
-        int f = dia.Fecha(fecha);
+        int f = domy.com.relevospm.Utiles.dia.Fecha(fecha);
 
         System.out.println("FECHA::" + fecha);
         System.out.println("F::" + f);

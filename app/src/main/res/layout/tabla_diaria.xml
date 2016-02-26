@@ -79,7 +79,7 @@
 
     </TableLayout>
 
-    <domy.com.relevospm.dosScroll
+    <domy.com.relevospm.Utiles.dosScroll
 
         android:id="@+id/vScroll"
         android:layout_width="match_parent"
@@ -796,6 +796,6 @@
                     android:text="@string/P0" />
             </TableRow>
         </TableLayout>
-    </domy.com.relevospm.dosScroll>
+    </domy.com.relevospm.Utiles.dosScroll>
 
 </RelativeLayout>

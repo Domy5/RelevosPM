@@ -8,27 +8,23 @@ import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.EditText;
-import android.widget.RadioGroup;
 import android.widget.Switch;
 import android.widget.Toast;
 
-import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
 import domy.com.relevospm.Main_Seleccionar_Dia;
 import domy.com.relevospm.R;
+import domy.com.relevospm.Utiles.JSONParser2;
 
 public class Login extends Activity implements OnClickListener {
 
@@ -200,9 +196,6 @@ public class Login extends Activity implements OnClickListener {
             pDialog.setCancelable(true);
             pDialog.show();
         }
-
-
-
         @Override
         protected void onPostExecute(String file_url) {
             // dismiss the dialog once product deleted
@@ -211,8 +204,6 @@ public class Login extends Activity implements OnClickListener {
                 Toast.makeText(Login.this, file_url, Toast.LENGTH_LONG).show();
             }
         }
-
-
       //  @Override
       //  protected void onProgressUpdate(Void... values) {}
 

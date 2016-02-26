@@ -1,4 +1,4 @@
-package domy.com.relevospm;
+package domy.com.relevospm.Utiles;
 
 import java.util.GregorianCalendar;
 
@@ -10,11 +10,11 @@ public class dia {
 
         System.out.println(Fecha(29, 2, 2015));
         System.out.println(Fecha("29/2/2016"));
-        System.out.println(Fecha(2, 3, 2016));
+
 
     }
 
-    static int Fecha(String fecha) {
+    public static int Fecha(String fecha) {
 
         String[] S = fecha.split("/");
 
@@ -23,7 +23,7 @@ public class dia {
         return resultado;
     }
 
-    static int Fecha(int dia, int mes, int anio) {
+    public static int Fecha(int dia, int mes, int anio) {
 
         GregorianCalendar calendar = new GregorianCalendar();
 

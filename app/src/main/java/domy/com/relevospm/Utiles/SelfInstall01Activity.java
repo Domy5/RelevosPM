@@ -1,4 +1,4 @@
-package domy.com.relevospm;
+package domy.com.relevospm.Utiles;
 
 /*
  *  Code Prepared by **Muhammad Mubashir**.
@@ -46,6 +46,10 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+
+import domy.com.relevospm.BuildConfig;
+import domy.com.relevospm.R;
+import domy.com.relevospm.Utiles.UpdateApp;
 
 // import com.SelfInstall01.SelfInstall01Activity;
 

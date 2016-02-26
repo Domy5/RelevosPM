@@ -69,7 +69,8 @@
             android:layout_height="wrap_content"
             android:id="@+id/versionApp"
             android:paddingTop="20px"
-            android:textColor="#6f6d6d" />
+            android:textColor="#6f6d6d"
+            android:layout_gravity="top" />
     </LinearLayout>
 
     <LinearLayout
@@ -86,7 +87,8 @@
             android:id="@+id/versionServidor"
             android:paddingLeft="10px"
             android:paddingTop="20px"
-            android:textColor="#6f6d6d" />
+            android:textColor="#6f6d6d"
+            android:layout_gravity="bottom" />
     </LinearLayout>
 
     <LinearLayout
