@@ -94,28 +94,35 @@
 
         </android.support.design.widget.TextInputLayout>
 
-        <Button
-            android:id="@+id/login"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-
-            android:layout_gravity="center"
-            android:text="@string/Login" />
-
-        <Button
-            android:id="@+id/register"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginBottom="25dp"
-            android:text="@string/Registrar" />
-
         <Switch
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/login_automatico"
             android:id="@+id/switch1"
             android:layout_gravity="center" />
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center">
+
+            <Button
+                android:id="@+id/login"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="@string/Login"
+                android:layout_gravity="center" />
+
+            <Button
+                android:id="@+id/register"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="@string/Registrar"
+                android:layout_gravity="center" />
+
+        </LinearLayout>
+
     </LinearLayout>
 
 </RelativeLayout>

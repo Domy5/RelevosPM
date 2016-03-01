@@ -24,6 +24,9 @@
     <string name="RVA_4">"RVA 4"</string>
     <string name="RVA_5">"RVA 5"</string>
     <string name="RVA_6">"RVA 6"</string>
+    <string name="RVA_7">"RVA 7"</string>
+    <string name="RVA_8">"RVA 8"</string>
+    <string name="RVA_9">"RVA 9"</string>
 
     <string name="F">"Aqui la Fecha"</string>
     <string name="XXXXXX">"X"</string>
@@ -69,5 +72,6 @@
 
     </string>
     <string name="login_automatico">Login Automatico</string>
+    <string name="telefono">Teléfono Móvil</string>
 
 </resources>

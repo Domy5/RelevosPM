@@ -795,6 +795,120 @@
                     android:background="@color/RVAlight"
                     android:text="@string/P0" />
             </TableRow>
+            <TableRow
+                android:id="@+id/tableRow36"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_margin="5dp">
+
+                <Button
+                    android:id="@+id/button71"
+                    style="@style/AppTheme"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@color/RVA"
+                    android:text="@string/RVA_7" />
+
+                <Button
+                    android:id="@+id/BotonMananaRVA7"
+                    style="@style/AppTheme"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@color/RVAlight"
+                    android:text="@string/P0" />
+
+                <Button
+                    android:id="@+id/BotonTardeRVA7"
+                    style="@style/AppTheme"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@color/RVAlight"
+                    android:text="@string/P0" />
+
+                <Button
+                    android:id="@+id/BotonNocheRVA7"
+                    style="@style/AppTheme"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@color/RVAlight"
+                    android:text="@string/P0" />
+            </TableRow>
+            <TableRow
+                android:id="@+id/tableRow37"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_margin="5dp">
+
+                <Button
+                    android:id="@+id/button72"
+                    style="@style/AppTheme"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@color/RVA"
+                    android:text="@string/RVA_8" />
+
+                <Button
+                    android:id="@+id/BotonMananaRVA8"
+                    style="@style/AppTheme"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@color/RVAlight"
+                    android:text="@string/P0" />
+
+                <Button
+                    android:id="@+id/BotonTardeRVA8"
+                    style="@style/AppTheme"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@color/RVAlight"
+                    android:text="@string/P0" />
+
+                <Button
+                    android:id="@+id/BotonNocheRVA8"
+                    style="@style/AppTheme"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@color/RVAlight"
+                    android:text="@string/P0" />
+            </TableRow>
+            <TableRow
+                android:id="@+id/tableRow38"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_margin="5dp">
+
+                <Button
+                    android:id="@+id/button73"
+                    style="@style/AppTheme"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@color/RVA"
+                    android:text="@string/RVA_9" />
+
+                <Button
+                    android:id="@+id/BotonMananaRVA9"
+                    style="@style/AppTheme"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@color/RVAlight"
+                    android:text="@string/P0" />
+
+                <Button
+                    android:id="@+id/BotonTardeRVA9"
+                    style="@style/AppTheme"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@color/RVAlight"
+                    android:text="@string/P0" />
+
+                <Button
+                    android:id="@+id/BotonNocheRVA9"
+                    style="@style/AppTheme"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@color/RVAlight"
+                    android:text="@string/P0" />
+            </TableRow>
         </TableLayout>
     </domy.com.relevospm.Utiles.dosScroll>
 

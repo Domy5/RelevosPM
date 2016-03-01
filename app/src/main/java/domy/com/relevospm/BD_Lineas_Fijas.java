@@ -161,7 +161,7 @@ public class BD_Lineas_Fijas extends SQLiteOpenHelper {
     //Todo: meter el metodo para ver registros
     public Vector getDatosDne(String fecha) {
 
-        int f = domy.com.relevospm.Utiles.dia.Fecha(fecha);
+        int f = domy.com.relevospm.Utiles.dia.Fecha(fecha); //dia de 365
 
         System.out.println("FECHA::" + fecha);
         System.out.println("F::" + f);

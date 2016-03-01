@@ -27,7 +27,7 @@
             android:src="@drawable/cosmos" />
 
         <TextView
-            android:id="@+id/textView1"
+            android:id="@+id/textView01"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -61,11 +61,8 @@
 
     </android.support.design.widget.TextInputLayout>
 
-
-
-
     <TextView
-            android:id="@+id/TextView01"
+            android:id="@+id/TextView02"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -97,12 +94,48 @@
                 android:singleLine="true" />
 
         </android.support.design.widget.TextInputLayout>
-        <Button
-            android:id="@+id/register"
+
+        <TextView
+            android:id="@+id/TextView03"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="@string/Registrar" />
+            android:text="@string/telefono" />
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left|center_vertical"
+                android:layout_weight="20">
+
+                <EditText
+                    android:id="@+id/telefono"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:hint="@string/telefono"
+                    android:imeActionId="@+id/telefono"
+                    android:imeActionLabel="@string/telefono"
+                    android:imeOptions="actionUnspecified"
+                    android:inputType="phone"
+                    android:maxLength="9"
+                    android:maxLines="1"
+                    android:singleLine="true" />
+
+            </android.support.design.widget.TextInputLayout>
+
+            <Button
+                android:id="@+id/register"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/Registrar"
+                android:layout_weight="60"
+                android:layout_gravity="center_vertical|right" />
+        </LinearLayout>
 
     </LinearLayout>
 

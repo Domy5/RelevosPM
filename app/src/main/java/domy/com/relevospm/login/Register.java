@@ -31,7 +31,7 @@ public class Register extends Activity implements OnClickListener {
     private static final String TAG_MESSAGE = "message";
 
     private static final Set<String> DNE = new HashSet<String>(Arrays.asList(
-            new String[] { "02660", "02870", "02998", "03074", "03289", "03906", "04003",
+            new String[] { "0","02660", "02870", "02998", "03074", "03289", "03906", "04003",
             "04105", "04114", "04252", "04265", "04313", "04324", "04814", "04839", "04870",
             "04936", "05033", "05122", "05134", "05139", "05160", "05201", "05238", "05239",
             "05242", "05244", "05268", "05291", "05293", "05538", "05540", "05550", "05557",
@@ -93,10 +93,10 @@ public class Register extends Activity implements OnClickListener {
         String username;
         String password;
 
+
         public CreateUser(String username1, String password1) {
             username = username1;
             password = password1;
-
         }
         @Override
         protected void onPreExecute() {
