@@ -121,6 +121,13 @@
                 android:text="@string/Registrar"
                 android:layout_gravity="center" />
 
+            <Button
+                style="?android:attr/buttonStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/Atencion"
+                android:drawableRight="@android:drawable/ic_dialog_alert" />
+
         </LinearLayout>
 
     </LinearLayout>

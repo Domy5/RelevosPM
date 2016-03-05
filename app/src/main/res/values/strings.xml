@@ -60,18 +60,35 @@
     <string name="Texto_Info">
       <b>D O M Y\n</b>
         * V 1.0  Cosmos\n
-        - Datos agentes fijos\n
-        - Boton cambio numeros por nombre\n
-        - Splash\n
-        - Login BD\n
-        - Login auto\n
-        - Layout-land\n
-        - Comprobar Internet al iniciar\n
-        - Comprobar Actualizacion al iniciar\n
-
+        \n
+        - Agentes fijos BD local.\n
+        - Boton cambio numeros por nombre.\n
+        - Splash.\n
+        - Login BD.\n
+        - Login auto.\n
+        - Layout-land- desativado.\n
+        - Comprobar Internet al iniciar.\n
+        - Comprobar Actualizacion al iniciar.\n
+        - incluiye BD corres.\n
+        - incluiye BD vacaciones.\n
+        - incluiye BD Cambios Con.\n
+        - incluiye BD Por.\n
 
     </string>
     <string name="login_automatico">Login Automatico</string>
     <string name="telefono">Teléfono Móvil</string>
+    <string name="aceptar" >aceptar</string>
+    <string name="cancelar" >cancelar</string>
+    <string name="dne">DNE:</string>
+    <string name="actualizar">Actualizar</string>
+
+    <string name="code_name">Code Name</string>
+    <string name="code_vers">Code Version</string>
+    <string name="Texto_Atencion">
+        Si no recuerdas tu contraseña o \n
+        necesitas cambiar de contraseña\n
+        ponte en contacto con el Administrador\n
+        del programa. \n
+        DOMY telefono: 679172510</string>
 
 </resources>

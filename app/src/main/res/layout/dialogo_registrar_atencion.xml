@@ -19,22 +19,6 @@
         android:orientation="vertical"
         android:padding="3dp">
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceSmall"
-            android:text="@string/code_vers"
-            android:id="@+id/codeversion"
-            android:textAlignment="textEnd" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceSmall"
-            android:text="@string/code_name"
-            android:id="@+id/codename"
-            android:textAlignment="textEnd" />
-
         <ScrollView
             android:id="@+id/scrollView"
             android:layout_width="match_parent"
@@ -44,7 +28,7 @@
                 android:id="@+id/textView1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/Texto_Info" />
+                android:text="@string/Texto_Atencion" />
         </ScrollView>
 
     </LinearLayout>

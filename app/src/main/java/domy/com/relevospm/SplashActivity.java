@@ -55,11 +55,9 @@ public class SplashActivity extends Activity {
     public String PackageName;
     public String InstallAppPackageName;
 
-
     static Context cc;
     static String versionNameApp = BuildConfig.VERSION_NAME; //1.2
     static int versionCodeApp = BuildConfig.VERSION_CODE; //3
-
 
     Button btnU;
 
@@ -80,7 +78,6 @@ public class SplashActivity extends Activity {
         urlpath = "http://domimtz.synology.me/" + ApkName;
 
         setContentView(R.layout.splash);
-
 
         if(isOnline()) {
 
@@ -156,8 +153,6 @@ public class SplashActivity extends Activity {
                                             finish();
                                         }
                                     }, DURACION_SPLASH);
-
-
 
                                     break;
                             }
@@ -258,6 +253,7 @@ public class SplashActivity extends Activity {
     }
 
     public boolean isStoragePermissionGranted() {
+
         if (Build.VERSION.SDK_INT >= 23) {
             if (checkSelfPermission(android.Manifest.permission.WRITE_EXTERNAL_STORAGE)
                     == PackageManager.PERMISSION_GRANTED) {

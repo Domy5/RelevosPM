@@ -10,17 +10,31 @@ public class dia {
 
         System.out.println(Fecha(29, 2, 2015));
         System.out.println(Fecha("29/2/2016"));
+        System.out.println(Fecha("2016-2-29"));
+
 
 
     }
 
     public static int Fecha(String fecha) {
 
-        String[] S = fecha.split("/");
+        int r = 0;
 
-        int resultado = Fecha(Integer.parseInt(S[0]), Integer.parseInt(S[1]), Integer.parseInt(S[2]));
+        if(fecha.contains("/")) {
 
-        return resultado;
+            String[] S = fecha.split("/");
+
+            r = Fecha(Integer.parseInt(S[0]), Integer.parseInt(S[1]), Integer.parseInt(S[2]));
+        }
+
+        if(fecha.contains("-")) {
+
+            String[] S = fecha.split("-");
+
+            r = Fecha(Integer.parseInt(S[2]), Integer.parseInt(S[1]), Integer.parseInt(S[0]));
+        }
+
+        return r;
     }
 
     public static int Fecha(int dia, int mes, int anio) {

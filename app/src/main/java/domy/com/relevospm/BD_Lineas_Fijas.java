@@ -163,8 +163,8 @@ public class BD_Lineas_Fijas extends SQLiteOpenHelper {
 
         int f = domy.com.relevospm.Utiles.dia.Fecha(fecha); //dia de 365
 
-        System.out.println("FECHA::" + fecha);
-        System.out.println("F::" + f);
+        System.out.println("FECHA selecionada::" + fecha);
+        System.out.println("Fecha dia en anual::" + f);
 
         Vector result = new Vector();
         //

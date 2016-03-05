@@ -1,5 +1,6 @@
 package domy.com.relevospm;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -17,6 +18,7 @@ import java.util.Vector;
 
 import domy.com.relevospm.Utiles.Dia4y2;
 import domy.com.relevospm.Utiles.JSONParser3;
+import domy.com.relevospm.Utiles.dia;
 
 public class Tabla_Diaria extends AppCompatActivity implements View.OnClickListener {
 
@@ -24,12 +26,12 @@ public class Tabla_Diaria extends AppCompatActivity implements View.OnClickListe
     private BD_Lineas_Fijas BD;
 
     public JSONArray JsonTodo ;
-    public JSONArray JsonVacaciones ;
-    public JSONArray JsonCorre ;
+
+    public int DIA365;
+
+    public int GrupoLibra;
 
     public Agente[] AgentesTrabajan;
-    public Agente[] AgentesVacaciones;
-    public Agente[] AgentesCorre;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,13 +49,17 @@ public class Tabla_Diaria extends AppCompatActivity implements View.OnClickListe
         TextView fecha = (TextView) findViewById(R.id.TextFecha);
         fecha.setText(FECHA);
 
+        Button BotonX = (Button) findViewById(R.id.x);
+
         String F[] = FECHA.split("/");
 
         int dia = Integer.parseInt(F[0]) ;
         int mes = Integer.parseInt(F[1]) ;
         int anho = Integer.parseInt(F[2]) ;
 
-        int GrupoLibra = Dia4y2.GrupoLibra(dia, mes, anho)  ;
+        GrupoLibra = Dia4y2.GrupoLibra(dia, mes, anho)  ;
+
+        DIA365  = domy.com.relevospm.Utiles.dia.Fecha(FECHA);
 
         String a000_mes = null;
 
@@ -74,29 +80,15 @@ public class Tabla_Diaria extends AppCompatActivity implements View.OnClickListe
         if (mes == 11) a000_mes = "a110_Noviembre";else
         if (mes == 12) a000_mes = "a120_Diciembre";
 
-        String ordenSQLTrabajan = " SELECT * " +
-                " FROM "+ a000_mes +" WHERE GRUPO != " + GrupoLibra +
-                " AND (VACACIONES_I IS NULL " +
-                " OR (VACACIONES_I > DATE('" + anho +"-"+ mes +"-"+ dia +"') " +
-                " OR  VACACIONES_T < DATE('" + anho +"-"+ mes +"-"+ dia +"')))ORDER BY ESCALAFON ASC";
+        String ordenSQLTrabajan = " SELECT * FROM "+ a000_mes +" ORDER BY ESCALAFON ASC";
 
-        String ordenSQLVacaciones = " SELECT * FROM " + a000_mes +" WHERE  GRUPO != " + GrupoLibra +" AND"+
-                //	" (VACACIONES_I IS NOT NULL " +
-                " VACACIONES_I < DATE('" + anho +"-"+ mes +"-"+ dia +"') " +
-                " AND  VACACIONES_T > DATE('" + anho +"-"+ mes +"-"+ dia +"')" +
-                " OR VACACIONES_I = DATE('" + anho +"-"+ mes +"-"+ dia +"')" +
-                " OR VACACIONES_T = DATE('" + anho +"-"+ mes +"-"+ dia +"')ORDER BY ESCALAFON ASC";
+        System.out.println(" dia365 :::"+ DIA365);
 
-        // String ordenSQLCorres =
+        System.out.println(" ordenSQL T :::"+ ordenSQLTrabajan);
 
-        // SELECT * FROM a010_Enero WHERE (GRUPO != 5 AND GRUPO != 0) AND PUESTO = "C" AND POR = 0 AND (VACACIONES_I IS NULL OR (VACACIONES_I > DATE('2016-1-5') OR VACACIONES_T < DATE('2016-1-5')))ORDER BY ESCALAFON ASC
-
-        String ordenSQLCorres =" SELECT * FROM " + a000_mes + " WHERE (GRUPO != "+ GrupoLibra +" AND GRUPO != 0) AND PUESTO = \"C\" AND POR = 0 ORDER BY ESCALAFON ASC";
-
-        System.out.print(" orden :::"+ ordenSQLCorres);
 
         try {
-
+            System.out.println("JsonTrabajan");
             JsonTodo = ConsultaDiaSQL(ordenSQLTrabajan);
 
             AgentesTrabajan = new Agente[JsonTodo.length()];
@@ -125,69 +117,6 @@ public class Tabla_Diaria extends AppCompatActivity implements View.OnClickListe
              }
 
   } catch (JSONException e) {e.printStackTrace();}
-
-        try {
-
-            JsonVacaciones = ConsultaDiaSQL(ordenSQLVacaciones);
-
-            AgentesVacaciones = new Agente[JsonVacaciones.length()];
-
-            for (int x = 0; x < JsonVacaciones.length(); x++) {
-
-                AgentesVacaciones[x] = new Agente(
-                        Integer.parseInt(JsonVacaciones.getJSONObject(x).getString("id")),
-                        Integer.parseInt(JsonVacaciones.getJSONObject(x).getString("N_MES")),
-                        JsonVacaciones.getJSONObject(x).getString("MES"),
-                        JsonVacaciones.getJSONObject(x).getString("PUESTO"),
-                        Integer.parseInt(JsonVacaciones.getJSONObject(x).getString("ORDEN")),
-                        Integer.parseInt(JsonVacaciones.getJSONObject(x).getString("ESCALAFON")),
-                        Integer.parseInt(JsonVacaciones.getJSONObject(x).getString("DNE")),
-                        JsonVacaciones.getJSONObject(x).getString("NOMBRE"),
-                        Integer.parseInt(JsonVacaciones.getJSONObject(x).getString("GRUPO")),
-                        JsonVacaciones.getJSONObject(x).getString("TURNO"),
-                        JsonVacaciones.getJSONObject(x).getString("VACACIONES_I"),
-                        JsonVacaciones.getJSONObject(x).getString("VACACIONES_T"),
-                        JsonVacaciones.getJSONObject(x).getString("VACACIONES"),
-                        Integer.parseInt(JsonVacaciones.getJSONObject(x).getString("CAMBIO_CON")),
-                        Integer.parseInt(JsonVacaciones.getJSONObject(x).getString("POR")),
-                        JsonVacaciones.getJSONObject(x).getString("COMPENSA"),
-                        JsonVacaciones.getJSONObject(x).getString("OBSERVACIONES"));
-
-            }
-
-        } catch (JSONException e) {e.printStackTrace();}
-
-        try {
-
-            JsonCorre = ConsultaDiaSQL(ordenSQLCorres);
-
-            AgentesCorre = new Agente[JsonCorre.length()];
-
-            for (int x = 0; x < JsonCorre.length(); x++) {
-
-                AgentesCorre[x] = new Agente(
-                        Integer.parseInt(JsonCorre.getJSONObject(x).getString("id")),
-                        Integer.parseInt(JsonCorre.getJSONObject(x).getString("N_MES")),
-                        JsonCorre.getJSONObject(x).getString("MES"),
-                        JsonCorre.getJSONObject(x).getString("PUESTO"),
-                        Integer.parseInt(JsonCorre.getJSONObject(x).getString("ORDEN")),
-                        Integer.parseInt(JsonCorre.getJSONObject(x).getString("ESCALAFON")),
-                        Integer.parseInt(JsonCorre.getJSONObject(x).getString("DNE")),
-                        JsonCorre.getJSONObject(x).getString("NOMBRE"),
-                        Integer.parseInt(JsonCorre.getJSONObject(x).getString("GRUPO")),
-                        JsonCorre.getJSONObject(x).getString("TURNO"),
-                        JsonCorre.getJSONObject(x).getString("VACACIONES_I"),
-                        JsonCorre.getJSONObject(x).getString("VACACIONES_T"),
-                        JsonCorre.getJSONObject(x).getString("VACACIONES"),
-                        Integer.parseInt(JsonCorre.getJSONObject(x).getString("CAMBIO_CON")),
-                        Integer.parseInt(JsonCorre.getJSONObject(x).getString("POR")),
-                        JsonCorre.getJSONObject(x).getString("COMPENSA"),
-                        JsonCorre.getJSONObject(x).getString("OBSERVACIONES"));
-
-            }
-
-        } catch (JSONException e) {e.printStackTrace();}
-
 
         boton.setText("G " + GRUPOS);
 
@@ -218,7 +147,7 @@ public class Tabla_Diaria extends AppCompatActivity implements View.OnClickListe
 
         Vector Fijos = BD.getDatosDne(FECHA);
 
-        Vector resultado = Comparacion_Fijos_y_JsonServicioTrabajan(Fijos, AgentesTrabajan, AgentesVacaciones, AgentesCorre) ;
+        Vector resultado = Comparacion_Fijos_y_JsonServicioTrabajan(Fijos, AgentesTrabajan, DIA365) ;
 
         for (int i = 0; i < TodosLosBotones.length; i++) {
 
@@ -228,9 +157,11 @@ public class Tabla_Diaria extends AppCompatActivity implements View.OnClickListe
             boton.setOnClickListener(this);
         }
 
+        BotonX.performClick();
+
     }
 
-    private Vector Comparacion_Fijos_y_JsonServicioTrabajan(Vector Fijos, Agente[] agentesT, Agente[] agentesV, Agente[] agentesC) {
+    private Vector Comparacion_Fijos_y_JsonServicioTrabajan(Vector Fijos, Agente[] agentesT, int dia365) {
 
         int m = 0;
         int t = 0;
@@ -241,52 +172,68 @@ public class Tabla_Diaria extends AppCompatActivity implements View.OnClickListe
             Fijos.add("X");
         }
 
+        for (int x = 0; x < agentesT.length; x++) {
 
-        for (int x = 0; x < agentesC.length; x++) {
+            if ( agentesT[x].getPUESTO().equals("C") && agentesT[x].getPOR() == 0 && agentesT[x].getGRUPO() != GrupoLibra
+                    && ((dia.Fecha(agentesT[x].getVACACIONES_I()) == 0
+                    && dia.Fecha(agentesT[x].getVACACIONES_T()) == 0)
+                    || (dia.Fecha(agentesT[x].getVACACIONES_I()) <= dia365
+                    && dia.Fecha(agentesT[x].getVACACIONES_T()) >= dia365))){
 
-            if (agentesC[x].getTURNO().equals("M") ) {
+                if ( agentesT[x].getTURNO().equals("M")) {
 
-                Fijos.set(puestoCorre("M",m) ,agentesC[x].getDNE());
-                 m++;
+                    Fijos.set(puestoCorre("M", m), agentesT[x].getDNE());
+                    m++;
+                }
+                if (agentesT[x].getTURNO().equals("T")) {
+
+                    Fijos.set(puestoCorre("T", t), agentesT[x].getDNE());
+                    t++;
+                }
+                if (agentesT[x].getTURNO().equals("N")) {
+
+                    Fijos.set(puestoCorre("N", n), agentesT[x].getDNE());
+                    n++;
+                }
             }
-            if (agentesC[x].getTURNO().equals("T") ) {
-
-                Fijos.set(puestoCorre("T",t) ,agentesC[x].getDNE());
-                t++;
-            }
-            if (agentesC[x].getTURNO().equals("N") ) {
-
-                Fijos.set(puestoCorre("N",n) ,agentesC[x].getDNE());
-                n++;
-            }
-
         }
-
 
         for (int x = 0; x < agentesT.length; x++) {
 
-            if (agentesT[x].getPOR() != 0) {
+            if (agentesT[x].getGRUPO() != GrupoLibra ) {
+                if (agentesT[x].getPOR() != 0) {
+                    if (Fijos.contains(agentesT[x].getPOR())) {
 
-               // System.out.println("Quien : " + agentesT[x].getDNE() + " POR : " + agentesT[x].getPOR());
+                    Fijos.set(Fijos.indexOf(agentesT[x].getPOR()), agentesT[x].getDNE());
 
-                Fijos.set(Fijos.indexOf(agentesT[x].getPOR()), agentesT[x].getDNE());
+                } else {
+
+                    Toast.makeText(getApplicationContext(), "FALLO : dne " + agentesT[x].getDNE() + " Por " + agentesT[x].getPOR(), Toast.LENGTH_LONG).show();
+
+                }
+            }
+            }
+
+            if (agentesT[x].getCAMBIO_CON() != 0) {
+
+                if (agentesT[x].getGRUPO() != GrupoLibra ) {
+
+                    if (dia.Fecha(agentesT[x].getVACACIONES_I()) <= dia365 && dia.Fecha(agentesT[x].getVACACIONES_T()) >= dia365 ) {
+
+                        if (Fijos.contains(agentesT[x].getDNE())) {
+
+                        Fijos.set(Fijos.indexOf(agentesT[x].getDNE()), agentesT[x].getCAMBIO_CON());
+
+                    } else {
+
+                        Toast.makeText(getApplicationContext(), "FALLO : dne " + agentesT[x].getDNE() + " Cambio Con " + agentesT[x].getCAMBIO_CON(), Toast.LENGTH_LONG).show();
+
+                    }
+                    }
+                }
             }
         }
 
-///////
-
-        for (int y = 0; y < agentesV.length; y++) {
-
-                if(agentesV[y].getCAMBIO_CON() != 0 ){
-
-                  //  System.out.println("Quien : " + agentesV[y].getDNE() + " Cambio Con : " + agentesV[y].getCAMBIO_CON());
-                    //public E set(int index, E element)
-
-                    Fijos.set(Fijos.indexOf(agentesV[y].getDNE()),agentesV[y].getCAMBIO_CON( ));
-
-                }
-
-            }
 
         Vector Vector_Final = Fijos;
 
@@ -311,8 +258,6 @@ public class Tabla_Diaria extends AppCompatActivity implements View.OnClickListe
 
         return posicion;
     }
-
-    //metodo para crear un toast con informacion de cada voto quiero meter si es por vacaciones o por cambio
 
     @Override
     public void onClick(View v) {
@@ -418,6 +363,7 @@ public class Tabla_Diaria extends AppCompatActivity implements View.OnClickListe
         super.onPause();
         BD.close();
     }
+
 }
 
 

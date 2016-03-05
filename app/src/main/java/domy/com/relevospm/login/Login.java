@@ -22,6 +22,7 @@ import org.json.JSONObject;
 
 import java.util.HashMap;
 
+import domy.com.relevospm.Dialogo_Registrar_Atencion;
 import domy.com.relevospm.Main_Seleccionar_Dia;
 import domy.com.relevospm.R;
 import domy.com.relevospm.Utiles.JSONParser2;
@@ -42,7 +43,7 @@ public class Login extends Activity implements OnClickListener {
     // y poner de la siguiente manera
     // "http://xxx.xxx.x.x:1234/cas/login.php";
     private EditText user, pass;
-    private Button mSubmit, mRegister;
+    private Button mSubmit, mRegister, mAtencion;
     private ProgressDialog pDialog;
 
     private Switch mySwitch;
@@ -67,10 +68,13 @@ public class Login extends Activity implements OnClickListener {
         // setup buttons
         mSubmit = (Button) findViewById(R.id.login);
         mRegister = (Button) findViewById(R.id.register);
+        mAtencion = (Button) findViewById(R.id.Atencion);
 
         // register listeners
         mSubmit.setOnClickListener(this);
         mRegister.setOnClickListener(this);
+        mAtencion.setOnClickListener(this);
+
       //  mySwitch.setOnClickListener(this);
 
         Boolean AutoLogin = getIntent().getBooleanExtra("AutoLogin",true);
@@ -109,6 +113,10 @@ public class Login extends Activity implements OnClickListener {
             case R.id.register:
                 Intent i = new Intent(this, Register.class);
                 startActivity(i);
+                break;
+            case R.id.Atencion:
+                Intent j = new Intent(this, Dialogo_Registrar_Atencion.class);
+                startActivity(j);
                 break;
 
             default:
