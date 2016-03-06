@@ -1,17 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <appwidget-provider xmlns:android="http://schemas.android.com/apk/res/android"
 
-    android:layout_width="250dip"
+    android:layout_width="180dip"
     android:layout_height="110dip"
-    android:minWidth="250dip"
+    android:minWidth="180dip"
     android:minHeight="110dip"
 
     android:initialLayout="@layout/cosmos_widget"
     android:label="@string/c_o_s_m_o_s"
-    android:updatePeriodMillis="14400000"
+    android:updatePeriodMillis="1800000"
     android:configure="domy.com.relevospm.WidgetConfig"
     android:previewImage="@drawable/cosmos"
     android:widgetCategory="home_screen|keyguard"
     android:resizeMode="horizontal|vertical"
     />
 
+    <!--android:updatePeriodMillis="14400000"    4horas-->
+    <!--android:updatePeriodMillis="3600000"    60minut-->
+    <!--android:updatePeriodMillis="1800000"    30minut-->
+
+    <!--
+    1 celda = 40
+    2 celda = 110
+    3 celda = 180
+    4 celda = 250
+    5 celda = 320
+     -->

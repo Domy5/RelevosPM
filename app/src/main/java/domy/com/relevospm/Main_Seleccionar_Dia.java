@@ -25,7 +25,7 @@ import domy.com.relevospm.login.Login;
 
 public class Main_Seleccionar_Dia extends AppCompatActivity {
 
-    private static final String TAG = "PERMISOS ";
+    private static final String TAG = "PERMISOS";
     String GRUPOTRABAJO = "";
 
     String FECHA = "";
@@ -125,7 +125,7 @@ public class Main_Seleccionar_Dia extends AppCompatActivity {
             FECHA = DiaDeHoy;
         }
 
-        Intent i = new Intent(this, Tabla_Diaria.class);
+        Intent i = new Intent(this, Tabla_Diaria2.class); // TODO: aqui cambiar a tabla diaria
 
         i.putExtra("GRUPOS", GRUPOTRABAJO);
         i.putExtra("FECHA", FECHA);
@@ -146,7 +146,7 @@ public class Main_Seleccionar_Dia extends AppCompatActivity {
 
         GRUPOTRABAJO = GT.substring(0, 1) + " y " + GT.substring(1, 2);
 
-        Intent i = new Intent(this, Tabla_Diaria.class);
+        Intent i = new Intent(this, Tabla_Diaria2.class);
 
         i.putExtra("GRUPOS", GRUPOTRABAJO);
         i.putExtra("FECHA", FECHA);

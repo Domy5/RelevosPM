@@ -33,6 +33,8 @@ public class Tabla_Diaria extends AppCompatActivity implements View.OnClickListe
 
     public Agente[] AgentesTrabajan;
 
+    public Button Boton;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,13 +45,12 @@ public class Tabla_Diaria extends AppCompatActivity implements View.OnClickListe
         BD.open();
 
         String GRUPOS = getIntent().getStringExtra("GRUPOS");
-        Button boton = (Button) findViewById(R.id.x);
+        Button botonX = (Button) findViewById(R.id.x);
+        botonX.setText("G " + GRUPOS);
 
         String FECHA = getIntent().getStringExtra("FECHA");
         TextView fecha = (TextView) findViewById(R.id.TextFecha);
         fecha.setText(FECHA);
-
-        Button BotonX = (Button) findViewById(R.id.x);
 
         String F[] = FECHA.split("/");
 
@@ -118,7 +119,7 @@ public class Tabla_Diaria extends AppCompatActivity implements View.OnClickListe
 
   } catch (JSONException e) {e.printStackTrace();}
 
-        boton.setText("G " + GRUPOS);
+        botonX.setText("G " + GRUPOS);
 
         int[] TodosLosBotones = {
 
@@ -151,13 +152,13 @@ public class Tabla_Diaria extends AppCompatActivity implements View.OnClickListe
 
         for (int i = 0; i < TodosLosBotones.length; i++) {
 
-            boton = (Button) findViewById(TodosLosBotones[i]);
-            boton.setText(resultado.get(i).toString());
+            Boton = (Button) findViewById(TodosLosBotones[i]);
+            Boton.setText(resultado.get(i).toString());
             // boton.setText(Fijos.get(i).toString());
-            boton.setOnClickListener(this);
+            Boton.setOnClickListener(this);
         }
 
-        BotonX.performClick();
+        botonX.performClick();
 
     }
 
@@ -172,7 +173,8 @@ public class Tabla_Diaria extends AppCompatActivity implements View.OnClickListe
             Fijos.add("X");
         }
 
-        for (int x = 0; x < agentesT.length; x++) {
+       for (int x = 0; x < agentesT.length; x++) {
+        //   for (Agentes x : agentesT) {
 
             if ( agentesT[x].getPUESTO().equals("C") && agentesT[x].getPOR() == 0 && agentesT[x].getGRUPO() != GrupoLibra
                     && ((dia.Fecha(agentesT[x].getVACACIONES_I()) == 0

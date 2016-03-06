@@ -45,6 +45,11 @@ public class WidgetConfig extends Activity {
         btnCancelar = (Button)findViewById(R.id.BtnCancelar);
         txtMensaje = (EditText)findViewById(R.id.TxtMensaje);
 
+        SharedPreferences prefs = getSharedPreferences("WidgetPrefs", Context.MODE_PRIVATE);
+        String dne = prefs.getString("Dne", ":");
+
+        txtMensaje.setText(dne);
+
         //Implementación del botón "Cancelar"
         btnCancelar.setOnClickListener(new View.OnClickListener() {
             @Override

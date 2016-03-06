@@ -106,6 +106,12 @@ public class Login extends Activity implements OnClickListener {
         switch (v.getId()) {
             case R.id.login:
               //  new AttemptLogin().execute();
+                SharedPreferences prefs = getSharedPreferences("WidgetPrefs", Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = prefs.edit();
+
+                editor.remove("Dne");
+                editor.putString("Dne",user.getText().toString());
+                editor.apply();
 
                 new AttemptLogin(user.getText().toString(), pass.getText().toString(), mySwitch.isChecked()).execute();
 
