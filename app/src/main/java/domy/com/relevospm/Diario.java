@@ -156,7 +156,9 @@ public class Diario {
                     }
                 }
             }
+        }
 
+        for (int x = 0; x < agentesT.length; x++) {
             if (agentesT[x].getCAMBIO_CON() != 0) {
                 if (agentesT[x].getGRUPO() != GrupoLibra) {
                     if (dia.Fecha(agentesT[x].getVACACIONES_I()) <= dia365 && dia.Fecha(agentesT[x].getVACACIONES_T()) >= dia365) {
