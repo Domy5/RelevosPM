@@ -77,12 +77,6 @@
             </intent-filter>
         </activity>
 
-        <receiver android:name=".TestReceiver" android:label="@string/app_name">
-            <intent-filter>
-                <action android:name="domy.com.relevospm.ACTUALIZAR_WIDGET"/>
-            </intent-filter>
-        </receiver>
-
         <receiver android:name=".Cosmos_Widget" android:label="AA COSMO Widget">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />

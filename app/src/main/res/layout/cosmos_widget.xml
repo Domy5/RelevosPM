@@ -14,14 +14,14 @@
         android:padding="5dp"
         android:orientation="vertical">
 
-        <TextView android:id="@+id/LblHora"
+        <TextView android:id="@+id/LblMensaje"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="#000000"
             android:text=""
             android:textAlignment="center" />
 
-        <TextView android:id="@+id/LblMensaje"
+        <TextView android:id="@+id/LblHora"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="#000000"
@@ -41,7 +41,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:background="@color/L1" />
+                android:background="@color/RVA" />
 
             <Button
                 android:id="@+id/BotonM"
@@ -74,12 +74,28 @@
                 android:textColor="#000000" />
         </LinearLayout>
 
-        <Button android:id="@+id/BtnActualizar"
+        <LinearLayout
+            android:id="@+id/linearLayout2"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColor="#000000"
-            android:text="@string/actualizar"
-             />
+            android:layout_height="match_parent"
+            android:background="#FFFFFF"
+            android:padding="5dp"
+            android:orientation="horizontal" >
+
+            <Button android:id="@+id/BtnActualizar"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:textColor="#000000"
+                android:text="@string/actualizar"
+                android:layout_weight="1" />
+
+            <Button
+                style="?android:attr/buttonStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/config"
+                android:drawableRight="@android:drawable/ic_menu_preferences"/>
+        </LinearLayout>
 
     </LinearLayout>
 

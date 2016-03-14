@@ -10,9 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
-/**
- * Created by Domingo on 03/03/2016.
- */
+
 public class WidgetConfig extends Activity {
 
     private int widgetId = 0;

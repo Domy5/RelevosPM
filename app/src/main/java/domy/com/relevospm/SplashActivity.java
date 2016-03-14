@@ -281,7 +281,6 @@ public class SplashActivity extends Activity {
         if (netInfo != null && netInfo.isConnectedOrConnecting()) {
             return true;
         }
-
         return false;
     }
 }

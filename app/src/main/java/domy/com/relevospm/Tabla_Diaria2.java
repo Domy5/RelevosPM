@@ -62,8 +62,7 @@ public class Tabla_Diaria2 extends AppCompatActivity implements View.OnClickList
                 R.id.BotonMananaRVA9, R.id.BotonTardeRVA9, R.id.BotonNocheRVA9,
         };
 
-
-        Vector resultado = new Diario().Diario(FECHA,getApplicationContext());
+        Vector resultado =  Diario.Diario(FECHA,getApplicationContext());
 
         for (int i = 0; i < TodosLosBotones.length; i++) {
 

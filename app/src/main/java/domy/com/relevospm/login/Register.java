@@ -25,7 +25,8 @@ import domy.com.relevospm.Utiles.JSONParser2;
 
 public class Register extends Activity implements OnClickListener {
     //testing on Emulator:
-    private static final String REGISTER_URL = "http://domimtz.synology.me/bd/register.php";
+    //private static final String REGISTER_URL = "http://domimtz.synology.me/bd/register.php";
+    private static final String REGISTER_URL = "http://domimtz.synology.me/bd/r.php";
     //ids
     private static final String TAG_SUCCESS = "success";
     private static final String TAG_MESSAGE = "message";
@@ -46,7 +47,7 @@ public class Register extends Activity implements OnClickListener {
 
     //si lo trabajan de manera local en xxx.xxx.x.x va su ip local
     // private static final String REGISTER_URL = "http://xxx.xxx.x.x:1234/cas/register.php";
-    private EditText user, pass;
+    private EditText user, pass, telef;
     private Button mRegister;
     // Progress Dialog
     private ProgressDialog pDialog;
@@ -59,6 +60,7 @@ public class Register extends Activity implements OnClickListener {
 
         user = (EditText) findViewById(R.id.username);
         pass = (EditText) findViewById(R.id.password);
+        telef = (EditText) findViewById(R.id.telefonoo);
 
         mRegister = (Button) findViewById(R.id.register);
         mRegister.setOnClickListener(this);
@@ -71,13 +73,13 @@ public class Register extends Activity implements OnClickListener {
 
         if(DNE.contains(user.getText().toString())){
 
-        new CreateUser(user.getText().toString(),pass.getText().toString()).execute();
+        new CreateUser(user.getText().toString(),pass.getText().toString(),telef.getText().toString()).execute();
 
         }
         else{
             Toast toast1 =
             Toast.makeText(getApplicationContext(),
-                            "No es un Numero valido "
+                            "No es un DNE valido "
 
                     , Toast.LENGTH_LONG);
 
@@ -92,11 +94,12 @@ public class Register extends Activity implements OnClickListener {
 
         String username;
         String password;
+        String telefono;
 
-
-        public CreateUser(String username1, String password1) {
+        public CreateUser(String username1, String password1, String telefono1) {
             username = username1;
             password = password1;
+            telefono = telefono1;
         }
         @Override
         protected void onPreExecute() {
@@ -126,6 +129,7 @@ public class Register extends Activity implements OnClickListener {
 
                 params.put("username", username);
                 params.put("password", password);
+                params.put("usrtel", telefono);
 
                 Log.d("request!", "starting");
 

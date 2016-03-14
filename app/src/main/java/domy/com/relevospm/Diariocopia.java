@@ -13,7 +13,7 @@ import domy.com.relevospm.Utiles.Dia4y2;
 import domy.com.relevospm.Utiles.JSONParser3;
 import domy.com.relevospm.Utiles.dia;
 
-public class Diario {
+public class Diariocopia {
 
     public static int GrupoLibra;
 
@@ -26,8 +26,7 @@ public class Diario {
         Agente[] AgentesTrabajan = new Agente[0];
 
         String FECHA = dia365;
-
-        int DIA365 = domy.com.relevospm.Utiles.dia.Fecha(FECHA);
+        int DIA365 = dia.Fecha(FECHA);
 
         String F[] = FECHA.split("/");
 
@@ -58,9 +57,8 @@ public class Diario {
 
         String ordenSQLTrabajan = " SELECT * FROM " + a000_mes + " ORDER BY ESCALAFON ASC";
 
-
         try {
-            System.out.println("JsonTrabajan"+ ordenSQLTrabajan);
+            System.out.println("JsonTrabajan");
             JsonTodo = ConsultaDiaSQL(ordenSQLTrabajan);
 
             AgentesTrabajan = new Agente[JsonTodo.length()];
@@ -98,11 +96,11 @@ public class Diario {
 
         Vector Fijos = BD.getDatosDne(FECHA);
 
+        BD.close();
+
         Vector resultado = Comparacion_Fijos_y_JsonServicioTrabajan(Fijos, AgentesTrabajan, DIA365);
 
         Vector_Final = resultado;
-
-        BD.close();
 
         return Vector_Final;
     }
@@ -120,8 +118,7 @@ public class Diario {
 
         for (int x = 0; x < agentesT.length; x++) {
 
-            if (agentesT[x].getPUESTO().equals("C") && agentesT[x].getPOR() == 0
-                    && agentesT[x].getGRUPO() != GrupoLibra
+            if (agentesT[x].getPUESTO().equals("C") && agentesT[x].getPOR() == 0 && agentesT[x].getGRUPO() != GrupoLibra
                     && ((dia.Fecha(agentesT[x].getVACACIONES_I()) == 0
                     && dia.Fecha(agentesT[x].getVACACIONES_T()) == 0)
                     || (dia.Fecha(agentesT[x].getVACACIONES_I()) <= dia365
@@ -150,20 +147,31 @@ public class Diario {
             if (agentesT[x].getGRUPO() != GrupoLibra) {
                 if (agentesT[x].getPOR() != 0) {
                     if (Fijos.contains(agentesT[x].getPOR())) {
+
                         Fijos.set(Fijos.indexOf(agentesT[x].getPOR()), agentesT[x].getDNE());
+
                     } else {
+
                         //  Toast.makeText(getApplicationContext(), "FALLO : dne " + agentesT[x].getDNE() + " Por " + agentesT[x].getPOR(), Toast.LENGTH_LONG).show();
+
                     }
                 }
             }
 
             if (agentesT[x].getCAMBIO_CON() != 0) {
+
                 if (agentesT[x].getGRUPO() != GrupoLibra) {
+
                     if (dia.Fecha(agentesT[x].getVACACIONES_I()) <= dia365 && dia.Fecha(agentesT[x].getVACACIONES_T()) >= dia365) {
+
                         if (Fijos.contains(agentesT[x].getDNE())) {
+
                             Fijos.set(Fijos.indexOf(agentesT[x].getDNE()), agentesT[x].getCAMBIO_CON());
+
                         } else {
+
                             //   Toast.makeText(getApplicationContext(), "FALLO : dne " + agentesT[x].getDNE() + " Cambio Con " + agentesT[x].getCAMBIO_CON(), Toast.LENGTH_LONG).show();
+
                         }
                     }
                 }

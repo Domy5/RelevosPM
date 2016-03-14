@@ -77,8 +77,8 @@
     </string>
     <string name="login_automatico">Login Automatico</string>
     <string name="telefono">Teléfono Móvil</string>
-    <string name="aceptar" >aceptar</string>
-    <string name="cancelar" >cancelar</string>
+    <string name="aceptar" >Aceptar</string>
+    <string name="cancelar" >Cancelar</string>
     <string name="dne">DNE:</string>
     <string name="actualizar">Actualizar</string>
 
