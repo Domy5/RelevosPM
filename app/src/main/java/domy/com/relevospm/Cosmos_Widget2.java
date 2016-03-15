@@ -1,13 +1,5 @@
 package domy.com.relevospm;
 
-import java.util.Arrays;
-import java.util.Calendar;
-import java.util.GregorianCalendar;
-import java.util.HashSet;
-import java.util.Locale;
-import java.util.Set;
-import java.util.Vector;
-
 import android.app.PendingIntent;
 import android.appwidget.AppWidgetManager;
 import android.appwidget.AppWidgetProvider;
@@ -17,18 +9,16 @@ import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.os.Bundle;
 import android.os.StrictMode;
-import android.view.Gravity;
 import android.widget.RemoteViews;
-import android.widget.Toast;
 
-public class Cosmos_Widget extends AppWidgetProvider {
+import java.util.Calendar;
+import java.util.GregorianCalendar;
+import java.util.Vector;
+
+public class Cosmos_Widget2 extends AppWidgetProvider {
 
     public static String l = "*";
-    public static String m = "*";
-    public static String t = "*";
-    public static String n = "*";
 
     public static Vector resultado = null;
 
@@ -50,20 +40,12 @@ public class Cosmos_Widget extends AppWidgetProvider {
                 //Toast.makeText(context, "No estas Conectado U" , Toast.LENGTH_SHORT).show();
                  }
         }
-
-        for (int appWidgetId : appWidgetIds) {
-            Bundle options=appWidgetManager.getAppWidgetOptions(appWidgetId);
-
-            onAppWidgetOptionsChanged(context, appWidgetManager, appWidgetId,
-                    options);
-        }
-
        super.onUpdate(context, appWidgetManager, appWidgetIds);
     }
 
     @Override
     public void onReceive(Context context, Intent intent) {
-        if (intent.getAction().equals("domy.com.relevospm.ACTUALIZAR_WIDGET")) {
+        if (intent.getAction().equals("domy.com.relevospm.ACTUALIZAR_WIDGET2")) {
 
             //Obtenemos el ID del widget a actualizar
             int widgetId = intent.getIntExtra(
@@ -107,29 +89,24 @@ public class Cosmos_Widget extends AppWidgetProvider {
         String hora = calendario.getTime().toLocaleString();
 
         //Obtenemos la lista de controles del widget actual
-        RemoteViews controles = new RemoteViews(context.getPackageName(), R.layout.cosmos_widget);
+        RemoteViews controles = new RemoteViews(context.getPackageName(), R.layout.cosmos_widget2);
 
         //Asociamos los 'eventos' al widget
 
-        Intent intent = new Intent("domy.com.relevospm.ACTUALIZAR_WIDGET");
+        Intent intent = new Intent("domy.com.relevospm.ACTUALIZAR_WIDGET2");
         intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, widgetId);
-
         PendingIntent pendingIntent = PendingIntent.getBroadcast(context, widgetId, intent, PendingIntent.FLAG_UPDATE_CURRENT);
-        controles.setOnClickPendingIntent(R.id.BtnActualizar, pendingIntent);
+        controles.setOnClickPendingIntent(R.id.BotonL, pendingIntent);
 
         Intent intent2 = new Intent(context, SplashActivity.class);
         PendingIntent pendingIntent2 = PendingIntent.getActivity(context, widgetId, intent2, PendingIntent.FLAG_UPDATE_CURRENT);
-
         controles.setOnClickPendingIntent(R.id.FrmWidget, pendingIntent2);
-        controles.setOnClickPendingIntent(R.id.BotonL, pendingIntent2);
-        controles.setOnClickPendingIntent(R.id.BotonM, pendingIntent2);
-        controles.setOnClickPendingIntent(R.id.BotonT, pendingIntent2);
-        controles.setOnClickPendingIntent(R.id.BotonN, pendingIntent2);
 
-      //  Intent intent3 = new Intent(context, WidgetConfig.class);
-      //  PendingIntent pendingIntent3 = PendingIntent.getActivity(context, widgetId, intent3, PendingIntent.FLAG_UPDATE_CURRENT);
 
-      //  controles.setOnClickPendingIntent(R.id.config, pendingIntent3);
+       // Intent intent3 = new Intent(context, WidgetConfig.class);
+       // PendingIntent pendingIntent3 = PendingIntent.getActivity(context, widgetId, intent3, PendingIntent.FLAG_UPDATE_CURRENT);
+
+       // controles.setOnClickPendingIntent(R.id.config, pendingIntent3);
 
         String dia = Integer.toString(calendario.get(Calendar.DATE));
         String mes = Integer.toString(1 + calendario.get(Calendar.MONTH));
@@ -147,10 +124,6 @@ public class Cosmos_Widget extends AppWidgetProvider {
 
               //  Toast.makeText(context, "Posición: " + Integer.toString(posicion), Toast.LENGTH_SHORT).show();
 
-                m = Tabla_Diaria2.DNE(resultado.get(puestoM(posicion)).toString());
-                t = Tabla_Diaria2.DNE(resultado.get((puestoM(posicion)+1)).toString());
-                n = Tabla_Diaria2.DNE(resultado.get((puestoM(posicion)+2)).toString());
-
                 int LINEA = (int) Math.floor((posicion / a) - 0.1) + 2;
 
                 if (LINEA >= 13) {
@@ -165,10 +138,7 @@ public class Cosmos_Widget extends AppWidgetProvider {
               //  toast1.setGravity(Gravity.TOP,0,0);
               //  toast1.show();
 
-                l = "---";
-                m = "L I B";
-                t = "R A S";
-                n = "---";
+                l = "LIBRAS";
 
             }
         }
@@ -176,13 +146,7 @@ public class Cosmos_Widget extends AppWidgetProvider {
         controles.setTextViewText(R.id.LblMensaje, dne);
         controles.setTextViewText(R.id.LblHora, hora);
         controles.setTextViewText(R.id.BotonL, l);
-        controles.setTextViewText(R.id.BotonM, m);
-        controles.setTextViewText(R.id.BotonT, t);
-        controles.setTextViewText(R.id.BotonN, n);
         controles.setTextColor(R.id.BotonL, Color.BLUE);
-        controles.setTextColor(R.id.BotonM, Color.RED);
-        controles.setTextColor(R.id.BotonT, Color.RED);
-        controles.setTextColor(R.id.BotonN, Color.RED);
 
         //Notificamos al manager de la actualización del widget actual
         appWidgetManager.updateAppWidget(widgetId, controles);
@@ -249,33 +213,6 @@ public class Cosmos_Widget extends AppWidgetProvider {
             } }
 
         return posicion;
-    }
-
-    @Override
-    public void onAppWidgetOptionsChanged(Context ctxt,
-                                          AppWidgetManager mgr,
-                                          int appWidgetId,
-                                          Bundle newOptions) {
-        RemoteViews updateViews=
-                new RemoteViews(ctxt.getPackageName(), R.layout.cosmos_widget);
-        String msg=
-                String.format(Locale.getDefault(),
-                        "[%d-%d] x [%d-%d]",
-                        newOptions.getInt(AppWidgetManager.OPTION_APPWIDGET_MIN_WIDTH),
-                        newOptions.getInt(AppWidgetManager.OPTION_APPWIDGET_MAX_WIDTH),
-                        newOptions.getInt(AppWidgetManager.OPTION_APPWIDGET_MIN_HEIGHT),
-                        newOptions.getInt(AppWidgetManager.OPTION_APPWIDGET_MAX_HEIGHT));
-
-      //  updateViews.setTextViewText(R.id.LblHora, msg);
-
-       /* updateViews.removeAllViews(R.id.LblMensaje);
-        updateViews.removeAllViews(R.id.BotonM);
-        updateViews.removeAllViews(R.id.BotonT);
-        updateViews.removeAllViews(R.id.BotonN);
-        updateViews.removeAllViews(R.id.config);
-        updateViews.removeAllViews(R.id.BtnActualizar);
-*/
-        mgr.updateAppWidget(appWidgetId, updateViews);
     }
 }
 

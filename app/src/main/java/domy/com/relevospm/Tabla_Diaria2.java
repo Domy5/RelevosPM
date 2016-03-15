@@ -16,6 +16,7 @@ import java.util.HashMap;
 import java.util.Properties;
 import java.util.Vector;
 
+import domy.com.relevospm.Utiles.AutoResizeTextView;
 import domy.com.relevospm.Utiles.Dia4y2;
 import domy.com.relevospm.Utiles.JSONParser3;
 import domy.com.relevospm.Utiles.dia;
@@ -120,9 +121,10 @@ public class Tabla_Diaria2 extends AppCompatActivity implements View.OnClickList
 
 
         for (int i = 0; i < TodosLosBotones.length; i++) {
-            Button boton;
-            boton = (Button) findViewById(TodosLosBotones[i]);
+
+            AutoResizeTextView boton = (AutoResizeTextView ) findViewById(TodosLosBotones[i]);
             boton.setText(DNE(boton.getText().toString()));
+
         }
 
 

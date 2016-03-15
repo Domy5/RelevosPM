@@ -77,9 +77,18 @@
             </intent-filter>
         </activity>
 
-        <receiver android:name=".Cosmos_Widget" android:label="AA COSMO Widget">
+        <activity
+        android:name=".WidgetConfig2"
+        android:theme="@android:style/Theme.Holo.Light.Dialog">
+        <intent-filter>
+            <action android:name="android.apwidget.action.APPWIDGET_CONFIGURE"/>
+        </intent-filter>
+    </activity>
+
+        <receiver android:name=".Cosmos_Widget" android:label="COSMO">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+                <action android:name="android.appwidget.action.APPWIDGET_OPTIONS_CHANGED"/>
             </intent-filter>
             <intent-filter>
                 <action android:name="domy.com.relevospm.ACTUALIZAR_WIDGET"/>
@@ -87,6 +96,19 @@
             <meta-data
                 android:name="android.appwidget.provider"
                 android:resource="@xml/cosmos_wprovider" />
+        </receiver>
+
+        <receiver android:name=".Cosmos_Widget2" android:label="COSMO Solo Linea">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+                <action android:name="android.appwidget.action.APPWIDGET_OPTIONS_CHANGED"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="domy.com.relevospm.ACTUALIZAR_WIDGET2"/>
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/cosmos_wprovider2" />
         </receiver>
 
     </application>

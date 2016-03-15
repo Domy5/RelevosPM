@@ -1,21 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <appwidget-provider xmlns:android="http://schemas.android.com/apk/res/android"
 
-    android:layout_width="250dp"
-    android:layout_height="110dp"
+    android:layout_width="110dp"
+    android:layout_height="40dp"
 
-    android:minWidth="250dp"
-    android:minHeight="110dp"
+    android:minWidth="110dp"
+    android:minHeight="40dp"
 
     android:minResizeWidth="110dp"
     android:minResizeHeight="40dp"
 
-    android:initialLayout="@layout/cosmos_widget"
+    android:initialLayout="@layout/cosmos_widget2"
     android:label="@string/c_o_s_m_o_s"
     android:updatePeriodMillis="7200000"
-    android:configure="domy.com.relevospm.WidgetConfig"
-    android:previewImage="@drawable/widget"
-    android:widgetCategory="home_screen|keyguard"
+    android:configure="domy.com.relevospm.WidgetConfig2"
+    android:previewImage="@drawable/widget_solo_linea"
     android:resizeMode="horizontal|vertical"
     />
 

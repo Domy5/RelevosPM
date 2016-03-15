@@ -11,18 +11,23 @@ import android.widget.Button;
 import android.widget.EditText;
 
 
-public class WidgetConfig extends Activity {
+public class WidgetConfig2 extends Activity {
 
     private int widgetId = 0;
 
     private Button btnAceptar;
     private Button btnCancelar;
     private EditText txtMensaje;
+    private SharedPreferences prefs;
+    private SharedPreferences.Editor editor;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.widget_config);
+        setContentView(R.layout.widget_config2);
+
+            prefs = getSharedPreferences("WidgetPrefs", Context.MODE_PRIVATE);
+            editor = prefs.edit();
 
         //Obtenemos el Intent que ha lanzado esta ventana
         //y recuperamos sus parámetros
@@ -63,16 +68,14 @@ public class WidgetConfig extends Activity {
             @Override
             public void onClick(View arg0) {
                 //Guardamos el mensaje personalizado en las preferencias
-                SharedPreferences prefs =
-                        getSharedPreferences("WidgetPrefs", Context.MODE_PRIVATE);
-                SharedPreferences.Editor editor = prefs.edit();
+
                 editor.putString("Dne", txtMensaje.getText().toString());
                 editor.apply();
 
                 //Actualizamos el widget tras la configuración
                 AppWidgetManager appWidgetManager =
-                        AppWidgetManager.getInstance(WidgetConfig.this);
-                Cosmos_Widget.actualizarWidget(WidgetConfig.this, appWidgetManager, widgetId);
+                        AppWidgetManager.getInstance(WidgetConfig2.this);
+                Cosmos_Widget2.actualizarWidget(WidgetConfig2.this, appWidgetManager, widgetId);
 
                 //Devolvemos como resultado: ACEPTAR (RESULT_OK)
                 Intent resultado = new Intent();
