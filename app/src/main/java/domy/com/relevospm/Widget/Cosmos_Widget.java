@@ -1,11 +1,8 @@
-package domy.com.relevospm;
+package domy.com.relevospm.Widget;
 
-import java.util.Arrays;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
-import java.util.HashSet;
 import java.util.Locale;
-import java.util.Set;
 import java.util.Vector;
 
 import android.app.PendingIntent;
@@ -19,9 +16,13 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.os.StrictMode;
-import android.view.Gravity;
+import android.support.v4.content.ContextCompat;
 import android.widget.RemoteViews;
-import android.widget.Toast;
+
+import domy.com.relevospm.Diario;
+import domy.com.relevospm.R;
+import domy.com.relevospm.SplashActivity;
+import domy.com.relevospm.Tabla_Diaria2;
 
 public class Cosmos_Widget extends AppWidgetProvider {
 
@@ -44,15 +45,15 @@ public class Cosmos_Widget extends AppWidgetProvider {
 
             //Actualizamos el widget actual
 
-            if(isOnline(context)) {
+           // if(isOnline(context)) {
             actualizarWidget(context, appWidgetManager, widgetId);
-            }else{
+          //  }else{
                 //Toast.makeText(context, "No estas Conectado U" , Toast.LENGTH_SHORT).show();
-                 }
+           //      }
         }
 
         for (int appWidgetId : appWidgetIds) {
-            Bundle options=appWidgetManager.getAppWidgetOptions(appWidgetId);
+            Bundle options = appWidgetManager.getAppWidgetOptions(appWidgetId);
 
             onAppWidgetOptionsChanged(context, appWidgetManager, appWidgetId,
                     options);
@@ -75,22 +76,16 @@ public class Cosmos_Widget extends AppWidgetProvider {
                     AppWidgetManager.getInstance(context);
 
             //Actualizamos el widget
-            if (isOnline(context)) {
                 if (widgetId != AppWidgetManager.INVALID_APPWIDGET_ID) {
                     actualizarWidget(context, widgetManager, widgetId);
                 }
-            }else{
 
-              //  Toast.makeText(context, "No estas Conectado R" , Toast.LENGTH_SHORT).show();
-
-            }
         }
 
           super.onReceive(context, intent);
     }
 
-    public static void actualizarWidget(Context context, AppWidgetManager appWidgetManager, int widgetId)
-    {
+    public static void actualizarWidget(Context context, AppWidgetManager appWidgetManager, int widgetId) {
 
         // int SDK_INT = android.os.Build.VERSION.SDK_INT;
         // if (SDK_INT > 8)
@@ -175,20 +170,25 @@ public class Cosmos_Widget extends AppWidgetProvider {
 
         controles.setTextViewText(R.id.LblMensaje, dne);
         controles.setTextViewText(R.id.LblHora, hora);
-        controles.setTextViewText(R.id.BotonL, l);
+        controles.setTextViewText(R.id.BotonL, l );
         controles.setTextViewText(R.id.BotonM, m);
         controles.setTextViewText(R.id.BotonT, t);
         controles.setTextViewText(R.id.BotonN, n);
         controles.setTextColor(R.id.BotonL, Color.BLUE);
-        controles.setTextColor(R.id.BotonM, Color.RED);
-        controles.setTextColor(R.id.BotonT, Color.RED);
-        controles.setTextColor(R.id.BotonN, Color.RED);
+
+        //controles.setTextColor(R.id.BotonM, context.getResources().getColor(R.color.M));
+        //controles.setTextColor(R.id.BotonT, context.getResources().getColor(R.color.T));
+        //controles.setTextColor(R.id.BotonN, context.getResources().getColor(R.color.N));
+
+        controles.setTextColor(R.id.BotonM, ContextCompat.getColor(context, R.color.M));
+        controles.setTextColor(R.id.BotonT, ContextCompat.getColor(context, R.color.T));
+        controles.setTextColor(R.id.BotonN, ContextCompat.getColor(context, R.color.N));
 
         //Notificamos al manager de la actualización del widget actual
         appWidgetManager.updateAppWidget(widgetId, controles);
     }
 
-    public static boolean isOnline(Context context) {
+    public static boolean isOnlineE(Context context) {
 
         ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
 
@@ -201,8 +201,8 @@ public class Cosmos_Widget extends AppWidgetProvider {
     }
 
     @Override
-    public void onDeleted(Context context, int[] appWidgetIds)
-    {
+    public void onDeleted(Context context, int[] appWidgetIds) {
+
         //Accedemos a las preferencias de la aplicación
         SharedPreferences prefs = context.getSharedPreferences("WidgetPrefs", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = prefs.edit();
@@ -213,7 +213,7 @@ public class Cosmos_Widget extends AppWidgetProvider {
             //ID del widget actual
             int widgetId = appWidgetIds[i];
 
-            editor.remove("Dne" + widgetId);
+            editor.remove("Dne");
         }
 
         //Aceptamos los cambios
@@ -252,14 +252,11 @@ public class Cosmos_Widget extends AppWidgetProvider {
     }
 
     @Override
-    public void onAppWidgetOptionsChanged(Context ctxt,
-                                          AppWidgetManager mgr,
-                                          int appWidgetId,
-                                          Bundle newOptions) {
-        RemoteViews updateViews=
-                new RemoteViews(ctxt.getPackageName(), R.layout.cosmos_widget);
-        String msg=
-                String.format(Locale.getDefault(),
+    public void onAppWidgetOptionsChanged(Context ctxt, AppWidgetManager mgr, int appWidgetId, Bundle newOptions) {
+
+        RemoteViews updateViews = new RemoteViews(ctxt.getPackageName(), R.layout.cosmos_widget);
+
+        String msg = String.format(Locale.getDefault(),
                         "[%d-%d] x [%d-%d]",
                         newOptions.getInt(AppWidgetManager.OPTION_APPWIDGET_MIN_WIDTH),
                         newOptions.getInt(AppWidgetManager.OPTION_APPWIDGET_MAX_WIDTH),
@@ -268,13 +265,8 @@ public class Cosmos_Widget extends AppWidgetProvider {
 
       //  updateViews.setTextViewText(R.id.LblHora, msg);
 
-       /* updateViews.removeAllViews(R.id.LblMensaje);
-        updateViews.removeAllViews(R.id.BotonM);
-        updateViews.removeAllViews(R.id.BotonT);
-        updateViews.removeAllViews(R.id.BotonN);
-        updateViews.removeAllViews(R.id.config);
-        updateViews.removeAllViews(R.id.BtnActualizar);
-*/
+       // updateViews.removeAllViews(R.layout.cosmos_widget);
+
         mgr.updateAppWidget(appWidgetId, updateViews);
     }
 }

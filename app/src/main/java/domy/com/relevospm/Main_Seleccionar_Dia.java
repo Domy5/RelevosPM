@@ -26,6 +26,7 @@ import domy.com.relevospm.login.Login;
 public class Main_Seleccionar_Dia extends AppCompatActivity {
 
     private static final String TAG = "PERMISOS";
+
     String GRUPOTRABAJO = "";
 
     String FECHA = "";
@@ -33,6 +34,7 @@ public class Main_Seleccionar_Dia extends AppCompatActivity {
     CalendarView calendar;
 
     Button Boton_Ver_Hoy;
+
     Button Boton_Ver_Lineas;
 
     String DiaDeHoy = "";

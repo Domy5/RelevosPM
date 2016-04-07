@@ -105,7 +105,8 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_margin="5dp"
-                    android:textAlignment="center">
+                    android:textAlignment="center"
+                    android:background="@color/L1light">
 
                     <Button
                         android:id="@+id/button2"
@@ -129,7 +130,8 @@
                         android:textAlignment="center"
                         android:ellipsize="none"
                         android:maxLines="1"
-                        android:gravity="center"/>
+                        android:gravity="center"
+                        android:contextClickable="false" />
 
                     <domy.com.relevospm.Utiles.AutoResizeTextView
                         android:id="@+id/BotonTardeLinea1"
@@ -167,7 +169,8 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
-                    android:textAlignment="center">
+                    android:textAlignment="center"
+                    android:background="@color/L2light">
 
                     <Button
                         android:id="@+id/button6"
@@ -230,7 +233,8 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
-                    android:textAlignment="center">
+                    android:textAlignment="center"
+                    android:background="@color/L3light">
 
                     <Button
                         android:id="@+id/button10"
@@ -292,7 +296,8 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
-                    android:textAlignment="center">
+                    android:textAlignment="center"
+                    android:background="@color/L4light">
 
                     <Button
                         android:id="@+id/button14"
@@ -354,7 +359,8 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
-                    android:textAlignment="center">
+                    android:textAlignment="center"
+                    android:background="@color/L5light">
 
                     <Button
                         android:id="@+id/button18"
@@ -416,7 +422,8 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
-                    android:textAlignment="center">
+                    android:textAlignment="center"
+                    android:background="@color/L6light">
 
                     <Button
                         android:id="@+id/button22"
@@ -479,7 +486,8 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
-                    android:textAlignment="center">
+                    android:textAlignment="center"
+                    android:background="@color/L7light">
 
                     <Button
                         android:id="@+id/button26"
@@ -541,7 +549,8 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
-                    android:textAlignment="center">
+                    android:textAlignment="center"
+                    android:background="@color/L8light">
 
                     <Button
                         android:id="@+id/button30"
@@ -603,7 +612,8 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
-                    android:textAlignment="center">
+                    android:textAlignment="center"
+                    android:background="@color/L9light">
 
                     <Button
                         android:id="@+id/button34"
@@ -665,7 +675,8 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
-                    android:textAlignment="center">
+                    android:textAlignment="center"
+                    android:background="@color/L10light">
 
                     <Button
                         android:id="@+id/button38"
@@ -727,7 +738,8 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
-                    android:textAlignment="center">
+                    android:textAlignment="center"
+                    android:background="@color/L11light">
 
                     <Button
                         android:id="@+id/button42"
@@ -789,7 +801,8 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
-                    android:textAlignment="center">
+                    android:textAlignment="center"
+                    android:background="@color/L12light">
 
                     <Button
                         android:id="@+id/button46"
@@ -851,7 +864,8 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
-                    android:textAlignment="center">
+                    android:textAlignment="center"
+                    android:background="@color/RVAlight">
 
                     <Button
                         android:id="@+id/button50"
@@ -913,7 +927,8 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
-                    android:textAlignment="center">
+                    android:textAlignment="center"
+                    android:background="@color/RVAlight">
 
                     <Button
                         android:id="@+id/button54"
@@ -971,7 +986,8 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
-                    android:textAlignment="center">
+                    android:textAlignment="center"
+                    android:background="@color/RVAlight">
 
                     <Button
                         android:id="@+id/button58"
@@ -1029,7 +1045,8 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
-                    android:textAlignment="center">
+                    android:textAlignment="center"
+                    android:background="@color/RVAlight">
 
                     <Button
                         android:id="@+id/button62"
@@ -1087,7 +1104,8 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
-                    android:textAlignment="center">
+                    android:textAlignment="center"
+                    android:background="@color/RVAlight">
 
                     <Button
                         android:id="@+id/button66"
@@ -1145,7 +1163,8 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
-                    android:textAlignment="center">
+                    android:textAlignment="center"
+                    android:background="@color/RVAlight">
 
                     <Button
                         android:id="@+id/button70"
@@ -1201,7 +1220,8 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
-                    android:textAlignment="center">
+                    android:textAlignment="center"
+                    android:background="@color/RVAlight">
 
                     <Button
                         android:id="@+id/button71"
@@ -1258,7 +1278,8 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
-                    android:textAlignment="center">
+                    android:textAlignment="center"
+                    android:background="@color/RVAlight">
 
                     <Button
                         android:id="@+id/button72"
@@ -1315,7 +1336,8 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
-                    android:textAlignment="center">
+                    android:textAlignment="center"
+                    android:background="@color/RVAlight">
 
                     <Button
                         android:id="@+id/button73"

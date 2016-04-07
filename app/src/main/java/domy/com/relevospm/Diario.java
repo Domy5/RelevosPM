@@ -98,11 +98,11 @@ public class Diario {
 
         Vector Fijos = BD.getDatosDne(FECHA);
 
+     //   BD.close();
+
         Vector resultado = Comparacion_Fijos_y_JsonServicioTrabajan(Fijos, AgentesTrabajan, DIA365);
 
         Vector_Final = resultado;
-
-        BD.close();
 
         return Vector_Final;
     }
@@ -212,6 +212,7 @@ public class Diario {
         JSONArray jsonObjRecv = jsonParser3.makeHttpRequest(URL, "POST",
                 params);
         Log.d("Sql exitoso!", jsonObjRecv.toString());
+
 
         return jsonObjRecv;
     }

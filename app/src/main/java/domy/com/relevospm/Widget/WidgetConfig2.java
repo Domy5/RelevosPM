@@ -1,4 +1,4 @@
-package domy.com.relevospm;
+package domy.com.relevospm.Widget;
 
 import android.app.Activity;
 import android.appwidget.AppWidgetManager;
@@ -9,6 +9,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+
+import domy.com.relevospm.R;
 
 
 public class WidgetConfig2 extends Activity {

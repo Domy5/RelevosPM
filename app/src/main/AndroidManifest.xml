@@ -70,7 +70,7 @@
         </activity>
 
         <activity
-            android:name=".WidgetConfig"
+            android:name=".Widget.WidgetConfig"
             android:theme="@android:style/Theme.Holo.Light.Dialog">
             <intent-filter>
                 <action android:name="android.apwidget.action.APPWIDGET_CONFIGURE"/>
@@ -78,14 +78,14 @@
         </activity>
 
         <activity
-        android:name=".WidgetConfig2"
+        android:name=".Widget.WidgetConfig2"
         android:theme="@android:style/Theme.Holo.Light.Dialog">
         <intent-filter>
             <action android:name="android.apwidget.action.APPWIDGET_CONFIGURE"/>
         </intent-filter>
     </activity>
 
-        <receiver android:name=".Cosmos_Widget" android:label="COSMO">
+        <receiver android:name=".Widget.Cosmos_Widget" android:label="COSMO">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
                 <action android:name="android.appwidget.action.APPWIDGET_OPTIONS_CHANGED"/>
@@ -98,7 +98,7 @@
                 android:resource="@xml/cosmos_wprovider" />
         </receiver>
 
-        <receiver android:name=".Cosmos_Widget2" android:label="COSMO Solo Linea">
+        <receiver android:name=".Widget.Cosmos_Widget2" android:label="COSMO Solo Linea">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
                 <action android:name="android.appwidget.action.APPWIDGET_OPTIONS_CHANGED"/>

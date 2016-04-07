@@ -13,7 +13,7 @@
     android:initialLayout="@layout/cosmos_widget"
     android:label="@string/c_o_s_m_o_s"
     android:updatePeriodMillis="7200000"
-    android:configure="domy.com.relevospm.WidgetConfig"
+    android:configure="domy.com.relevospm.Widget.WidgetConfig"
     android:previewImage="@drawable/widget"
     android:widgetCategory="home_screen|keyguard"
     android:resizeMode="horizontal|vertical"

@@ -7,13 +7,13 @@
     android:minWidth="110dp"
     android:minHeight="40dp"
 
-    android:minResizeWidth="110dp"
+    android:minResizeWidth="40dp"
     android:minResizeHeight="40dp"
 
     android:initialLayout="@layout/cosmos_widget2"
     android:label="@string/c_o_s_m_o_s"
     android:updatePeriodMillis="7200000"
-    android:configure="domy.com.relevospm.WidgetConfig2"
+    android:configure="domy.com.relevospm.Widget.WidgetConfig2"
     android:previewImage="@drawable/widget_solo_linea"
     android:resizeMode="horizontal|vertical"
     />

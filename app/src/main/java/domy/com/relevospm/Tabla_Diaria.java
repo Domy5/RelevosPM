@@ -147,6 +147,7 @@ public class Tabla_Diaria extends AppCompatActivity implements View.OnClickListe
         };
 
         Vector Fijos = BD.getDatosDne(FECHA);
+        BD.close();
 
         Vector resultado = Comparacion_Fijos_y_JsonServicioTrabajan(Fijos, AgentesTrabajan, DIA365) ;
 

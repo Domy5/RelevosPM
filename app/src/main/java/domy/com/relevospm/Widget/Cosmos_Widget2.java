@@ -1,4 +1,4 @@
-package domy.com.relevospm;
+package domy.com.relevospm.Widget;
 
 import android.app.PendingIntent;
 import android.appwidget.AppWidgetManager;
@@ -15,6 +15,10 @@ import android.widget.RemoteViews;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.Vector;
+
+import domy.com.relevospm.Diario;
+import domy.com.relevospm.R;
+import domy.com.relevospm.SplashActivity;
 
 public class Cosmos_Widget2 extends AppWidgetProvider {
 

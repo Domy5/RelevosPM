@@ -22,6 +22,7 @@ import org.json.JSONObject;
 
 import java.util.HashMap;
 
+import domy.com.relevospm.BuildConfig;
 import domy.com.relevospm.Dialogo_Registrar_Atencion;
 import domy.com.relevospm.Main_Seleccionar_Dia;
 import domy.com.relevospm.R;
@@ -113,7 +114,9 @@ public class Login extends Activity implements OnClickListener {
                 editor.putString("Dne",user.getText().toString());
                 editor.apply();
 
-                new AttemptLogin(user.getText().toString(), pass.getText().toString(), mySwitch.isChecked()).execute();
+                int versionCodeApp = BuildConfig.VERSION_CODE;
+
+                new AttemptLogin(user.getText().toString(), pass.getText().toString(), mySwitch.isChecked(), versionCodeApp).execute();
 
                 break;
             case R.id.register:
@@ -134,11 +137,15 @@ public class Login extends Activity implements OnClickListener {
 
         String username;
         String password;
+        int version;
+
         boolean myS;
 
-        public AttemptLogin(String username1, String password1, boolean myS1) {
+        public AttemptLogin(String username1, String password1, boolean myS1, int version1) {
             username = username1;
             password = password1;
+            version = version1;
+
             myS = myS1;
 
         }
@@ -161,6 +168,7 @@ public class Login extends Activity implements OnClickListener {
 
                 params.put("username", username);
                 params.put("password", password);
+                params.put("Version_Ultimo_Inicio", Integer.toString(version));
 
                 Log.d("request!", "starting");
                 // getting product details by making HTTP request
