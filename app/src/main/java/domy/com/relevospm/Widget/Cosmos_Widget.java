@@ -132,7 +132,7 @@ public class Cosmos_Widget extends AppWidgetProvider {
 
         String FECHA = dia + "/" + mes + "/" + annio;
 
-        resultado =  Diario.Diario(FECHA,context);
+        resultado =  Diario.Diario(FECHA, dne, context);
 
         if( resultado != null ) {
 
@@ -174,12 +174,12 @@ public class Cosmos_Widget extends AppWidgetProvider {
         controles.setTextViewText(R.id.BotonM, m);
         controles.setTextViewText(R.id.BotonT, t);
         controles.setTextViewText(R.id.BotonN, n);
-        controles.setTextColor(R.id.BotonL, Color.BLUE);
 
         //controles.setTextColor(R.id.BotonM, context.getResources().getColor(R.color.M));
         //controles.setTextColor(R.id.BotonT, context.getResources().getColor(R.color.T));
         //controles.setTextColor(R.id.BotonN, context.getResources().getColor(R.color.N));
 
+        controles.setTextColor(R.id.BotonL, Color.BLUE);
         controles.setTextColor(R.id.BotonM, ContextCompat.getColor(context, R.color.M));
         controles.setTextColor(R.id.BotonT, ContextCompat.getColor(context, R.color.T));
         controles.setTextColor(R.id.BotonN, ContextCompat.getColor(context, R.color.N));
@@ -202,6 +202,7 @@ public class Cosmos_Widget extends AppWidgetProvider {
 
     @Override
     public void onDeleted(Context context, int[] appWidgetIds) {
+/*
 
         //Accedemos a las preferencias de la aplicación
         SharedPreferences prefs = context.getSharedPreferences("WidgetPrefs", Context.MODE_PRIVATE);
@@ -220,6 +221,8 @@ public class Cosmos_Widget extends AppWidgetProvider {
         editor.apply();
 
         super.onDeleted(context, appWidgetIds);
+
+        */
     }
 
     public static int puestoM( int p ) {

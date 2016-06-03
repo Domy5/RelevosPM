@@ -1,6 +1,8 @@
 package domy.com.relevospm;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -63,7 +65,10 @@ public class Tabla_Diaria2 extends AppCompatActivity implements View.OnClickList
                 R.id.BotonMananaRVA9, R.id.BotonTardeRVA9, R.id.BotonNocheRVA9,
         };
 
-        Vector resultado =  Diario.Diario(FECHA,getApplicationContext());
+        SharedPreferences prefs = getApplicationContext().getSharedPreferences("WidgetPrefs", Context.MODE_PRIVATE);
+        String dne = prefs.getString("Dne", ":");
+
+        Vector resultado =  Diario.Diario(FECHA, dne ,getApplicationContext());
 
         for (int i = 0; i < TodosLosBotones.length; i++) {
 

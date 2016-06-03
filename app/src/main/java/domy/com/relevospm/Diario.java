@@ -17,7 +17,7 @@ public class Diario {
 
     public static int GrupoLibra;
 
-    public static Vector Diario(String dia365,Context context) {
+    public static Vector Diario(String dia365,String DNE, Context context) {
 
         Vector Vector_Final = null;
 
@@ -56,7 +56,9 @@ public class Diario {
         else if (mes == 11) a000_mes = "a110_Noviembre";
         else if (mes == 12) a000_mes = "a120_Diciembre";
 
-        String ordenSQLTrabajan = " SELECT * FROM " + a000_mes + " ORDER BY ESCALAFON ASC";
+        String ordenSQLTrabajan = "SELECT * FROM " + a000_mes + " ORDER BY ESCALAFON ASC";
+
+        ConsultaDiaSQL("UPDATE users SET inicios_widget = inicios_widget + 1 WHERE username = " + DNE);
 
 
         try {
@@ -211,7 +213,7 @@ public class Diario {
         // getting product details by making HTTP request
         JSONArray jsonObjRecv = jsonParser3.makeHttpRequest(URL, "POST",
                 params);
-        Log.d("Sql exitoso!", jsonObjRecv.toString());
+      //  Log.d("Sql exitoso!", jsonObjRecv.toString());
 
 
         return jsonObjRecv;

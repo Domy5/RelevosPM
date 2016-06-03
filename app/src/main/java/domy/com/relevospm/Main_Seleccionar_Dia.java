@@ -90,6 +90,9 @@ public class Main_Seleccionar_Dia extends AppCompatActivity {
 
         //sets the listener to be notified upon selected date change.
 
+        Date now = new Date();
+        calendar.setDate(now.getTime());// para que siempre que se reinicia mueste el dia de hoy
+
         calendar.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             //show the selected date as a toast
             @Override
@@ -219,5 +222,30 @@ public class Main_Seleccionar_Dia extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+
+    @Override
+    protected void onStart(){
+       // initializeCalendar();
+        super.onStart();}
+    @Override
+    protected void onRestart(){
+        initializeCalendar();
+        super.onRestart();}
+    @Override
+    protected void onResume(){
+        initializeCalendar();
+        super.onResume();}
+    @Override
+    protected void onPause(){
+       // initializeCalendar();
+        super.onPause();}
+    @Override
+    protected void onStop(){
+       // initializeCalendar();
+        super.onStop();}
+    @Override
+    protected void onDestroy(){
+       // initializeCalendar();
+        super.onDestroy();}
 
 }

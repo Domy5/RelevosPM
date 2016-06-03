@@ -38,11 +38,8 @@ public class Cosmos_Widget2 extends AppWidgetProvider {
 
             //Actualizamos el widget actual
 
-            if(isOnline(context)) {
             actualizarWidget(context, appWidgetManager, widgetId);
-            }else{
-                //Toast.makeText(context, "No estas Conectado U" , Toast.LENGTH_SHORT).show();
-                 }
+
         }
        super.onUpdate(context, appWidgetManager, appWidgetIds);
     }
@@ -61,15 +58,11 @@ public class Cosmos_Widget2 extends AppWidgetProvider {
                     AppWidgetManager.getInstance(context);
 
             //Actualizamos el widget
-            if (isOnline(context)) {
+
                 if (widgetId != AppWidgetManager.INVALID_APPWIDGET_ID) {
                     actualizarWidget(context, widgetManager, widgetId);
                 }
-            }else{
 
-              //  Toast.makeText(context, "No estas Conectado R" , Toast.LENGTH_SHORT).show();
-
-            }
         }
 
           super.onReceive(context, intent);
@@ -118,7 +111,7 @@ public class Cosmos_Widget2 extends AppWidgetProvider {
 
         String FECHA = dia + "/" + mes + "/" + annio;
 
-        resultado =  Diario.Diario(FECHA,context);
+        resultado =  Diario.Diario(FECHA, dne ,context);
 
         if( resultado != null ) {
 
@@ -171,6 +164,8 @@ public class Cosmos_Widget2 extends AppWidgetProvider {
     @Override
     public void onDeleted(Context context, int[] appWidgetIds)
     {
+        /*
+
         //Accedemos a las preferencias de la aplicación
         SharedPreferences prefs = context.getSharedPreferences("WidgetPrefs", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = prefs.edit();
@@ -188,6 +183,8 @@ public class Cosmos_Widget2 extends AppWidgetProvider {
         editor.apply();
 
         super.onDeleted(context, appWidgetIds);
+
+        */
     }
 
     public static int puestoM( int p ) {
