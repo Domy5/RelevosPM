@@ -85,6 +85,11 @@ public class Tabla_Diaria2 extends AppCompatActivity implements View.OnClickList
     @Override
     public void onClick(View v) {
 
+        Button b = (Button)v;
+
+
+      //  b.setText(".");
+
         switch (v.getId()) {
 
             case R.id.x:
@@ -127,7 +132,7 @@ public class Tabla_Diaria2 extends AppCompatActivity implements View.OnClickList
 
         for (int i = 0; i < TodosLosBotones.length; i++) {
 
-            AutoResizeTextView boton = (AutoResizeTextView ) findViewById(TodosLosBotones[i]);
+            AutoResizeTextView boton = (AutoResizeTextView) findViewById(TodosLosBotones[i]);
             boton.setText(DNE(boton.getText().toString()));
 
         }

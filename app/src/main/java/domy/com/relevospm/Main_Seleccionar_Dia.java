@@ -65,16 +65,34 @@ public class Main_Seleccionar_Dia extends AppCompatActivity {
         Boton_Ver_Hoy.setText("HOY --> " + DiaDeHoy);
     }
 
-   // public int grupo(View v){
+    public void grupo(View v){
 
-   //     int i = 0;
+        List decorators = new ArrayList<>();
+        Calendar currentCalendar = Calendar.getInstance(Locale.getDefault());
+        DaysDecorator1 g1 = new DaysDecorator1();
+        DaysDecorator3 g3 = new DaysDecorator3();
+        DaysDecorator5 g5 = new DaysDecorator5();
 
-   //     Button b = (Button) View.;
 
-  //      i = Integer.parseInt(b.getText().toString());
+        switch (v.getId()) {
 
-   //     return i;
-  //  }
+            case R.id.G1:
+                decorators.add(g1);
+                break;
+            case R.id.G3:
+                decorators.add(g3);
+                break;
+            case R.id.G5:
+                decorators.add(g5);
+                break;
+            default:
+
+                break;
+        }
+        calendar.setDecorators(decorators);
+        calendar.refreshCalendar(currentCalendar);
+
+    }
 
     @Override
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
@@ -108,11 +126,15 @@ public class Main_Seleccionar_Dia extends AppCompatActivity {
 //calendar.setBackgroundColor(0xff0000);
 
         //adding calendar day decorators
-        List decorators = new ArrayList<>();
+        //List decorators = new ArrayList<>();
        // decorators.add(new DaysDecorator().decorate("lo que sea " ,Grupo));
-        decorators.add(new DaysDecorator());
-        calendar.setDecorators(decorators);
-        calendar.refreshCalendar(currentCalendar);
+
+       // DaysDecorator1 g1 = new DaysDecorator1();
+       // DaysDecorator3 g3 = new DaysDecorator3();
+        //DaysDecorator5 g5 = new DaysDecorator5();
+        //decorators.add(g3);
+       // calendar.setDecorators(decorators);
+       /// calendar.refreshCalendar(currentCalendar);
 
 //Handling custom calendar events
         calendar.setCalendarListener(new CalendarListener() {

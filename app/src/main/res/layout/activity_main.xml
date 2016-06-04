@@ -13,7 +13,8 @@
         android:layout_height="0dp"
         android:layout_weight="10"
         android:baselineAligned="true"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:gravity="center_horizontal">
 
         <CalendarView
             android:id="@+id/calendar"

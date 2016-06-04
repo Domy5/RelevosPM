@@ -2,20 +2,19 @@ package domy.com.relevospm;
 
 import com.imanoweb.calendarview.DayDecorator;
 import com.imanoweb.calendarview.DayView;
-
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
 import domy.com.relevospm.Utiles.Dia4y2;
 
-public class DaysDecorator implements DayDecorator {
+public class DaysDecorator1 implements DayDecorator {
 
     @Override
     public void decorate(DayView dayView){
         {
             //  if (!isPastDay(dayView.getDate())) {
-            if (GrupoLibra(dayView.getDate(),3)) {
+            if (GrupoLibra(dayView.getDate(),1)) {
 
                 dayView.setBackgroundColor(0xFF55FF00);
 

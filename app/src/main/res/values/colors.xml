@@ -43,4 +43,8 @@
     <color name="T">#132af5</color>
     <color name="N">#930582</color>
 
+    <color name="d1">#FF55FF00</color>
+    <color name="d3">#b0ff88</color>
+    <color name="d5">#d0ffb8</color>
+
 </resources>

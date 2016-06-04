@@ -60,19 +60,22 @@
                 android:id="@+id/G1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="G1" />
+                android:text="@string/g1"
+                android:onClick="grupo"/>
 
             <Button
                 android:id="@+id/G3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="G3" />
+                android:text="@string/g3"
+                android:onClick="grupo"/>
 
             <Button
                 android:id="@+id/G5"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="G5" />
+                android:text="@string/g5"
+                android:onClick="grupo"/>
         </LinearLayout>
 
         <Button
