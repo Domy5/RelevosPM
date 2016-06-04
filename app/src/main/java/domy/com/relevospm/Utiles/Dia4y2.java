@@ -111,22 +111,22 @@ public class Dia4y2 {
 
         switch (Grupo) {
 
-            case 5:
+            case 1:
                 NumGrupo = 29;  //"12/29/1995"
                 break;
-            case 6:
+            case 2:
                 NumGrupo = 28;  //"12/28/1995"
                 break;
-            case 1:
+            case 3:
                 NumGrupo = 27;  //"12/27/1995"
                 break;
-            case 2:
+            case 4:
                 NumGrupo = 26;  //"12/26/1995"
                 break;
-            case 3:
+            case 5:
                 NumGrupo = 31;  //"12/31/1995"
                 break;
-            case 4:
+            case 6:
                 NumGrupo = 30;  //"12/30/1995"
                 break;
 
@@ -199,43 +199,45 @@ public class Dia4y2 {
 
     public static void main(String[] args) {
 
-        int g = 1;
+        int g = 3;
 
-        int m = 1;
+        int m = 6;
 
-        System.out.println("1  " + dia(g, 1, m, 2014));
-        System.out.println("2  " + dia(g, 2, m, 2014));
-        System.out.println("3  " + dia(g, 3, m, 2014));
-        System.out.println("4  " + dia(g, 4, m, 2014));
-        System.out.println("5  " + dia(g, 5, m, 2014));
-        System.out.println("6  " + dia(g, 6, m, 2014));
-        System.out.println("7  " + dia(g, 7, m, 2014));
-        System.out.println("8  " + dia(g, 8, m, 2014));
-        System.out.println("9  " + dia(g, 9, m, 2014));
-        System.out.println("10 " + dia(g, 10, m, 2014));
-        System.out.println("11 " + dia(g, 11, m, 2014));
-        System.out.println("12 " + dia(g, 12, m, 2014));
-        System.out.println("13 " + dia(g, 13, m, 2014));
-        System.out.println("14 " + dia(g, 14, m, 2014));
-        System.out.println("15 " + dia(g, 15, m, 2014));
-        System.out.println("16 " + dia(g, 16, m, 2014));
-        System.out.println("17 " + dia(g, 17, m, 2014));
-        System.out.println("18 " + dia(g, 18, m, 2014));
-        System.out.println("19 " + dia(g, 19, m, 2014));
-        System.out.println("20 " + dia(g, 20, m, 2014));
-        System.out.println("21 " + dia(g, 21, m, 2014));
-        System.out.println("22 " + dia(g, 22, m, 2014));
-        System.out.println("23 " + dia(g, 23, m, 2014));
-        System.out.println("24 " + dia(g, 24, m, 2014));
-        System.out.println("25 " + dia(g, 25, m, 2014));
-        System.out.println("26 " + dia(g, 26, m, 2014));
-        System.out.println("27 " + dia(g, 27, m, 2014));
-        System.out.println("28 " + dia(g, 28, m, 2014));
-        System.out.println("29 " + dia(g, 29, m, 2014));
-        System.out.println("30 " + dia(g, 30, m, 2014));
+        int a = 2016;
+
+        System.out.println("1  " + dia(g, 1, m, a));
+        System.out.println("2  " + dia(g, 2, m, a));
+        System.out.println("3  " + dia(g, 3, m, a));
+        System.out.println("4  " + dia(g, 4, m, a));
+        System.out.println("5  " + dia(g, 5, m, a));
+        System.out.println("6  " + dia(g, 6, m, a));
+        System.out.println("7  " + dia(g, 7, m, a));
+        System.out.println("8  " + dia(g, 8, m, a));
+        System.out.println("9  " + dia(g, 9, m, a));
+        System.out.println("10 " + dia(g, 10, m, a));
+        System.out.println("11 " + dia(g, 11, m, a));
+        System.out.println("12 " + dia(g, 12, m, a));
+        System.out.println("13 " + dia(g, 13, m, a));
+        System.out.println("14 " + dia(g, 14, m, a));
+        System.out.println("15 " + dia(g, 15, m, a));
+        System.out.println("16 " + dia(g, 16, m, a));
+        System.out.println("17 " + dia(g, 17, m, a));
+        System.out.println("18 " + dia(g, 18, m, a));
+        System.out.println("19 " + dia(g, 19, m, a));
+        System.out.println("20 " + dia(g, 20, m, a));
+        System.out.println("21 " + dia(g, 21, m, a));
+        System.out.println("22 " + dia(g, 22, m, a));
+        System.out.println("23 " + dia(g, 23, m, a));
+        System.out.println("24 " + dia(g, 24, m, a));
+        System.out.println("25 " + dia(g, 25, m, a));
+        System.out.println("26 " + dia(g, 26, m, a));
+        System.out.println("27 " + dia(g, 27, m, a));
+        System.out.println("28 " + dia(g, 28, m, a));
+        System.out.println("29 " + dia(g, 29, m, a));
+        System.out.println("30 " + dia(g, 30, m, a));
         System.out.println("-------------------");
         System.out.println("trabaja " + GrupoTrabaja(20, 1, 2015));
-        System.out.println("libra " + GrupoLibra(20, 1, 2015));
+        System.out.println("libra " + GrupoLibra(1, 6, 2016));
 
     }
 }

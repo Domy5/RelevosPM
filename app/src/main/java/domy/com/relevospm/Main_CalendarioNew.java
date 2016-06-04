@@ -3,7 +3,6 @@ package domy.com.relevospm;
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.graphics.Typeface;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
@@ -13,25 +12,17 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CalendarView;
 import android.widget.Toast;
 
-import com.imanoweb.calendarview.CalendarListener;
-import com.imanoweb.calendarview.CustomCalendarView;
-import com.imanoweb.calendarview.DayDecorator;
-import com.imanoweb.calendarview.DayView;
-
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
-import java.util.List;
-import java.util.Locale;
 
 import domy.com.relevospm.Utiles.Dia4y2;
 import domy.com.relevospm.Utiles.UpdateApp;
 import domy.com.relevospm.login.Login;
 
-public class Main_Seleccionar_Dia extends AppCompatActivity {
+public class Main_CalendarioNew extends AppCompatActivity {
 
     private static final String TAG = "PERMISOS";
 
@@ -39,7 +30,7 @@ public class Main_Seleccionar_Dia extends AppCompatActivity {
 
     String FECHA = "";
 
-    CustomCalendarView calendar;
+    CalendarView calendar;
 
     Button Boton_Ver_Hoy;
 
@@ -52,7 +43,7 @@ public class Main_Seleccionar_Dia extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         //sets the main layout of the activity
-        setContentView(R.layout.calendario);
+        setContentView(R.layout.activity_main);
 
         initializeCalendar();
 
@@ -65,17 +56,6 @@ public class Main_Seleccionar_Dia extends AppCompatActivity {
         Boton_Ver_Hoy.setText("HOY --> " + DiaDeHoy);
     }
 
-   // public int grupo(View v){
-
-   //     int i = 0;
-
-   //     Button b = (Button) View.;
-
-  //      i = Integer.parseInt(b.getText().toString());
-
-   //     return i;
-  //  }
-
     @Override
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
@@ -87,86 +67,27 @@ public class Main_Seleccionar_Dia extends AppCompatActivity {
     }
 
     public void initializeCalendar() {
-        calendar = (CustomCalendarView) findViewById(R.id.calendar_viewNEW);
+        calendar = (CalendarView) findViewById(R.id.calendar);
 
-//Initialize calendar with date
-      final  Calendar currentCalendar = Calendar.getInstance(Locale.getDefault());
-
-//Show Monday as first date of week
-        calendar.setFirstDayOfWeek(Calendar.MONDAY);
-
-//Show/hide overflow days of a month
-        calendar.setShowOverflowDate(true);
-
-//call refreshCalendar to update calendar the view
-   //     calendar.refreshCalendar(currentCalendar);
-
-        final Typeface typeface = Typeface.createFromAsset(getAssets(), "fonts/Arch_Rival_Bold.ttf");
-            calendar.setCustomTypeface(typeface);
-            calendar.refreshCalendar(currentCalendar);
-
-//calendar.setBackgroundColor(0xff0000);
-
-        //adding calendar day decorators
-        List decorators = new ArrayList<>();
-       // decorators.add(new DaysDecorator().decorate("lo que sea " ,Grupo));
-        decorators.add(new DaysDecorator());
-        calendar.setDecorators(decorators);
-        calendar.refreshCalendar(currentCalendar);
-
-//Handling custom calendar events
-        calendar.setCalendarListener(new CalendarListener() {
-            @Override
-            public void onDateSelected(Date date) {
-                SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy");
-             //   Toast.makeText(Main_Seleccionar_Dia.this, df.format(date), Toast.LENGTH_SHORT).show();
-
-                String D[] = df.format(date).toString().split("-");
-
-                int dia =  Integer.parseInt(D[0]);
-                int Mes =  Integer.parseInt(D[1]);
-                int anio =  Integer.parseInt(D[2]);
-
-                int GL = Dia4y2.GrupoLibra(dia, Mes, anio);
-                String GT = Integer.toString(Dia4y2.GrupoTrabaja(dia, Mes, anio));
-
-                GRUPOTRABAJO = GT.substring(0, 1) + " y " + GT.substring(1, 2);
-
-                FECHA = dia + "/" + Mes + "/" + anio;
-
-                Boton_Ver_Lineas = (Button) findViewById(R.id.Boton_Ver_Lineas);
-                Boton_Ver_Lineas.setText("Ver Lineas de -->" + FECHA);
-
-                //     Toast.makeText(getApplicationContext(), day + "/" + month + 1 + "/" + year, Toast.LENGTH_LONG).show();
-
-                Toast.makeText(getApplicationContext(),
-                        FECHA + "\n" +
-                                "Libra Grupo : " + GL + "\n" +
-                                "Trabaja Grupo : " + GRUPOTRABAJO
-                        , Toast.LENGTH_LONG).show();
-
-              //  calendar.refreshCalendar(currentCalendar);
-
-
-
-            }
-
-            @Override
-            public void onMonthChanged(Date date) {
-              //  SimpleDateFormat df = new SimpleDateFormat("MM-yyyy");
-             //   Toast.makeText(Main_Seleccionar_Dia.this, df.format(date), Toast.LENGTH_SHORT).show();
-            }
-        });
-
-    }
-
-    /*
-    public void initializeCalendar() {
-        calendar = (CalendarView) findViewById(R.id.calendar_viewNEW);
-
+        // sets whether to show the week number.
         calendar.setShowWeekNumber(false);
 
+        // sets the first day of week according to Calendar.
+        // here we set Monday as the first day of the Calendar
         calendar.setFirstDayOfWeek(2);
+
+        //The background color for the selected week.
+        //   calendar.setSelectedWeekBackgroundColor(getResources().getColor(R.color.green));
+
+        //sets the color for the dates of an unfocused month.
+        //   calendar.setUnfocusedMonthDateColor(getResources().getColor(R.color.darkgreen));
+
+        //sets the color for the separator line between weeks.
+        //   calendar.setWeekSeparatorLineColor(getResources().getColor(R.color.darkgreen));
+        //sets the color for the vertical bar shown at the beginning and at the end of the selected date.
+        //   calendar.setSelectedDateVerticalBar(R.color.green);
+
+        //sets the listener to be notified upon selected date change.
 
         Date now = new Date();
         calendar.setDate(now.getTime());// para que siempre que se reinicia mueste el dia de hoy
@@ -199,7 +120,7 @@ public class Main_Seleccionar_Dia extends AppCompatActivity {
             }
         });
 
-    }*/
+    }
 
     public void lanzar_dia(View view) {
 
@@ -302,39 +223,28 @@ public class Main_Seleccionar_Dia extends AppCompatActivity {
     }
 
     @Override
-    protected void onStart() {
+    protected void onStart(){
         // initializeCalendar();
-        super.onStart();
-    }
-
+        super.onStart();}
     @Override
-    protected void onRestart() {
+    protected void onRestart(){
         initializeCalendar();
-        super.onRestart();
-    }
-
+        super.onRestart();}
     @Override
-    protected void onResume() {
+    protected void onResume(){
         initializeCalendar();
-        super.onResume();
-    }
-
+        super.onResume();}
     @Override
-    protected void onPause() {
+    protected void onPause(){
         // initializeCalendar();
-        super.onPause();
-    }
-
+        super.onPause();}
     @Override
-    protected void onStop() {
+    protected void onStop(){
         // initializeCalendar();
-        super.onStop();
-    }
-
+        super.onStop();}
     @Override
-    protected void onDestroy() {
+    protected void onDestroy(){
         // initializeCalendar();
-        super.onDestroy();
-    }
+        super.onDestroy();}
 
 }

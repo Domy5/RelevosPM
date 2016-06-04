@@ -37,6 +37,12 @@ android {
     }
 }
 
+repositories {
+    maven {
+        url "https://jitpack.io"
+    }
+}
+
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     testCompile 'junit:junit:4.12'
@@ -49,6 +55,8 @@ dependencies {
     //compile 'com.jakewharton:butterknife:5.1.1'
     //compile 'com.android.support:palette-v7:23.2.0'
     //compile 'com.android.support:recyclerview-v7:23.2.0'
+    //compile 'com.github.jonisaa:MaterialCalendarview:v1.2.2'
+    compile 'com.github.npanigrahy:Custom-Calendar-View:v1.0'
 }
 
 

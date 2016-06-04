@@ -24,6 +24,7 @@ import java.util.HashMap;
 
 import domy.com.relevospm.BuildConfig;
 import domy.com.relevospm.Dialogo_Registrar_Atencion;
+import domy.com.relevospm.Main_CalendarioNew;
 import domy.com.relevospm.Main_Seleccionar_Dia;
 import domy.com.relevospm.R;
 import domy.com.relevospm.Utiles.JSONParser2;
@@ -194,7 +195,8 @@ public class Login extends Activity implements OnClickListener {
                    // editor.commit();
                     editor.apply();
 
-                    Intent i = new Intent(Login.this, Main_Seleccionar_Dia.class);
+                      Intent i = new Intent(Login.this, Main_Seleccionar_Dia.class);
+                    // Intent i = new Intent(Login.this, Main_CalendarioNew.class);
                     finish();
                     startActivity(i);
                     return json.getString(TAG_MESSAGE);
