@@ -1,24 +1,29 @@
 package domy.com.relevospm;
 
 import android.Manifest;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Typeface;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.text.Html;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.imanoweb.calendarview.CalendarListener;
 import com.imanoweb.calendarview.CustomCalendarView;
-import com.imanoweb.calendarview.DayDecorator;
-import com.imanoweb.calendarview.DayView;
+
+import org.json.JSONArray;
+import org.json.JSONException;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -36,16 +41,14 @@ public class Main_Seleccionar_Dia extends AppCompatActivity {
     private static final String TAG = "PERMISOS";
 
     String GRUPOTRABAJO = "";
-
     String FECHA = "";
-
     CustomCalendarView calendar;
-
     Button Boton_Ver_Hoy;
-
     Button Boton_Ver_Lineas;
-
     String DiaDeHoy = "";
+    TextView tv;
+    String grupo;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,7 +57,9 @@ public class Main_Seleccionar_Dia extends AppCompatActivity {
         //sets the main layout of the activity
         setContentView(R.layout.calendario);
 
-        initializeCalendar();
+        TextView tv1 = (TextView) findViewById(R.id.datosAgente_1);
+        TextView tv2 = (TextView) findViewById(R.id.datosAgente_2);
+        TextView tv3 = (TextView) findViewById(R.id.datosAgente_3);
 
         Boton_Ver_Hoy = (Button) findViewById(R.id.Boton_Ver_Hoy);
 
@@ -63,16 +68,113 @@ public class Main_Seleccionar_Dia extends AppCompatActivity {
         DiaDeHoy = ss.format(new Date());
 
         Boton_Ver_Hoy.setText("HOY --> " + DiaDeHoy);
+
+        SharedPreferences prefs = getApplicationContext().getSharedPreferences("WidgetPrefs", Context.MODE_PRIVATE);
+        String dne = prefs.getString("Dne", ":");
+        String a000_mes = null;
+
+        Calendar c = Calendar.getInstance(Locale.getDefault());
+
+        int dia = c.get(Calendar.DATE);
+        int mes = c.get(Calendar.MONTH) + 1;
+        int annio = c.get(Calendar.YEAR);
+
+        Log.v("hola"," dia " + dia+" "+ mes+"");
+
+        if (mes == 1) a000_mes = "a010_Enero";
+        else if (mes == 2) a000_mes = "a020_Febrero";
+        else if (mes == 3) a000_mes = "a030_Marzo";
+        else if (mes == 4) a000_mes = "a040_Abril";
+        else if (mes == 5) a000_mes = "a050_Mayo";
+        else if (mes == 6) a000_mes = "a060_Junio";
+        else if (mes == 7 && dia < 23) a000_mes = "a071_V1";
+        else if (mes == 7 && dia > 22) a000_mes = "a072_V2";
+        else if (mes == 8 && dia < 14) a000_mes = "a072_V2";
+        else if (mes == 8 && dia > 13) a000_mes = "a073_V3";
+        else if (mes == 9 && dia < 5) a000_mes = "a073_V3";
+        else if (mes == 9 && dia > 4 && dia < 27) a000_mes = "a074_V4";
+        else if (mes == 9 && dia > 25) a000_mes = "a090_Septiembre";
+        else if (mes == 10) a000_mes = "a100_Octubre";
+        else if (mes == 11) a000_mes = "a110_Noviembre";
+        else if (mes == 12) a000_mes = "a120_Diciembre";
+
+
+      //  Log.v("hola"," dia " + dne);
+
+        JSONArray JsonTodo;
+
+        JsonTodo = Diario.ConsultaDiaSQL("SELECT `GRUPO`,`TURNO`,`VACACIONES_I`,`VACACIONES_T`,`CAMBIO_CON`,`POR`,`COMPENSA` FROM `" + a000_mes + "` WHERE DNE =" + dne );
+//"SELECT `GRUPO`,`TURNO`,`VACACIONES_I`,`VACACIONES_T`,`CAMBIO_CON`,`POR`,`COMPENSA` FROM `a060_Junio` WHERE DNE =`15910`
+
+        try {
+
+             grupo = JsonTodo.getJSONObject(0).getString("GRUPO");
+            String turno = JsonTodo.getJSONObject(0).getString("TURNO");
+            String v_i = JsonTodo.getJSONObject(0).getString("VACACIONES_I");
+            String v_t = JsonTodo.getJSONObject(0).getString("VACACIONES_T");
+            String cambio_con = JsonTodo.getJSONObject(0).getString("CAMBIO_CON");
+            String por = JsonTodo.getJSONObject(0).getString("POR");
+            String compensa = JsonTodo.getJSONObject(0).getString("COMPENSA");
+
+            // id  N_MES  MES   PUESTO  ORDEN   ESCALAFON     DNE  NOMBRE  GRUPO  TURNO   VACACIONES_I  VACACIONES_T  VACACIONES CAMBIO_CON  POR  COMPENSA   OBSERVACIONES
+            // 63      1  Enero      C     18          59   15910    Domy      3      N   0000-00-00      0000-00-00                     0      0
+
+            String text1 = "DNE: <font color='blue'>" + dne + "</font> GRUPO: <font color='blue'>" + grupo + "</font> TURNO: <font color='blue'>" + turno + "</font>";
+            String text2 = "V I: <font color='blue'>" + v_i + "</font> V T: <font color='blue'>" + v_t + "</font>";
+            String text3 = "CAMBIO CON: <font color='blue'>" + cambio_con + "</font> POR: <font color='blue'>" + por + "</font> COMPENSA: <font color='blue'>" + compensa + "</font>";
+
+            tv1.setText(Html.fromHtml(text1), TextView.BufferType.SPANNABLE);
+            tv2.setText(Html.fromHtml(text2), TextView.BufferType.SPANNABLE);
+            tv3.setText(Html.fromHtml(text3), TextView.BufferType.SPANNABLE);
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+
+        initializeCalendar(Integer.parseInt(grupo));
+
+
     }
 
-    public void grupo(View v){
+    public void grupo(int i) {
 
         List decorators = new ArrayList<>();
         Calendar currentCalendar = Calendar.getInstance(Locale.getDefault());
+
         DaysDecorator1 g1 = new DaysDecorator1();
         DaysDecorator3 g3 = new DaysDecorator3();
         DaysDecorator5 g5 = new DaysDecorator5();
 
+        switch (i) {
+
+            case 1:
+                decorators.add(g1);
+                break;
+            case 3:
+                decorators.add(g3);
+                break;
+            case 5:
+                decorators.add(g5);
+                break;
+            default:
+
+                break;
+        }
+        calendar.setDecorators(decorators);
+        calendar.refreshCalendar(currentCalendar);
+
+
+    }
+
+    public void grupo(View v) {
+
+        List decorators = new ArrayList<>();
+        Calendar currentCalendar = Calendar.getInstance(Locale.getDefault());
+
+        DaysDecorator1 g1 = new DaysDecorator1();
+        DaysDecorator3 g3 = new DaysDecorator3();
+        DaysDecorator5 g5 = new DaysDecorator5();
 
         switch (v.getId()) {
 
@@ -92,6 +194,7 @@ public class Main_Seleccionar_Dia extends AppCompatActivity {
         calendar.setDecorators(decorators);
         calendar.refreshCalendar(currentCalendar);
 
+
     }
 
     @Override
@@ -104,11 +207,11 @@ public class Main_Seleccionar_Dia extends AppCompatActivity {
 
     }
 
-    public void initializeCalendar() {
+    public void initializeCalendar(int grupo) {
         calendar = (CustomCalendarView) findViewById(R.id.calendar_viewNEW);
 
 //Initialize calendar with date
-      final  Calendar currentCalendar = Calendar.getInstance(Locale.getDefault());
+        final Calendar currentCalendar = Calendar.getInstance(Locale.getDefault());
 
 //Show Monday as first date of week
         calendar.setFirstDayOfWeek(Calendar.MONDAY);
@@ -117,37 +220,39 @@ public class Main_Seleccionar_Dia extends AppCompatActivity {
         calendar.setShowOverflowDate(true);
 
 //call refreshCalendar to update calendar the view
-   //     calendar.refreshCalendar(currentCalendar);
+        //     calendar.refreshCalendar(currentCalendar);
 
         final Typeface typeface = Typeface.createFromAsset(getAssets(), "fonts/Arch_Rival_Bold.ttf");
-            calendar.setCustomTypeface(typeface);
-            calendar.refreshCalendar(currentCalendar);
+        calendar.setCustomTypeface(typeface);
+        calendar.refreshCalendar(currentCalendar);
+
+        grupo(grupo);
 
 //calendar.setBackgroundColor(0xff0000);
 
         //adding calendar day decorators
         //List decorators = new ArrayList<>();
-       // decorators.add(new DaysDecorator().decorate("lo que sea " ,Grupo));
+        // decorators.add(new DaysDecorator().decorate("lo que sea " ,Grupo));
 
-       // DaysDecorator1 g1 = new DaysDecorator1();
-       // DaysDecorator3 g3 = new DaysDecorator3();
+        // DaysDecorator1 g1 = new DaysDecorator1();
+        // DaysDecorator3 g3 = new DaysDecorator3();
         //DaysDecorator5 g5 = new DaysDecorator5();
         //decorators.add(g3);
-       // calendar.setDecorators(decorators);
-       /// calendar.refreshCalendar(currentCalendar);
+        // calendar.setDecorators(decorators);
+        /// calendar.refreshCalendar(currentCalendar);
 
 //Handling custom calendar events
         calendar.setCalendarListener(new CalendarListener() {
             @Override
             public void onDateSelected(Date date) {
                 SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy");
-             //   Toast.makeText(Main_Seleccionar_Dia.this, df.format(date), Toast.LENGTH_SHORT).show();
+                //   Toast.makeText(Main_Seleccionar_Dia.this, df.format(date), Toast.LENGTH_SHORT).show();
 
                 String D[] = df.format(date).toString().split("-");
 
-                int dia =  Integer.parseInt(D[0]);
-                int Mes =  Integer.parseInt(D[1]);
-                int anio =  Integer.parseInt(D[2]);
+                int dia = Integer.parseInt(D[0]);
+                int Mes = Integer.parseInt(D[1]);
+                int anio = Integer.parseInt(D[2]);
 
                 int GL = Dia4y2.GrupoLibra(dia, Mes, anio);
                 String GT = Integer.toString(Dia4y2.GrupoTrabaja(dia, Mes, anio));
@@ -167,16 +272,15 @@ public class Main_Seleccionar_Dia extends AppCompatActivity {
                                 "Trabaja Grupo : " + GRUPOTRABAJO
                         , Toast.LENGTH_LONG).show();
 
-              //  calendar.refreshCalendar(currentCalendar);
-
+                //  calendar.refreshCalendar(currentCalendar);
 
 
             }
 
             @Override
             public void onMonthChanged(Date date) {
-              //  SimpleDateFormat df = new SimpleDateFormat("MM-yyyy");
-             //   Toast.makeText(Main_Seleccionar_Dia.this, df.format(date), Toast.LENGTH_SHORT).show();
+                //  SimpleDateFormat df = new SimpleDateFormat("MM-yyyy");
+                //   Toast.makeText(Main_Seleccionar_Dia.this, df.format(date), Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -331,13 +435,11 @@ public class Main_Seleccionar_Dia extends AppCompatActivity {
 
     @Override
     protected void onRestart() {
-        initializeCalendar();
         super.onRestart();
     }
 
     @Override
     protected void onResume() {
-        initializeCalendar();
         super.onResume();
     }
 

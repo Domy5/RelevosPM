@@ -50,6 +50,33 @@
 
         </com.imanoweb.calendarview.CustomCalendarView>
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/datosAgente_1"
+            android:textColor="#ff0000"
+            android:gravity="center"
+            android:textSize="24sp"
+            android:lines="1"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/datosAgente_2"
+            android:textColor="#ff0000"
+            android:gravity="center"
+            android:textSize="24sp"
+            android:lines="1" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/datosAgente_3"
+            android:textColor="#ff0000"
+            android:gravity="center"
+            android:textSize="24sp"
+            android:lines="1" />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
