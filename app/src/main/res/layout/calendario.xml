@@ -9,7 +9,7 @@
     <LinearLayout
         android:id="@+id/Layout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:layout_weight="10"
         android:baselineAligned="true"
         android:gravity="center"
@@ -42,7 +42,7 @@
 
         <com.imanoweb.calendarview.CustomCalendarView
             android:id="@+id/calendar_viewNEW"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="#ff0000"
 
