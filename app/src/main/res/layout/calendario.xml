@@ -9,7 +9,7 @@
     <LinearLayout
         android:id="@+id/Layout"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="wrap_content"
         android:layout_weight="10"
         android:baselineAligned="true"
         android:gravity="center"
@@ -109,7 +109,6 @@
             android:id="@+id/Boton_Ver_Hoy"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:onClick="lanzar_dia_hoy"
             android:text="@string/Ver_Hoy" />
 
@@ -117,7 +116,6 @@
             android:id="@+id/Boton_Ver_Lineas"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:onClick="lanzar_dia"
             android:text="@string/Ver_Lineas" />
 
