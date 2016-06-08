@@ -44,7 +44,7 @@ public class SplashActivity extends Activity {
     }
 
     // Duración en milisegundos que se mostrará el splash
-    private final int DURACION_SPLASH = 2000; // 2 segundos
+    private final int DURACION_SPLASH = 2000; // 1,5 segundos
     private static final String TAG = "PERMISOS ";
     public static int VersionCode;
     public static String VersionName = "";
@@ -70,6 +70,7 @@ public class SplashActivity extends Activity {
 
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
+        setContentView(R.layout.splash);
 
         ApkName = "app-debug.apk";
         AppName = "C O S M O S";
@@ -77,9 +78,9 @@ public class SplashActivity extends Activity {
         PackageName = "package:domy.com.relevospm";
         urlpath = "http://domimtz.synology.me/" + ApkName;
 
-        setContentView(R.layout.splash);
 
-        if(isOnline()) {
+
+        if (isOnline()) {
 
             GetVersionFromServer(BuildVersionPath);
             checkInstalledApp(AppName);
@@ -90,7 +91,7 @@ public class SplashActivity extends Activity {
             tvVerApp = (TextView) findViewById(R.id.versionApp);
             tvVerApp.setText(" NameApp    : " + versionNameApp + " CodeApp    : " + versionCodeApp);
 
-        }else{
+        } else {
 
             DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
                 @Override
