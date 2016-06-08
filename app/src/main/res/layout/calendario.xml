@@ -9,150 +9,155 @@
     android:orientation="vertical"
     android:weightSum="10">
 
-    <LinearLayout
-        android:id="@+id/Layout"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="10"
-        android:baselineAligned="true"
-        android:gravity="center"
-        android:orientation="vertical">
-
-        <!--CalendarView
-            android:id="@+id/calendar_viewNEW"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="8"
-            android:firstDayOfWeek="2"
-            android:showWeekNumber="false" />
-
-        <com.imanoweb.calendarview.CustomCalendarView
-            android:id="@+id/calendar_viewNEW"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/blanco"
-            app:calendarBackgroundColor="@color/blanco"
-            app:calendarTitleTextColor="@color/black"
-            app:currentDayOfMonthColor="@color/L10"
-            app:dayOfMonthTextColor="@color/black"
-            app:dayOfWeekTextColor="@color/black"
-            app:disabledDayBackgroundColor="@color/blanco"
-            app:disabledDayTextColor="@color/grey"
-            app:selectedDayBackgroundColor="@color/L10"
-            app:titleLayoutBackgroundColor="@color/white"
-            app:weekLayoutBackgroundColor="@color/white">
-        </com.imanoweb.calendarview.CustomCalendarView-->
-
-        <com.imanoweb.calendarview.CustomCalendarView
-            android:id="@+id/calendar_viewNEW"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="#b7b7b7"
-
-            app:calendarBackgroundColor="@color/colorapp"
-            app:calendarTitleTextColor="@color/white"
-            app:currentDayOfMonthColor="@color/M"
-
-            app:dayOfMonthTextColor="@color/white"
-            app:dayOfWeekTextColor="@color/white"
-
-            app:titleLayoutBackgroundColor="@color/colorapp"
-            app:weekLayoutBackgroundColor="@color/colorapp"
-
-            app:selectedDayBackgroundColor="@color/darkgreen"
-            app:selectedDayTextColor="@color/M"
-
-            app:disabledDayBackgroundColor="@color/grey"
-            app:disabledDayTextColor="@color/white"
-            app:theme="@style/AppTheme"
-            app:paddingEnd="5000sp"
-            app:paddingStart="5000sp">
-
-
-            <!--
-
-
-            app:weekLayoutBackgroundColor="@color/red" // Linea de nombre semana
-
-        -->
-
-        </com.imanoweb.calendarview.CustomCalendarView>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/datosAgente_1"
-            android:textColor="#ff0000"
-            android:gravity="center"
-            android:textSize="24sp"
-            android:lines="1"/>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/datosAgente_2"
-            android:textColor="#ff0000"
-            android:gravity="center"
-            android:textSize="24sp"
-            android:lines="1" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/datosAgente_3"
-            android:textColor="#ff0000"
-            android:gravity="center"
-            android:textSize="24sp"
-            android:lines="1" />
+        android:layout_height="match_parent"
+        android:id="@+id/scrollView3" >
 
         <LinearLayout
+            android:id="@+id/Layout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
+            android:baselineAligned="true"
             android:gravity="center"
-            android:orientation="horizontal">
+            android:orientation="vertical">
 
-            <Button
-                android:id="@+id/G1"
+            <!--CalendarView
+                android:id="@+id/calendar_viewNEW"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="8"
+                android:firstDayOfWeek="2"
+                android:showWeekNumber="false" />
+
+            <com.imanoweb.calendarview.CustomCalendarView
+                android:id="@+id/calendar_viewNEW"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/blanco"
+                app:calendarBackgroundColor="@color/blanco"
+                app:calendarTitleTextColor="@color/black"
+                app:currentDayOfMonthColor="@color/L10"
+                app:dayOfMonthTextColor="@color/black"
+                app:dayOfWeekTextColor="@color/black"
+                app:disabledDayBackgroundColor="@color/blanco"
+                app:disabledDayTextColor="@color/grey"
+                app:selectedDayBackgroundColor="@color/L10"
+                app:titleLayoutBackgroundColor="@color/white"
+                app:weekLayoutBackgroundColor="@color/white">
+            </com.imanoweb.calendarview.CustomCalendarView-->
+
+            <com.imanoweb.calendarview.CustomCalendarView
+                android:id="@+id/calendar_viewNEW"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/g1"
-                android:onClick="grupo"
-                android:textColor="@color/G1"
-                android:textSize="24sp"/>
+                android:background="#b7b7b7"
+
+                app:calendarBackgroundColor="@color/colorapp"
+                app:calendarTitleTextColor="@color/white"
+                app:currentDayOfMonthColor="@color/M"
+
+                app:dayOfMonthTextColor="@color/white"
+                app:dayOfWeekTextColor="@color/white"
+
+                app:titleLayoutBackgroundColor="@color/colorapp"
+                app:weekLayoutBackgroundColor="@color/colorapp"
+
+                app:selectedDayBackgroundColor="@color/darkgreen"
+                app:selectedDayTextColor="@color/M"
+
+                app:disabledDayBackgroundColor="@color/grey"
+                app:disabledDayTextColor="@color/white"
+                app:theme="@style/AppTheme"
+                app:paddingEnd="5000sp"
+                app:paddingStart="5000sp">
+
+
+                <!--
+
+
+                app:weekLayoutBackgroundColor="@color/red" // Linea de nombre semana
+
+            -->
+
+            </com.imanoweb.calendarview.CustomCalendarView>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/datosAgente_1"
+                android:textColor="#ff0000"
+                android:gravity="center"
+                android:textSize="24sp"
+                android:lines="1"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/datosAgente_2"
+                android:textColor="#ff0000"
+                android:gravity="center"
+                android:textSize="24sp"
+                android:lines="1" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/datosAgente_3"
+                android:textColor="#ff0000"
+                android:gravity="center"
+                android:textSize="24sp"
+                android:lines="1" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/G1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/g1"
+                    android:onClick="grupo"
+                    android:textColor="@color/G1"
+                    android:textSize="24sp"/>
+
+                <Button
+                    android:id="@+id/G3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/g3"
+                    android:onClick="grupo"
+                    android:textColor="@color/G3"
+                    android:textSize="24sp"/>
+
+                <Button
+                    android:id="@+id/G5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/g5"
+                    android:onClick="grupo"
+                    android:textColor="@color/G5"
+                    android:textSize="24sp"/>
+            </LinearLayout>
 
             <Button
-                android:id="@+id/G3"
-                android:layout_width="wrap_content"
+                android:id="@+id/Boton_Ver_Hoy"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/g3"
-                android:onClick="grupo"
-                android:textColor="@color/G3"
-                android:textSize="24sp"/>
+                android:onClick="lanzar_dia_hoy"
+                android:text="@string/Ver_Hoy" />
 
             <Button
-                android:id="@+id/G5"
-                android:layout_width="wrap_content"
+                android:id="@+id/Boton_Ver_Lineas"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/g5"
-                android:onClick="grupo"
-                android:textColor="@color/G5"
-                android:textSize="24sp"/>
+                android:onClick="lanzar_dia"
+                android:text="@string/Ver_Lineas" />
+
         </LinearLayout>
-
-        <Button
-            android:id="@+id/Boton_Ver_Hoy"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:onClick="lanzar_dia_hoy"
-            android:text="@string/Ver_Hoy" />
-
-        <Button
-            android:id="@+id/Boton_Ver_Lineas"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:onClick="lanzar_dia"
-            android:text="@string/Ver_Lineas" />
-
-    </LinearLayout>
+    </ScrollView>
 
 </LinearLayout>
