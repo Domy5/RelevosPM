@@ -22,7 +22,7 @@ public class DaysDecorator5 implements DayDecorator {
             //  if (!isPastDay(dayView.getDate())) {
             if (GrupoLibra(dayView.getDate(),5)) {
 
-               dayView.setBackgroundColor(0xFF55FF00);
+               dayView.setBackgroundColor(0xFFFF0008);
 
                 //    dayView.setTextColor(0xFF0000);
             }

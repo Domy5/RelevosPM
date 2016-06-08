@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+
     android:id="@+id/principal"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -44,9 +47,34 @@
             android:id="@+id/calendar_viewNEW"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="#ff0000"
+            android:background="#b7b7b7"
 
-          >
+            app:calendarBackgroundColor="@color/colorapp"
+            app:calendarTitleTextColor="@color/white"
+            app:currentDayOfMonthColor="@color/M"
+
+            app:dayOfMonthTextColor="@color/white"
+            app:dayOfWeekTextColor="@color/white"
+
+            app:titleLayoutBackgroundColor="@color/colorapp"
+            app:weekLayoutBackgroundColor="@color/colorapp"
+
+            app:selectedDayBackgroundColor="@color/darkgreen"
+            app:selectedDayTextColor="@color/M"
+
+            app:disabledDayBackgroundColor="@color/grey"
+            app:disabledDayTextColor="@color/white"
+            app:theme="@style/AppTheme"
+            app:paddingEnd="5000sp"
+            app:paddingStart="5000sp">
+
+
+            <!--
+
+
+            app:weekLayoutBackgroundColor="@color/red" // Linea de nombre semana
+
+        -->
 
         </com.imanoweb.calendarview.CustomCalendarView>
 
@@ -88,21 +116,27 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/g1"
-                android:onClick="grupo"/>
+                android:onClick="grupo"
+                android:textColor="@color/G1"
+                android:textSize="24sp"/>
 
             <Button
                 android:id="@+id/G3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/g3"
-                android:onClick="grupo"/>
+                android:onClick="grupo"
+                android:textColor="@color/G3"
+                android:textSize="24sp"/>
 
             <Button
                 android:id="@+id/G5"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/g5"
-                android:onClick="grupo"/>
+                android:onClick="grupo"
+                android:textColor="@color/G5"
+                android:textSize="24sp"/>
         </LinearLayout>
 
         <Button
