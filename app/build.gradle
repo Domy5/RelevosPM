@@ -2,10 +2,10 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 23
-    buildToolsVersion '21.1.2'
+    buildToolsVersion '23.0.3'
     defaultConfig {
         applicationId "domy.com.relevospm"
-        minSdkVersion 16
+        minSdkVersion 17
         targetSdkVersion 23
         versionCode 9
         versionName "1.0"

@@ -2,75 +2,83 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_margin="5dp"
     android:background="#ff0000"
     android:padding="10dp"
-    android:layout_margin="5dp"
     tools:context=".Widget.WidgetConfig">
 
-    <LinearLayout android:id="@+id/FrmWidget"
+    <LinearLayout
+        android:id="@+id/FrmWidget"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="#FFFFFF"
-        android:padding="5dp"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:padding="5dp">
 
-        <TextView android:id="@+id/LblMensaje"
+        <TextView
+            android:id="@+id/LblMensaje"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="#000000"
             android:text=""
-            android:textAlignment="center" />
+            android:textAlignment="center"
+            android:textColor="#000000" />
 
-        <TextView android:id="@+id/LblHora"
+        <TextView
+            android:id="@+id/LblHora"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="#000000"
             android:text=""
-            android:textAlignment="center" />
+            android:textAlignment="center"
+            android:textColor="#000000" />
 
-        <LinearLayout android:id="@+id/Frm2Widget"
+        <LinearLayout
+            android:id="@+id/Frm2Widget"
             android:layout_width="match_parent"
             android:layout_height="32dp"
             android:background="@color/blanco"
-            android:padding="5dp"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:padding="5dp">
 
             <Button
+
                 android:id="@+id/BotonL"
-                style="@style/AppTheme"
+                style="?android:attr/buttonBarButtonStyle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:background="@color/blanco" />
 
             <Button
+
                 android:id="@+id/BotonM"
-                style="@style/AppTheme"
+                style="?android:attr/buttonBarButtonStyle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:textColor="#000000"
                 android:background="@color/blanco"
+                android:textColor="#000000"
                 android:textStyle="bold" />
 
             <Button
+
                 android:id="@+id/BotonT"
-                style="@style/AppTheme"
+                style="?android:attr/buttonBarButtonStyle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:textColor="#000000"
                 android:background="@color/blanco"
+                android:textColor="#000000"
                 android:textStyle="bold" />
 
             <Button
+
                 android:id="@+id/BotonN"
-                style="@style/AppTheme"
+                style="?android:attr/buttonBarButtonStyle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:textColor="#000000"
                 android:background="@color/blanco"
+                android:textColor="#000000"
                 android:textStyle="bold" />
         </LinearLayout>
 
@@ -79,22 +87,27 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="#FFFFFF"
-            android:padding="5dp"
-            android:orientation="horizontal" >
-
-            <Button android:id="@+id/BtnActualizar"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:textColor="#000000"
-                android:text="@string/actualizar"
-                android:layout_weight="1" />
+            android:orientation="horizontal"
+            android:padding="5dp">
 
             <Button
-                style="?android:attr/buttonStyleSmall"
+                android:id="@+id/BtnActualizar"
+                style="?android:attr/buttonBarButtonStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@color/grey"
+                android:text="@string/actualizar"
+                android:textColor="#000000" />
+
+           <!-- android:background="?android:attr/selectableItemBackground"-->
+            <Button
+                android:id="@+id/config"
+                style="?android:attr/buttonBarButtonStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/config"
-                android:drawableRight="@android:drawable/ic_menu_preferences"/>
+                android:drawableRight="@android:drawable/ic_menu_preferences"
+                android:background="@color/grey"/>
         </LinearLayout>
 
     </LinearLayout>
