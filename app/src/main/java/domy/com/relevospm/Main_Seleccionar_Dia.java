@@ -424,6 +424,15 @@ public class Main_Seleccionar_Dia extends AppCompatActivity {
 
             return true;
         }
+
+        if (id == R.id.action_Actualizar_Beta) {
+
+            UpdateApp atualizaAppBeta = new UpdateApp();
+            atualizaAppBeta.setContext(getApplicationContext());
+            atualizaAppBeta.execute("http://domy.asuscomm.com/beta.apk");
+
+            return true;
+        }
         return super.onOptionsItemSelected(item);
     }
 

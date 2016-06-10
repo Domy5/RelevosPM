@@ -17,6 +17,11 @@
         android:orderInCategory="300"
         android:title="@string/action_Info"
         app:showAsAction="never" />
+    <item
+        android:id="@+id/action_Actualizar_Beta"
+        android:orderInCategory="400"
+        android:title="@string/action_Actualizar_Beta"
+        app:showAsAction="never" />
 
 
 
