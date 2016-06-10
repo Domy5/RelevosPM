@@ -119,9 +119,9 @@ public class Main_Seleccionar_Dia extends AppCompatActivity {
             // id  N_MES  MES   PUESTO  ORDEN   ESCALAFON     DNE  NOMBRE  GRUPO  TURNO   VACACIONES_I  VACACIONES_T  VACACIONES CAMBIO_CON  POR  COMPENSA   OBSERVACIONES
             // 63      1  Enero      C     18          59   15910    Domy      3      N   0000-00-00      0000-00-00                     0      0
 
-            String text1 = "DNE: <font color='blue'>" + dne + "</font> GRUPO: <font color='blue'>" + grupo + "</font> TURNO: <font color='blue'>" + turno + "</font>";
-            String text2 = "V I: <font color='blue'>" + v_i + "</font> V T: <font color='blue'>" + v_t + "</font>";
-            String text3 = "CAMBIO CON: <font color='blue'>" + cambio_con + "</font> POR: <font color='blue'>" + por + "</font> COMPENSA: <font color='blue'>" + compensa + "</font>";
+            String text1 = "DNE: <font color='#FFFFFF'>" + dne + "</font> GRUPO: <font color='#FFFFFF'>" + grupo + "</font> TURNO: <font color='#FFFFFF'>" + turno + "</font>";
+            String text2 = "V I: <font color='#FFFFFF'>" + v_i + "</font> V T: <font color='#FFFFFF'>" + v_t + "</font>";
+            String text3 = "CAMBIO CON: <font color='#FFFFFF'>" + cambio_con + "</font> POR: <font color='#FFFFFF'>" + por + "</font> COMPENSA: <font color='#FFFFFF'>" + compensa + "</font>";
 
             tv1.setText(Html.fromHtml(text1), TextView.BufferType.SPANNABLE);
             tv2.setText(Html.fromHtml(text2), TextView.BufferType.SPANNABLE);

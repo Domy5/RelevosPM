@@ -20,7 +20,7 @@ public class DaysDecorator3 implements DayDecorator {
             //  if (!isPastDay(dayView.getDate())) {
             if (GrupoLibra(dayView.getDate(),3)) {
 
-                dayView.setBackgroundColor(0xFF55FF00);
+                dayView.setBackgroundColor(0xff0400ff);
 
                 //    dayView.setTextColor(0xFF0000);
             }
