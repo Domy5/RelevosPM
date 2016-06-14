@@ -138,6 +138,12 @@ public class Cosmos_Widget2 extends AppWidgetProvider {
                 l = "LIBRAS";
 
             }
+        }else{
+
+            dne = "-";
+            hora = "-";
+            l = "-";
+
         }
 
         controles.setTextViewText(R.id.LblMensaje, dne);

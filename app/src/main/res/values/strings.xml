@@ -56,16 +56,18 @@
     <string name="icono">icono</string>
     <string name="Info">I N F O</string>
     <string name="action_Actualizar">Actualizacion Forzada</string>
-    <string name="action_Actualizar_Beta">Beta...</string>
+    <string name="action_Actualizar_Beta">Actualizacion Betas...</string>
 
     <string name="Texto_Info">
       <b>D O M Y\n</b>
+        \n
          * V 1.1  Cosmos\n
         \n
         - Widget arreglado.\n
         - Color calendario grupos.\n
         - nombre - DNE - grupos.\n
-
+        - menu lateral\n
+        \n
         * V 1.0  Cosmos\n
         \n
         - Agentes fijos BD local.\n
@@ -102,4 +104,8 @@
     <string name="g3">G3</string>
     <string name="g5">G5</string>
 
+    <string name="calendario">Calendario</string>
+    <string name="buscar">Buscar DNE/Nombre</string>
+    <string name="prevision">Previsión</string>
+    <string name="opciones">Opciones:</string>
 </resources>

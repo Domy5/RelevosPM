@@ -100,7 +100,7 @@ public class Diario {
 
         Vector Fijos = BD.getDatosDne(FECHA);
 
-     //   BD.close();
+        BD.close(); // todo cierra base de datos estaba // 14/6/2016
 
         Vector resultado = Comparacion_Fijos_y_JsonServicioTrabajan(Fijos, AgentesTrabajan, DIA365);
 

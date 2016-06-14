@@ -45,11 +45,11 @@ public class Cosmos_Widget extends AppWidgetProvider {
 
             //Actualizamos el widget actual
 
-           // if(isOnline(context)) {
+            // if(isOnline(context)) {
             actualizarWidget(context, appWidgetManager, widgetId);
-          //  }else{
-                //Toast.makeText(context, "No estas Conectado U" , Toast.LENGTH_SHORT).show();
-           //      }
+            //  }else{
+            //Toast.makeText(context, "No estas Conectado U" , Toast.LENGTH_SHORT).show();
+            //      }
         }
 
         for (int appWidgetId : appWidgetIds) {
@@ -59,7 +59,7 @@ public class Cosmos_Widget extends AppWidgetProvider {
                     options);
         }
 
-       super.onUpdate(context, appWidgetManager, appWidgetIds);
+        super.onUpdate(context, appWidgetManager, appWidgetIds);
     }
 
     @Override
@@ -76,13 +76,13 @@ public class Cosmos_Widget extends AppWidgetProvider {
                     AppWidgetManager.getInstance(context);
 
             //Actualizamos el widget
-                if (widgetId != AppWidgetManager.INVALID_APPWIDGET_ID) {
-                    actualizarWidget(context, widgetManager, widgetId);
-                }
+            if (widgetId != AppWidgetManager.INVALID_APPWIDGET_ID) {
+                actualizarWidget(context, widgetManager, widgetId);
+            }
 
         }
 
-          super.onReceive(context, intent);
+        super.onReceive(context, intent);
     }
 
     public static void actualizarWidget(Context context, AppWidgetManager appWidgetManager, int widgetId) {
@@ -121,10 +121,10 @@ public class Cosmos_Widget extends AppWidgetProvider {
         controles.setOnClickPendingIntent(R.id.BotonT, pendingIntent2);
         controles.setOnClickPendingIntent(R.id.BotonN, pendingIntent2);
 
-      //  Intent intent3 = new Intent(context, WidgetConfig.class);
-      //  PendingIntent pendingIntent3 = PendingIntent.getActivity(context, widgetId, intent3, PendingIntent.FLAG_UPDATE_CURRENT);
+        //  Intent intent3 = new Intent(context, WidgetConfig.class);
+        //  PendingIntent pendingIntent3 = PendingIntent.getActivity(context, widgetId, intent3, PendingIntent.FLAG_UPDATE_CURRENT);
 
-      //  controles.setOnClickPendingIntent(R.id.config, pendingIntent3);
+        //  controles.setOnClickPendingIntent(R.id.config, pendingIntent3);
 
         String dia = Integer.toString(calendario.get(Calendar.DATE));
         String mes = Integer.toString(1 + calendario.get(Calendar.MONTH));
@@ -132,19 +132,19 @@ public class Cosmos_Widget extends AppWidgetProvider {
 
         String FECHA = dia + "/" + mes + "/" + annio;
 
-        resultado =  Diario.Diario(FECHA, dne, context);
+        resultado = Diario.Diario(FECHA, dne, context);
 
-        if( resultado != null ) {
+        if (resultado != null) {
 
             if (resultado.contains(Integer.parseInt(dne)) || resultado.contains(dne)) {
 
                 int posicion = resultado.indexOf(Integer.parseInt(dne));
 
-              //  Toast.makeText(context, "Posición: " + Integer.toString(posicion), Toast.LENGTH_SHORT).show();
+                //  Toast.makeText(context, "Posición: " + Integer.toString(posicion), Toast.LENGTH_SHORT).show();
 
                 m = Tabla_Diaria2.DNE(resultado.get(puestoM(posicion)).toString());
-                t = Tabla_Diaria2.DNE(resultado.get((puestoM(posicion)+1)).toString());
-                n = Tabla_Diaria2.DNE(resultado.get((puestoM(posicion)+2)).toString());
+                t = Tabla_Diaria2.DNE(resultado.get((puestoM(posicion) + 1)).toString());
+                n = Tabla_Diaria2.DNE(resultado.get((puestoM(posicion) + 2)).toString());
 
                 int LINEA = (int) Math.floor((posicion / a) - 0.1) + 2;
 
@@ -156,9 +156,9 @@ public class Cosmos_Widget extends AppWidgetProvider {
 
             } else {
 
-              //  Toast toast1 = Toast.makeText(context, "Libras", Toast.LENGTH_SHORT);
-              //  toast1.setGravity(Gravity.TOP,0,0);
-              //  toast1.show();
+                //  Toast toast1 = Toast.makeText(context, "Libras", Toast.LENGTH_SHORT);
+                //  toast1.setGravity(Gravity.TOP,0,0);
+                //  toast1.show();
 
                 l = "---";
                 m = "L I B";
@@ -166,11 +166,18 @@ public class Cosmos_Widget extends AppWidgetProvider {
                 n = "---";
 
             }
+        } else {
+            dne = "-";
+            hora = "-";
+            l = "-";
+            m = "-";
+            t = "-";
+            n = "-";
         }
 
         controles.setTextViewText(R.id.LblMensaje, dne);
         controles.setTextViewText(R.id.LblHora, hora);
-        controles.setTextViewText(R.id.BotonL, l );
+        controles.setTextViewText(R.id.BotonL, l);
         controles.setTextViewText(R.id.BotonM, m);
         controles.setTextViewText(R.id.BotonT, t);
         controles.setTextViewText(R.id.BotonN, n);
@@ -225,31 +232,34 @@ public class Cosmos_Widget extends AppWidgetProvider {
         */
     }
 
-    public static int puestoM( int p ) {
+    public static int puestoM(int p) {
 
-        int[][] PosicionTURNO ={{0,3,6, 9,12,15,18,21,24,27,30,33,36,39,42,45,48,51,54,57,60}   //mañana
-                               ,{1,4,7,10,13,16,19,22,25,28,31,34,37,40,43,46,49,52,55,58,61}   //tarde
-                               ,{2,5,8,11,14,17,20,23,26,29,32,35,38,41,44,47,50,53,56,59,62}}; //noche
+        int[][] PosicionTURNO = {{0, 3, 6, 9, 12, 15, 18, 21, 24, 27, 30, 33, 36, 39, 42, 45, 48, 51, 54, 57, 60}   //mañana
+                , {1, 4, 7, 10, 13, 16, 19, 22, 25, 28, 31, 34, 37, 40, 43, 46, 49, 52, 55, 58, 61}   //tarde
+                , {2, 5, 8, 11, 14, 17, 20, 23, 26, 29, 32, 35, 38, 41, 44, 47, 50, 53, 56, 59, 62}}; //noche
 
         int posicion = 0;
 
-        for (int j=0; j < PosicionTURNO[0].length; j++) {
+        for (int j = 0; j < PosicionTURNO[0].length; j++) {
 
             if (PosicionTURNO[0][j] == p) {
                 return p;
-            } }
+            }
+        }
 
-        for (int j=0; j < PosicionTURNO[1].length; j++) {
+        for (int j = 0; j < PosicionTURNO[1].length; j++) {
 
             if (PosicionTURNO[1][j] == p) {
-                return p -1;
-            } }
+                return p - 1;
+            }
+        }
 
-        for (int j=0; j < PosicionTURNO[2].length; j++) {
+        for (int j = 0; j < PosicionTURNO[2].length; j++) {
 
             if (PosicionTURNO[2][j] == p) {
                 return p - 2;
-            } }
+            }
+        }
 
         return posicion;
     }
@@ -260,15 +270,15 @@ public class Cosmos_Widget extends AppWidgetProvider {
         RemoteViews updateViews = new RemoteViews(ctxt.getPackageName(), R.layout.cosmos_widget);
 
         String msg = String.format(Locale.getDefault(),
-                        "[%d-%d] x [%d-%d]",
-                        newOptions.getInt(AppWidgetManager.OPTION_APPWIDGET_MIN_WIDTH),
-                        newOptions.getInt(AppWidgetManager.OPTION_APPWIDGET_MAX_WIDTH),
-                        newOptions.getInt(AppWidgetManager.OPTION_APPWIDGET_MIN_HEIGHT),
-                        newOptions.getInt(AppWidgetManager.OPTION_APPWIDGET_MAX_HEIGHT));
+                "[%d-%d] x [%d-%d]",
+                newOptions.getInt(AppWidgetManager.OPTION_APPWIDGET_MIN_WIDTH),
+                newOptions.getInt(AppWidgetManager.OPTION_APPWIDGET_MAX_WIDTH),
+                newOptions.getInt(AppWidgetManager.OPTION_APPWIDGET_MIN_HEIGHT),
+                newOptions.getInt(AppWidgetManager.OPTION_APPWIDGET_MAX_HEIGHT));
 
-      //  updateViews.setTextViewText(R.id.LblHora, msg);
+        //  updateViews.setTextViewText(R.id.LblHora, msg);
 
-       // updateViews.removeAllViews(R.layout.cosmos_widget);
+        // updateViews.removeAllViews(R.layout.cosmos_widget);
 
         mgr.updateAppWidget(appWidgetId, updateViews);
     }

@@ -88,7 +88,7 @@
                 android:id="@+id/datosAgente_1"
                 android:textColor="#ff0000"
                 android:gravity="center"
-                android:textSize="24sp"
+                android:textSize="15sp"
                 android:lines="1"/>
 
             <TextView
@@ -97,7 +97,7 @@
                 android:id="@+id/datosAgente_2"
                 android:textColor="#ff0000"
                 android:gravity="center"
-                android:textSize="24sp"
+                android:textSize="15sp"
                 android:lines="1" />
 
             <TextView
@@ -106,7 +106,7 @@
                 android:id="@+id/datosAgente_3"
                 android:textColor="#ff0000"
                 android:gravity="center"
-                android:textSize="24sp"
+                android:textSize="15sp"
                 android:lines="1" />
 
             <LinearLayout

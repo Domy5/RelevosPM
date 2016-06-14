@@ -42,7 +42,6 @@
             <Button
 
                 android:id="@+id/BotonL"
-                style="?android:attr/buttonBarButtonStyle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -51,18 +50,16 @@
             <Button
 
                 android:id="@+id/BotonM"
-                style="?android:attr/buttonBarButtonStyle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:background="@color/blanco"
                 android:textColor="#000000"
-                android:textStyle="bold" />
+                android:textStyle="bold"/>
 
             <Button
 
                 android:id="@+id/BotonT"
-                style="?android:attr/buttonBarButtonStyle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -73,7 +70,6 @@
             <Button
 
                 android:id="@+id/BotonN"
-                style="?android:attr/buttonBarButtonStyle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"

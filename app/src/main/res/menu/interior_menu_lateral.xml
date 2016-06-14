@@ -1,0 +1,39 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/menu_seccion_1"
+            android:icon="@drawable/calendario"
+            android:title="@string/calendario" />
+        <item
+            android:id="@+id/menu_seccion_2"
+            android:icon="@drawable/lupa"
+            android:title="@string/buscar" />
+        <item
+            android:id="@+id/menu_seccion_3"
+            android:icon="@drawable/interrogacion"
+            android:title="@string/prevision" />
+    </group>
+
+    <item
+        android:id="@+id/navigation_subheader"
+        android:title="@string/opciones">
+        <menu>
+            <item
+                android:id="@+id/menu_opcion_1"
+                android:icon="@drawable/opciones"
+                android:title="@string/action_Opciones" />
+            <item
+                android:id="@+id/menu_opcion_2"
+                android:icon="@drawable/download"
+                android:title="@string/action_Actualizar" />
+            <item
+                android:id="@+id/menu_opcion_3"
+                android:icon="@drawable/beta"
+                android:title="@string/action_Actualizar_Beta" />
+            <item
+                android:id="@+id/menu_opcion_4"
+                android:icon="@drawable/infor"
+                android:title="@string/action_Info" />
+        </menu>
+    </item>
+</menu>

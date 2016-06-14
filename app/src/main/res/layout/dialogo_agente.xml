@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/nombre"
+        android:text="Nombre :"
+        android:textColor="#FF0000"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="12sp"
+        android:id="@+id/button"
+        android:background="#ff0000" />
+
+    <TextView
+        android:id="@+id/turno"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="Turno :" />
+    <TextView
+        android:id="@+id/grupo"
+        android:text="Grupo :"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+
+    <TextView
+        android:id="@+id/Vi"
+        android:text="V i :"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <TextView
+        android:id="@+id/Vt"
+        android:text="V t :"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <TextView
+        android:id="@+id/cambio_con"
+        android:text="Cambio con :"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <TextView
+        android:id="@+id/por"
+        android:text="Por :"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <TextView
+        android:id="@+id/compesa"
+        android:text="Compesa :"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+</LinearLayout>

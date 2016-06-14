@@ -23,7 +23,7 @@
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="0dp"
         android:layout_gravity="center"
         android:layout_weight="0.94"
         android:background="#000000"
@@ -60,7 +60,7 @@
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="20px"
+        android:paddingTop="20dp"
         android:gravity="center"
         android:layout_gravity="center">
 
@@ -68,7 +68,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/versionApp"
-            android:paddingTop="20px"
+            android:paddingTop="20dp"
             android:textColor="#6f6d6d"
             android:layout_gravity="top" />
     </LinearLayout>
@@ -77,7 +77,7 @@
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="20px"
+        android:paddingTop="20dp"
         android:gravity="center"
         android:layout_gravity="center" >
 
@@ -85,23 +85,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/versionServidor"
-            android:paddingLeft="10px"
-            android:paddingTop="20px"
+            android:paddingLeft="10dp"
+            android:paddingTop="20dp"
             android:textColor="#6f6d6d"
             android:layout_gravity="bottom" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal">
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="------------------------------------------------"
-            android:id="@+id/textView6" />
     </LinearLayout>
 
 </LinearLayout>

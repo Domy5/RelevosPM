@@ -7,7 +7,7 @@ import java.sql.Date;
 /**
  * Created by Domingo on 28/02/2016.
  */
-public class Agente {
+public class  Agente {
 
     private int id;
     private int N_MES;

@@ -6,10 +6,15 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Typeface;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.design.widget.NavigationView;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.text.Html;
 import android.util.Log;
 import android.view.Menu;
@@ -48,14 +53,74 @@ public class Main_Seleccionar_Dia extends AppCompatActivity {
     String DiaDeHoy = "";
     TextView tv;
     String grupo;
-
+    DrawerLayout drawerLayout;
+    NavigationView navView ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+
+
         //sets the main layout of the activity
-        setContentView(R.layout.calendario);
+       // setContentView(R.layout.calendario);
+        setContentView(R.layout.menu_lateral);
+
+        drawerLayout = (DrawerLayout)findViewById(R.id.drawer_layout);
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.menu);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        navView = (NavigationView)findViewById(R.id.navview);
+
+        navView.setNavigationItemSelectedListener(
+                new NavigationView.OnNavigationItemSelectedListener() {
+                    @Override
+                    public boolean onNavigationItemSelected(MenuItem menuItem) {
+
+                        UpdateApp atualizaAppBeta = new UpdateApp();
+
+                        switch (menuItem.getItemId()) {
+                            case R.id.menu_seccion_1:
+
+                                break;
+                            case R.id.menu_seccion_2:
+
+                                break;
+                            case R.id.menu_seccion_3:
+
+                                break;
+                            case R.id.menu_opcion_1:
+                                Intent i = new Intent(Main_Seleccionar_Dia.this, Login.class);
+                                i.putExtra("AutoLogin", false);
+                                startActivity(i);
+                                break;
+                            case R.id.menu_opcion_2:
+                                atualizaAppBeta.setContext(getApplicationContext());
+                                atualizaAppBeta.execute("http://domy.asuscomm.com/app-debug.apk");
+                                break;
+
+                            case R.id.menu_opcion_3:
+                                atualizaAppBeta.setContext(getApplicationContext());
+                                atualizaAppBeta.execute("http://domy.asuscomm.com/beta.apk");
+                                break;
+
+                            case R.id.menu_opcion_4:
+                                Intent j = new Intent(Main_Seleccionar_Dia.this, Dialog_Info.class);
+                                startActivity(j);
+                                break;
+
+                        }
+
+
+                        drawerLayout.closeDrawers();
+
+                        return true;
+                    }
+                });
+       // appbar = (Toolbar)findViewById(R.id.);
+      //  setSupportActionBar(appbar);
+
+
 
         TextView tv1 = (TextView) findViewById(R.id.datosAgente_1);
         TextView tv2 = (TextView) findViewById(R.id.datosAgente_2);
@@ -197,6 +262,7 @@ public class Main_Seleccionar_Dia extends AppCompatActivity {
 
     }
 
+
     @Override
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
@@ -270,7 +336,7 @@ public class Main_Seleccionar_Dia extends AppCompatActivity {
                         FECHA + "\n" +
                                 "Libra Grupo : " + GL + "\n" +
                                 "Trabaja Grupo : " + GRUPOTRABAJO
-                        , Toast.LENGTH_LONG).show();
+                        , Toast.LENGTH_SHORT).show();
 
                 //  calendar.refreshCalendar(currentCalendar);
 
@@ -382,6 +448,8 @@ public class Main_Seleccionar_Dia extends AppCompatActivity {
 
     }
 
+
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -396,7 +464,13 @@ public class Main_Seleccionar_Dia extends AppCompatActivity {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
+
+        if (id == android.R.id.home) {
+
+                drawerLayout.openDrawer(GravityCompat.START);
+                return true;
+        }
+
         if (id == R.id.action_opciones) {
 
             Intent i = new Intent(this, Login.class);
@@ -434,6 +508,7 @@ public class Main_Seleccionar_Dia extends AppCompatActivity {
             return true;
         }
         return super.onOptionsItemSelected(item);
+
     }
 
     @Override
