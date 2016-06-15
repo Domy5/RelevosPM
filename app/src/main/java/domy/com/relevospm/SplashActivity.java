@@ -147,7 +147,6 @@ public class SplashActivity extends Activity {
 
                                     new Handler().postDelayed(new Runnable() {
                                         public void run() {
-                                            // Cuando pasen los 2 segundos, pasamos a la actividad principal de la aplicación Main_Seleccionar_Dia.class
 
                                             Intent intent = new Intent(SplashActivity.this, Login.class);
                                             startActivity(intent);
@@ -169,7 +168,6 @@ public class SplashActivity extends Activity {
 
                     new Handler().postDelayed(new Runnable() {
                         public void run() {
-                            // Cuando pasen los 2 segundos, pasamos a la actividad principal de la aplicación Main_Seleccionar_Dia.class
 
                             Intent intent = new Intent(SplashActivity.this, Login.class);
                             startActivity(intent);

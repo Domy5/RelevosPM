@@ -9,6 +9,10 @@ android {
         targetSdkVersion 23
         versionCode 9
         versionName "1.0"
+
+        jackOptions {
+            enabled true
+        }
     }
     buildTypes {
         release {
@@ -32,8 +36,8 @@ android {
     }
 
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_7
-        targetCompatibility JavaVersion.VERSION_1_7
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
     }
 }
 
@@ -58,5 +62,3 @@ dependencies {
     //compile 'com.github.jonisaa:MaterialCalendarview:v1.2.2'
     compile 'com.github.npanigrahy:Custom-Calendar-View:v1.0'
 }
-
-

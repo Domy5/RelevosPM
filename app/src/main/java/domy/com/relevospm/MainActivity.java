@@ -1,16 +1,13 @@
 package domy.com.relevospm;
 
-import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Typeface;
-import android.graphics.drawable.ColorDrawable;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
-import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.Fragment;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -41,86 +38,141 @@ import domy.com.relevospm.Utiles.Dia4y2;
 import domy.com.relevospm.Utiles.UpdateApp;
 import domy.com.relevospm.login.Login;
 
-public class Main_Seleccionar_Dia extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = "PERMISOS";
 
-    String GRUPOTRABAJO = "";
-    String FECHA = "";
-    CustomCalendarView calendar;
-    Button Boton_Ver_Hoy;
-    Button Boton_Ver_Lineas;
-    String DiaDeHoy = "";
-    TextView tv;
-    String grupo;
-    DrawerLayout drawerLayout;
-    NavigationView navView ;
+    private String GRUPOTRABAJO = "";
+    private String FECHA = "";
+    private CustomCalendarView calendar;
+    private Button Boton_Ver_Hoy;
+    private Button Boton_Ver_Lineas;
+    private String DiaDeHoy = "";
+    private TextView tv;
+    private String grupo;
+
+    private Toolbar appbar;
+    private DrawerLayout drawerLayout;
+    private NavigationView navView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
 
+        appbar = (Toolbar)findViewById(R.id.appbar);
+        setSupportActionBar(appbar);
 
-
-        //sets the main layout of the activity
-       // setContentView(R.layout.calendario);
-        setContentView(R.layout.menu_lateral);
-
-        drawerLayout = (DrawerLayout)findViewById(R.id.drawer_layout);
-        getSupportActionBar().setHomeAsUpIndicator(R.drawable.menu);
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_nav_menu);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+        drawerLayout = (DrawerLayout)findViewById(R.id.drawer_layout);
+
+        /*
+        //Eventos del Drawer Layout
+        drawerLayout.setDrawerListener(new DrawerLayout.DrawerListener() {
+            @Override
+            public void onDrawerSlide(View drawerView, float slideOffset) {
+
+            }
+
+            @Override
+            public void onDrawerOpened(View drawerView) {
+
+            }
+
+            @Override
+            public void onDrawerClosed(View drawerView) {
+
+            }
+
+            @Override
+            public void onDrawerStateChanged(int newState) {
+
+            }
+        });
+        */
+
         navView = (NavigationView)findViewById(R.id.navview);
-
         navView.setNavigationItemSelectedListener(
-                new NavigationView.OnNavigationItemSelectedListener() {
-                    @Override
-                    public boolean onNavigationItemSelected(MenuItem menuItem) {
+            new NavigationView.OnNavigationItemSelectedListener() {
+                @Override
+                public boolean onNavigationItemSelected(MenuItem menuItem) {
 
-                        UpdateApp atualizaAppBeta = new UpdateApp();
+                    boolean fragmentTransaction = false;
+                    Fragment fragment = null;
+/*
+                    switch (menuItem.getItemId()) {
+                        case R.id.menu_seccion_1:
+                            fragment = new Fragment1();
+                            fragmentTransaction = true;
+                            break;
+                        case R.id.menu_seccion_2:
+                            fragment = new Fragment2();
+                            fragmentTransaction = true;
+                            break;
+                        case R.id.menu_seccion_3:
+                            fragment = new Fragment3();
+                            fragmentTransaction = true;
+                            break;
+                        case R.id.menu_opcion_1:
+                            Log.i("NavigationView", "Pulsada opción 1");
+                            break;
+                        case R.id.menu_opcion_2:
+                            Log.i("NavigationView", "Pulsada opción 2");
+                            break;
+                    }*/
+                    UpdateApp atualizaAppBeta = new UpdateApp();
 
-                        switch (menuItem.getItemId()) {
-                            case R.id.menu_seccion_1:
+                    switch (menuItem.getItemId()) {
+                        case R.id.menu_seccion_1:
 
-                                break;
-                            case R.id.menu_seccion_2:
+                        case R.id.menu_seccion_2:
 
-                                break;
-                            case R.id.menu_seccion_3:
+                            fragment = new Fragment1();
+                            fragmentTransaction = true;
+                            break;
 
-                                break;
-                            case R.id.menu_opcion_1:
-                                Intent i = new Intent(Main_Seleccionar_Dia.this, Login.class);
-                                i.putExtra("AutoLogin", false);
-                                startActivity(i);
-                                break;
-                            case R.id.menu_opcion_2:
-                                atualizaAppBeta.setContext(getApplicationContext());
-                                atualizaAppBeta.execute("http://domy.asuscomm.com/app-debug.apk");
-                                break;
+                        case R.id.menu_seccion_3:
 
-                            case R.id.menu_opcion_3:
-                                atualizaAppBeta.setContext(getApplicationContext());
-                                atualizaAppBeta.execute("http://domy.asuscomm.com/beta.apk");
-                                break;
+                            fragment = new Fragment1();
+                            fragmentTransaction = true;
+                            break;
 
-                            case R.id.menu_opcion_4:
-                                Intent j = new Intent(Main_Seleccionar_Dia.this, Dialog_Info.class);
-                                startActivity(j);
-                                break;
+                        case R.id.menu_opcion_1:
+                            Intent i = new Intent(MainActivity.this, Login.class);
+                            i.putExtra("AutoLogin", false);
+                            startActivity(i);
+                            break;
+                        case R.id.menu_opcion_2:
+                            atualizaAppBeta.setContext(MainActivity.this);
+                            atualizaAppBeta.execute("http://domy.asuscomm.com/app-debug.apk");
+                            break;
 
-                        }
+                        case R.id.menu_opcion_3:
+                            atualizaAppBeta.setContext(MainActivity.this);
+                            atualizaAppBeta.execute("http://domy.asuscomm.com/beta.apk");
+                            break;
 
+                        case R.id.menu_opcion_4:
+                            Intent j = new Intent(MainActivity.this, Dialog_Info.class);
+                            startActivity(j);
+                            break;
 
-                        drawerLayout.closeDrawers();
-
-                        return true;
                     }
-                });
-       // appbar = (Toolbar)findViewById(R.id.);
-      //  setSupportActionBar(appbar);
 
+                    if(fragmentTransaction) {
+                        getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, fragment).commit();
 
+                        menuItem.setChecked(true);
+                        getSupportActionBar().setTitle(menuItem.getTitle());
+                    }
+
+                    drawerLayout.closeDrawers();
+
+                    return true;
+                }
+            });
 
         TextView tv1 = (TextView) findViewById(R.id.datosAgente_1);
         TextView tv2 = (TextView) findViewById(R.id.datosAgente_2);
@@ -144,7 +196,7 @@ public class Main_Seleccionar_Dia extends AppCompatActivity {
         int mes = c.get(Calendar.MONTH) + 1;
         int annio = c.get(Calendar.YEAR);
 
-        Log.v("hola"," dia " + dia+" "+ mes+"");
+        Log.v("hola", " dia " + dia + " " + mes + "");
 
         if (mes == 1) a000_mes = "a010_Enero";
         else if (mes == 2) a000_mes = "a020_Febrero";
@@ -164,16 +216,16 @@ public class Main_Seleccionar_Dia extends AppCompatActivity {
         else if (mes == 12) a000_mes = "a120_Diciembre";
 
 
-      //  Log.v("hola"," dia " + dne);
+        //  Log.v("hola"," dia " + dne);
 
         JSONArray JsonTodo;
 
-        JsonTodo = Diario.ConsultaDiaSQL("SELECT `GRUPO`,`TURNO`,`VACACIONES_I`,`VACACIONES_T`,`CAMBIO_CON`,`POR`,`COMPENSA` FROM `" + a000_mes + "` WHERE DNE =" + dne );
+        JsonTodo = Diario.ConsultaDiaSQL("SELECT `GRUPO`,`TURNO`,`VACACIONES_I`,`VACACIONES_T`,`CAMBIO_CON`,`POR`,`COMPENSA` FROM `" + a000_mes + "` WHERE DNE =" + dne);
 //"SELECT `GRUPO`,`TURNO`,`VACACIONES_I`,`VACACIONES_T`,`CAMBIO_CON`,`POR`,`COMPENSA` FROM `a060_Junio` WHERE DNE =`15910`
 
         try {
 
-             grupo = JsonTodo.getJSONObject(0).getString("GRUPO");
+            grupo = JsonTodo.getJSONObject(0).getString("GRUPO");
             String turno = JsonTodo.getJSONObject(0).getString("TURNO");
             String v_i = JsonTodo.getJSONObject(0).getString("VACACIONES_I");
             String v_t = JsonTodo.getJSONObject(0).getString("VACACIONES_T");
@@ -196,12 +248,33 @@ public class Main_Seleccionar_Dia extends AppCompatActivity {
             e.printStackTrace();
         }
 
-
         initializeCalendar(Integer.parseInt(grupo));
-
 
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+
+        switch(item.getItemId()) {
+            case android.R.id.home:
+                drawerLayout.openDrawer(GravityCompat.START);
+                return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+
+    //////////////////////////
     public void grupo(int i) {
 
         List decorators = new ArrayList<>();
@@ -231,7 +304,6 @@ public class Main_Seleccionar_Dia extends AppCompatActivity {
 
 
     }
-
     public void grupo(View v) {
 
         List decorators = new ArrayList<>();
@@ -261,8 +333,6 @@ public class Main_Seleccionar_Dia extends AppCompatActivity {
 
 
     }
-
-
     @Override
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
@@ -272,7 +342,6 @@ public class Main_Seleccionar_Dia extends AppCompatActivity {
         }
 
     }
-
     public void initializeCalendar(int grupo) {
         calendar = (CustomCalendarView) findViewById(R.id.calendar_viewNEW);
 
@@ -312,7 +381,6 @@ public class Main_Seleccionar_Dia extends AppCompatActivity {
             @Override
             public void onDateSelected(Date date) {
                 SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy");
-                //   Toast.makeText(Main_Seleccionar_Dia.this, df.format(date), Toast.LENGTH_SHORT).show();
 
                 String D[] = df.format(date).toString().split("-");
 
@@ -346,53 +414,10 @@ public class Main_Seleccionar_Dia extends AppCompatActivity {
             @Override
             public void onMonthChanged(Date date) {
                 //  SimpleDateFormat df = new SimpleDateFormat("MM-yyyy");
-                //   Toast.makeText(Main_Seleccionar_Dia.this, df.format(date), Toast.LENGTH_SHORT).show();
             }
         });
 
     }
-
-    /*
-    public void initializeCalendar() {
-        calendar = (CalendarView) findViewById(R.id.calendar_viewNEW);
-
-        calendar.setShowWeekNumber(false);
-
-        calendar.setFirstDayOfWeek(2);
-
-        Date now = new Date();
-        calendar.setDate(now.getTime());// para que siempre que se reinicia mueste el dia de hoy
-
-        calendar.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
-            //show the selected date as a toast
-            @Override
-            public void onSelectedDayChange(CalendarView view, int year, int month, int day) {
-
-                int Mes = month + 1;
-
-                int GL = Dia4y2.GrupoLibra(day, Mes, year);
-                String GT = Integer.toString(Dia4y2.GrupoTrabaja(day, Mes, year));
-
-                GRUPOTRABAJO = GT.substring(0, 1) + " y " + GT.substring(1, 2);
-
-                FECHA = day + "/" + Mes + "/" + year;
-
-                Boton_Ver_Lineas = (Button) findViewById(R.id.Boton_Ver_Lineas);
-                Boton_Ver_Lineas.setText("Ver Lineas de -->" + FECHA);
-
-                //     Toast.makeText(getApplicationContext(), day + "/" + month + 1 + "/" + year, Toast.LENGTH_LONG).show();
-
-                Toast.makeText(getApplicationContext(),
-                        FECHA + "\n" +
-                                "Libra Grupo : " + GL + "\n" +
-                                "Trabaja Grupo : " + GRUPOTRABAJO
-                        , Toast.LENGTH_LONG).show();
-
-            }
-        });
-
-    }*/
-
     public void lanzar_dia(View view) {
 
         if ((FECHA == null) || (FECHA.isEmpty())) {
@@ -400,13 +425,12 @@ public class Main_Seleccionar_Dia extends AppCompatActivity {
             FECHA = DiaDeHoy;
         }
 
-        Intent i = new Intent(this, Tabla_Diaria2.class); // TODO: aqui cambiar a tabla diaria
+        Intent i = new Intent(this, Tabla_Diaria2.class);
 
         i.putExtra("GRUPOS", GRUPOTRABAJO);
         i.putExtra("FECHA", FECHA);
         startActivity(i);
     }
-
     public void lanzar_dia_hoy(View view) {
 
         FECHA = DiaDeHoy;
@@ -427,118 +451,29 @@ public class Main_Seleccionar_Dia extends AppCompatActivity {
         i.putExtra("FECHA", FECHA);
         startActivity(i);
     }
-
-    public boolean isStoragePermissionGranted() {
-        if (Build.VERSION.SDK_INT >= 23) {
-            if (checkSelfPermission(android.Manifest.permission.WRITE_EXTERNAL_STORAGE)
-                    == PackageManager.PERMISSION_GRANTED) {
-                Log.v(TAG, "Permission is granted");
-                return true;
-            } else {
-
-                Log.v(TAG, "Permission is revoked");
-                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
-                return false;
-            }
-        } else { //permission is automatically granted on sdk<23 upon installation
-            Log.v(TAG, "Permission is granted");
-            return true;
-        }
-
-
-    }
-
-
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-
-        if (id == android.R.id.home) {
-
-                drawerLayout.openDrawer(GravityCompat.START);
-                return true;
-        }
-
-        if (id == R.id.action_opciones) {
-
-            Intent i = new Intent(this, Login.class);
-            i.putExtra("AutoLogin", false);
-            startActivity(i);
-
-            return true;
-        }
-
-        if (id == R.id.action_Actualizar) {
-
-            isStoragePermissionGranted();
-
-            UpdateApp atualizaApp = new UpdateApp();
-            atualizaApp.setContext(getApplicationContext());
-            atualizaApp.execute("http://domy.asuscomm.com/app-debug.apk");
-
-            return true;
-        }
-
-        if (id == R.id.action_Infor) {
-
-            Intent i = new Intent(this, Dialog_Info.class);
-            startActivity(i);
-
-            return true;
-        }
-
-        if (id == R.id.action_Actualizar_Beta) {
-
-            UpdateApp atualizaAppBeta = new UpdateApp();
-            atualizaAppBeta.setContext(getApplicationContext());
-            atualizaAppBeta.execute("http://domy.asuscomm.com/beta.apk");
-
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
-
-    }
-
     @Override
     protected void onStart() {
         // initializeCalendar();
         super.onStart();
     }
-
     @Override
     protected void onRestart() {
         super.onRestart();
     }
-
     @Override
     protected void onResume() {
         super.onResume();
     }
-
     @Override
     protected void onPause() {
         // initializeCalendar();
         super.onPause();
     }
-
     @Override
     protected void onStop() {
         // initializeCalendar();
         super.onStop();
     }
-
     @Override
     protected void onDestroy() {
         // initializeCalendar();

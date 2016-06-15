@@ -181,7 +181,7 @@ public class Tabla_Diaria2 extends AppCompatActivity implements View.OnClickList
 
         Properties prop = new Properties();
         try {
-            prop.load(Main_Seleccionar_Dia.class.getClassLoader().getResourceAsStream(
+            prop.load(MainActivity.class.getClassLoader().getResourceAsStream(
                     "res/raw/datos.propi"));//todo : este archivo tenqo que ponerlo en la raiz de la sd ahora esta en raw
 
             Nombre = prop.getProperty(Dne);
@@ -202,7 +202,7 @@ public class Tabla_Diaria2 extends AppCompatActivity implements View.OnClickList
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
-
+/*
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
@@ -249,7 +249,7 @@ public class Tabla_Diaria2 extends AppCompatActivity implements View.OnClickList
         }
         return super.onOptionsItemSelected(item);
     }
-
+*/
     @Override
     public void onResume() {
         super.onResume();

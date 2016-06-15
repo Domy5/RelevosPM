@@ -1,29 +1,10 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="domy.com.myapplication.MainActivity"
-    >
+    tools:context=".MainActivity">
     <item
-        android:id="@+id/action_opciones"
+        android:id="@+id/action_settings"
         android:orderInCategory="100"
         android:title="@string/action_Opciones"
         app:showAsAction="never" />
-    <item
-        android:id="@+id/action_Actualizar"
-        android:orderInCategory="200"
-        android:title="@string/action_Actualizar"
-        app:showAsAction="never" />
-    <item
-        android:id="@+id/action_Infor"
-        android:orderInCategory="300"
-        android:title="@string/action_Info"
-        app:showAsAction="never" />
-    <item
-        android:id="@+id/action_Actualizar_Beta"
-        android:orderInCategory="400"
-        android:title="@string/action_Actualizar_Beta"
-        app:showAsAction="never" />
-
-
-
 </menu>
