@@ -28,8 +28,13 @@ public class UpdateApp extends AsyncTask<String, Void, Void> {
     private Context context;
     ProgressDialog pDialog;
 
-    public void setContext(Context contextf) {
-        context = contextf;
+    public void setContext(Context context) {
+        this.context = context;
+
+        pDialog = new ProgressDialog(context);
+        pDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+        pDialog.setTitle("Procesando la informacion");
+        pDialog.setMessage("Descargando...");
     }
 
     @Override
@@ -72,7 +77,13 @@ public class UpdateApp extends AsyncTask<String, Void, Void> {
         return null;
     }
 
+    @Override
+    protected void onPreExecute() {
+        pDialog.show();
+    }
 
-
-
+    @Override
+    protected void onPostExecute(Void aVoid) {
+        pDialog.dismiss();
+    }
 }

@@ -36,6 +36,7 @@ import domy.com.relevospm.Utiles.AutoResizeTextView;
 import domy.com.relevospm.Utiles.Dia4y2;
 import domy.com.relevospm.Utiles.JSONParser3;
 import domy.com.relevospm.Utiles.UpdateApp;
+import domy.com.relevospm.Utiles.Utiles;
 import domy.com.relevospm.Utiles.dia;
 import domy.com.relevospm.login.Login;
 
@@ -222,7 +223,7 @@ public class Tabla_Diaria2 extends AppCompatActivity implements View.OnClickList
 
         if (id == R.id.action_Actualizar) {
 
-            isStoragePermissionGranted();
+            Utiles.isStoragePermissionGranted(getApplicationContext(),this);
 
             UpdateApp atualizaApp = new UpdateApp();
             atualizaApp.setContext(getApplicationContext());
@@ -240,6 +241,8 @@ public class Tabla_Diaria2 extends AppCompatActivity implements View.OnClickList
         }
 
         if (id == R.id.action_Actualizar_Beta) {
+
+            Utiles.isStoragePermissionGranted(getApplicationContext(),this);
 
             UpdateApp atualizaAppBeta = new UpdateApp();
             atualizaAppBeta.setContext(getApplicationContext());
@@ -262,25 +265,6 @@ public class Tabla_Diaria2 extends AppCompatActivity implements View.OnClickList
 
     }
 
-    public boolean isStoragePermissionGranted() {
-        if (Build.VERSION.SDK_INT >= 23) {
-            if (checkSelfPermission(android.Manifest.permission.WRITE_EXTERNAL_STORAGE)
-                    == PackageManager.PERMISSION_GRANTED) {
-                //  Log.v(TAG, "Permission is granted");
-                return true;
-            } else {
-
-                //   Log.v(TAG, "Permission is revoked");
-                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
-                return false;
-            }
-        } else { //permission is automatically granted on sdk<23 upon installation
-            //  Log.v(TAG, "Permission is granted");
-            return true;
-        }
-
-
-    }
 
 }
 

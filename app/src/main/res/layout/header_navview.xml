@@ -11,9 +11,11 @@
         android:scaleType="centerCrop" />
 
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/c_o_s_m_o_s"
+        android:textColor="@color/red"
+        android:textAlignment="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Large.Inverse"
         android:textStyle="bold"
         android:layout_gravity="bottom"
