@@ -6,8 +6,13 @@
 
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:text="@string/c_o_s_m_o_s"
         android:gravity="center|top"/>
+
+    <AutoCompleteTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/autocompleteview"/>
 
 </FrameLayout>
