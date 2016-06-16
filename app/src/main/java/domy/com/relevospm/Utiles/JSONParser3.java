@@ -99,7 +99,7 @@ public class JSONParser3 {
 
                 conn.setConnectTimeout(15000);
 
-                conn.connect();
+              //  conn.connect();
 
             } catch (IOException e) {
                 e.printStackTrace();

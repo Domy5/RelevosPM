@@ -77,7 +77,7 @@ public class SplashActivity extends Activity {
 
 
         if (Utiles.isOnline(getApplicationContext())) {
-            /*
+
             GetVersionFromServer(BuildVersionPath);
             checkInstalledApp(AppName);
 
@@ -86,10 +86,10 @@ public class SplashActivity extends Activity {
 
             tvVerApp = (TextView) findViewById(R.id.versionApp);
             tvVerApp.setText(" NameApp    : " + versionNameApp + " CodeApp    : " + versionCodeApp);
-            */
+
             checkInstalledApp(AppName);
-            TareaAsincrona tareaAsincrona = new TareaAsincrona();
-            tareaAsincrona.execute();
+         //   TareaAsincrona tareaAsincrona = new TareaAsincrona();
+         //   tareaAsincrona.execute();
 
         } else {
 
@@ -112,6 +112,53 @@ public class SplashActivity extends Activity {
                     .setPositiveButton("OK. salir", dialogClickListener).show();
 
         }
+
+    }
+
+    public void GetVersionFromServer(String BuildVersionPath) {
+        String s = "";
+
+        URL u;
+        try {
+            u = new URL(BuildVersionPath);
+            String str1;
+            String str2 = "";
+
+            BufferedReader in = new BufferedReader(new InputStreamReader(u.openStream()));
+
+            while ((str1 = in.readLine()) != null) {
+                str2 = str2 + str1;
+            }
+            in.close();
+            s = str2;
+
+        } catch (MalformedURLException e) {
+            Log.w("", "MALFORMED URL EXCEPTION");
+        } catch (IOException e) {
+            Log.w(e.getMessage(), e);
+        }
+
+        String temp = "";
+
+        for (int i = 0; i < s.length(); i++) {
+            i = s.indexOf("=") + 1;
+            while (s.charAt(i) == ' ') // Skip Spaces
+            {
+                i++; // Move to Next.
+            }
+            while (s.charAt(i) != ';' && (s.charAt(i) >= '0' && s.charAt(i) <= '9' || s.charAt(i) == '.')) {
+                temp = temp.concat(Character.toString(s.charAt(i)));
+                i++;
+            }
+            //
+            s = s.substring(i); // Move to Next to Process.!
+            temp = temp + " "; // Separate w.r.t Space Version Code and Version Name.
+
+        }
+        String[] fields = temp.split(" ");// Make Array for Version Code and Version Name.
+
+        VersionCode = Integer.parseInt(fields[0]);
+        VersionName = fields[1];
 
     }
 
@@ -203,7 +250,6 @@ public class SplashActivity extends Activity {
         }
         return res;
     }
-
 
     public boolean isStoragePermissionGranted() {
 

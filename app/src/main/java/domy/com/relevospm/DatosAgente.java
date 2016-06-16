@@ -6,21 +6,21 @@ import org.json.JSONException;
 
 public class DatosAgente  {
 
-    String agente;
-    String fecha;
+    String Dne;
+    String Fecha;
     JSONArray JsonTodo;
-    Agente Agentes1;
+    Agente agente;
 
-    public void setAgente(String Agente, String Fecha) {
-        this.agente = Agente;
-        this.fecha = Fecha;
+    public void setAgente(String Dne, String Fecha) {
+        this.Dne = Dne;
+        this.Fecha = Fecha;
     }
 
     public Agente DatosAgente (){
 
-        String DNE = agente ;
+        String DNE = Dne ;
 
-        String F[] = fecha.split("/");
+        String F[] = Fecha.split("/");
 
         int dia = Integer.parseInt(F[0]);
         int mes = Integer.parseInt(F[1]);
@@ -55,7 +55,7 @@ public class DatosAgente  {
 
         try {
 
-            Agentes1 = new Agente(
+            agente = new Agente(
                     Integer.parseInt(JsonTodo.getJSONObject(x).getString("id")),
                     Integer.parseInt(JsonTodo.getJSONObject(x).getString("N_MES")),
                     JsonTodo.getJSONObject(x).getString("MES"),
@@ -78,7 +78,7 @@ public class DatosAgente  {
             e.printStackTrace();
         }
 
-        return Agentes1;
+        return agente;
     }
 
 }

@@ -65,7 +65,7 @@ public class JSONParser2 {
                 conn.setReadTimeout(10000);
                 conn.setConnectTimeout(15000);
 
-                conn.connect();
+               // conn.connect();
 
                 paramsString = sbParams.toString();
 
@@ -98,7 +98,7 @@ public class JSONParser2 {
 
                 conn.setConnectTimeout(15000);
 
-                conn.connect();
+              //  conn.connect();
 
             } catch (IOException e) {
                 e.printStackTrace();

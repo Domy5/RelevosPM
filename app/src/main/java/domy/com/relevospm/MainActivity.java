@@ -49,7 +49,6 @@ public class MainActivity extends AppCompatActivity {
     private String DiaDeHoy = "";
     private TextView tv;
 
-
     private Toolbar appbar;
     private DrawerLayout drawerLayout;
     private NavigationView navView;
@@ -60,14 +59,7 @@ public class MainActivity extends AppCompatActivity {
 
     private String dne;
 
-    private String grupo;
-    private String v_i;
-    private String v_t;
-    private String turno;
-    private String por;
-    private String compensa;
-    private String cambio_con;
-
+    private DatosAgente datosAgente;
 
     private TextView tv1;
     private TextView tv2;
@@ -81,7 +73,7 @@ public class MainActivity extends AppCompatActivity {
         appbar = (Toolbar) findViewById(R.id.appbar);
         setSupportActionBar(appbar);
 
-        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_nav_menu);
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.menu);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -215,102 +207,25 @@ public class MainActivity extends AppCompatActivity {
         int mes = c.get(Calendar.MONTH) + 1;
         int annio = c.get(Calendar.YEAR);
 
-        String fff =  String.valueOf(dia)+"/0"+ String.valueOf(mes)+"/"+ String.valueOf(annio);
+        String fecha=  String.valueOf(dia)+"/"+ String.valueOf(mes)+"/"+ String.valueOf(annio);
 
-        DatosAgente Da = new DatosAgente();
+        datosAgente = new DatosAgente();
 
-        Da.setAgente(dne, fff);
+        datosAgente.setAgente(dne, fecha);
 
-
-        /*
-        String a000_mes = null;
-
-        Log.v("hola", " dia " + dia + " " + mes + "");
-
-        if (mes == 1) a000_mes = "a010_Enero";
-        else if (mes == 2) a000_mes = "a020_Febrero";
-        else if (mes == 3) a000_mes = "a030_Marzo";
-        else if (mes == 4) a000_mes = "a040_Abril";
-        else if (mes == 5) a000_mes = "a050_Mayo";
-        else if (mes == 6) a000_mes = "a060_Junio";
-        else if (mes == 7 && dia < 23) a000_mes = "a071_V1";
-        else if (mes == 7 && dia > 22) a000_mes = "a072_V2";
-        else if (mes == 8 && dia < 14) a000_mes = "a072_V2";
-        else if (mes == 8 && dia > 13) a000_mes = "a073_V3";
-        else if (mes == 9 && dia < 5) a000_mes = "a073_V3";
-        else if (mes == 9 && dia > 4 && dia < 27) a000_mes = "a074_V4";
-        else if (mes == 9 && dia > 25) a000_mes = "a090_Septiembre";
-        else if (mes == 10) a000_mes = "a100_Octubre";
-        else if (mes == 11) a000_mes = "a110_Noviembre";
-        else if (mes == 12) a000_mes = "a120_Diciembre";
-
-
-        //  Log.v("hola"," dia " + dne);
-
-        JSONArray JsonTodo;
-
-        JsonTodo = Diario.ConsultaDiaSQL("SELECT `GRUPO`,`TURNO`,`VACACIONES_I`,`VACACIONES_T`,`CAMBIO_CON`,`POR`,`COMPENSA` FROM `" + a000_mes + "` WHERE DNE =" + dne);
-//"SELECT `GRUPO`,`TURNO`,`VACACIONES_I`,`VACACIONES_T`,`CAMBIO_CON`,`POR`,`COMPENSA` FROM `a060_Junio` WHERE DNE =`15910`
-
-        try {
-
-            grupo = JsonTodo.getJSONObject(0).getString("GRUPO");
-            turno = JsonTodo.getJSONObject(0).getString("TURNO");
-            v_i = JsonTodo.getJSONObject(0).getString("VACACIONES_I");
-            v_t = JsonTodo.getJSONObject(0).getString("VACACIONES_T");
-            cambio_con = JsonTodo.getJSONObject(0).getString("CAMBIO_CON");
-            por = JsonTodo.getJSONObject(0).getString("POR");
-            compensa = JsonTodo.getJSONObject(0).getString("COMPENSA");
-
-            // id  N_MES  MES   PUESTO  ORDEN   ESCALAFON     DNE  NOMBRE  GRUPO  TURNO   VACACIONES_I  VACACIONES_T  VACACIONES CAMBIO_CON  POR  COMPENSA   OBSERVACIONES
-            // 63      1  Enero      C     18          59   15910    Domy      3      N   0000-00-00      0000-00-00                     0      0
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-
-        */
-        String text1 = "DNE: <font color='#FFFFFF'>" + Da.Agentes1.getDNE() + "</font> GRUPO: <font color='#FFFFFF'>" + Da.Agentes1.getGRUPO() + "</font> TURNO: <font color='#FFFFFF'>" + Da.Agentes1.getTURNO() + "</font>";
-        String text2 = "V I: <font color='#FFFFFF'>" + Da.Agentes1.getVACACIONES_I() + "</font> V T: <font color='#FFFFFF'>" + v_t + "</font>";
-        String text3 = "CAMBIO CON: <font color='#FFFFFF'>" + Da.Agentes1.getCAMBIO_CON()+ "</font> POR: <font color='#FFFFFF'>" + Da.Agentes1.getPOR() + "</font> COMPENSA: <font color='#FFFFFF'>" + Da.Agentes1.getCOMPENSA() + "</font>";
+        String text1 = "DNE: <font color='#FFFFFF'>" + datosAgente.DatosAgente().getDNE() + "</font> GRUPO: <font color='#FFFFFF'>" + datosAgente.DatosAgente().getGRUPO() + "</font> TURNO: <font color='#FFFFFF'>" + datosAgente.DatosAgente().getTURNO() + "</font>";
+        String text2 = "V I: <font color='#FFFFFF'>" + datosAgente.DatosAgente().getVACACIONES_I() + "</font> V T: <font color='#FFFFFF'>" + datosAgente.DatosAgente().getVACACIONES_T() + "</font>";
+        String text3 = "CAMBIO CON: <font color='#FFFFFF'>" + datosAgente.DatosAgente().getCAMBIO_CON()+ "</font> POR: <font color='#FFFFFF'>" + datosAgente.DatosAgente().getPOR() + "</font> COMPENSA: <font color='#FFFFFF'>" + datosAgente.DatosAgente().getCOMPENSA() + "</font>";
 
         tv1.setText(Html.fromHtml(text1), TextView.BufferType.SPANNABLE);
         tv2.setText(Html.fromHtml(text2), TextView.BufferType.SPANNABLE);
         tv3.setText(Html.fromHtml(text3), TextView.BufferType.SPANNABLE);
 
 
-        initializeCalendar(Integer.parseInt(grupo));
+        initializeCalendar(Integer.parseInt(String.valueOf(datosAgente.DatosAgente().getGRUPO())));
 
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                drawerLayout.openDrawer(GravityCompat.START);
-                break;
-            case R.id.action_settings:
-                Intent i = new Intent(MainActivity.this, Login.class);
-                i.putExtra("AutoLogin", false);
-                startActivity(i);
-                return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
-
-
-    //////////////////////////
     public void PintarCalendario(int i) {
 
         List decorators = new ArrayList<>();
@@ -320,8 +235,14 @@ public class MainActivity extends AppCompatActivity {
         DaysDecorator5 g5 = new DaysDecorator5();
         DaysDecoratorV Vacas = new DaysDecoratorV();
 
-        Vacas.setFecha1("2016-06-10");
-        Vacas.setFecha2("2016-06-15");
+       // Vacas.setFecha1("2016-06-10");
+      //  Vacas.setFecha2("2016-06-15");
+
+        Vacas.setFecha1(datosAgente.DatosAgente().getVACACIONES_I());
+        Vacas.setFecha2(datosAgente.DatosAgente().getVACACIONES_T());
+
+
+        decorators.clear();
 
         switch (i) {
 
@@ -342,12 +263,7 @@ public class MainActivity extends AppCompatActivity {
         decorators.add(Vacas);
 
         calendar.setDecorators(decorators);
-
-        //  Calendar currentCalendar = Calendar.getInstance(Locale.getDefault());
-        //  currentCalendar.set(Anio_selecion_Calendar, Mes_selecion_Calendar, Dia_selecion_Calendar);
-        //   calendar.refreshCalendar(currentCalendar);
-
-        //     calendar.refreshDrawableState();
+        calendar.refreshCalendar(calendar.getCurrentCalendar());
 
     }
 
@@ -360,8 +276,10 @@ public class MainActivity extends AppCompatActivity {
         DaysDecorator5 g5 = new DaysDecorator5();
         DaysDecoratorV Vacas = new DaysDecoratorV();
 
-        Vacas.setFecha1("2016-06-10");
-        Vacas.setFecha2("2016-06-15");
+        Vacas.setFecha1(datosAgente.DatosAgente().getVACACIONES_I());
+        Vacas.setFecha2(datosAgente.DatosAgente().getVACACIONES_T());
+
+        decorators.clear();
 
         switch (v.getId()) {
 
@@ -382,29 +300,16 @@ public class MainActivity extends AppCompatActivity {
         decorators.add(Vacas);
 
         calendar.setDecorators(decorators);
-
-        //  Calendar currentCalendar = Calendar.getInstance(Locale.getDefault());
-        //   currentCalendar.set(Anio_selecion_Calendar, Mes_selecion_Calendar, Dia_selecion_Calendar);
-        //    calendar.refreshCalendar(currentCalendar);
-
-    }
-
-    @Override
-    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-            Log.v(TAG, "Permission: " + permissions[0] + "was " + grantResults[0]);
-            //resume tasks needing this permission
-        }
+        calendar.refreshCalendar(calendar.getCurrentCalendar());
 
     }
 
     public void initializeCalendar(int grupo) {
         calendar = (CustomCalendarView) findViewById(R.id.calendar_viewNEW);
 
-        Calendar currentCalendar = Calendar.getInstance(Locale.getDefault());
+        final Calendar currentCalendar = Calendar.getInstance(Locale.getDefault());
 
-        final Typeface typeface = Typeface.createFromAsset(getAssets(), "fonts/Arch_Rival_Bold.ttf");
+        Typeface typeface = Typeface.createFromAsset(getAssets(), "fonts/Arch_Rival_Bold.ttf");
         calendar.setCustomTypeface(typeface);
         calendar.setFirstDayOfWeek(Calendar.MONDAY);
         calendar.setShowOverflowDate(true);
@@ -412,7 +317,6 @@ public class MainActivity extends AppCompatActivity {
         PintarCalendario(grupo);
 
         calendar.refreshCalendar(currentCalendar);
-
         calendar.setCalendarListener(new CalendarListener() {
             @Override
             public void onDateSelected(Date date) {
@@ -438,11 +342,9 @@ public class MainActivity extends AppCompatActivity {
                                 "Trabaja Grupo : " + GRUPOTRABAJO
                         , Toast.LENGTH_SHORT).show();
 
-
-                Calendar currentCalendar1 = Calendar.getInstance(Locale.getDefault());
-                currentCalendar1.set(Anio_selecion_Calendar, Mes_selecion_Calendar, Dia_selecion_Calendar);
-                calendar.refreshCalendar(currentCalendar1);
-
+              //  Calendar currentCalendar1 = Calendar.getInstance(Locale.getDefault());
+              //  currentCalendar1.set(Anio_selecion_Calendar, Mes_selecion_Calendar, Dia_selecion_Calendar);
+             //   calendar.refreshCalendar(currentCalendar1);
 
             }
 
@@ -456,11 +358,23 @@ public class MainActivity extends AppCompatActivity {
                 Mes_selecion_Calendar = Integer.parseInt(D[1]);
                 Anio_selecion_Calendar = Integer.parseInt(D[2]);
 
-                Log.v("Fecha cambiando mes  ", Dia_selecion_Calendar + "-" + Mes_selecion_Calendar + "-" + Anio_selecion_Calendar);
+                String fecha=  String.valueOf(1)+"/"+ String.valueOf(Mes_selecion_Calendar)+"/"+ String.valueOf(Anio_selecion_Calendar);
 
-                Calendar currentCalendar1 = Calendar.getInstance(Locale.getDefault());
-                currentCalendar1.set(Anio_selecion_Calendar, Mes_selecion_Calendar, Dia_selecion_Calendar);
-                calendar.refreshCalendar(currentCalendar1);
+                datosAgente = new DatosAgente();
+
+                datosAgente.setAgente(dne, fecha);
+
+                PintarCalendario(Integer.parseInt(String.valueOf(datosAgente.DatosAgente().getGRUPO())));
+
+                String text1 = "DNE: <font color='#FFFFFF'>" + datosAgente.DatosAgente().getDNE() + "</font> GRUPO: <font color='#FFFFFF'>" + datosAgente.DatosAgente().getGRUPO() + "</font> TURNO: <font color='#FFFFFF'>" + datosAgente.DatosAgente().getTURNO() + "</font>";
+                String text2 = "V I: <font color='#FFFFFF'>" + datosAgente.DatosAgente().getVACACIONES_I() + "</font> V T: <font color='#FFFFFF'>" + datosAgente.DatosAgente().getVACACIONES_T() + "</font>";
+                String text3 = "CAMBIO CON: <font color='#FFFFFF'>" + datosAgente.DatosAgente().getCAMBIO_CON()+ "</font> POR: <font color='#FFFFFF'>" + datosAgente.DatosAgente().getPOR() + "</font> COMPENSA: <font color='#FFFFFF'>" + datosAgente.DatosAgente().getCOMPENSA() + "</font>";
+
+                tv1.setText(Html.fromHtml(text1), TextView.BufferType.SPANNABLE);
+                tv2.setText(Html.fromHtml(text2), TextView.BufferType.SPANNABLE);
+                tv3.setText(Html.fromHtml(text3), TextView.BufferType.SPANNABLE);
+
+                calendar.refreshCalendar(calendar.getCurrentCalendar());
 
             }
         });
@@ -480,7 +394,6 @@ public class MainActivity extends AppCompatActivity {
         i.putExtra("FECHA", FECHA);
         startActivity(i);
     }
-
     public void lanzar_dia_hoy(View view) {
 
         FECHA = DiaDeHoy;
@@ -501,39 +414,62 @@ public class MainActivity extends AppCompatActivity {
         i.putExtra("FECHA", FECHA);
         startActivity(i);
     }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
 
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                drawerLayout.openDrawer(GravityCompat.START);
+                break;
+            case R.id.action_settings:
+                Intent i = new Intent(MainActivity.this, Login.class);
+                i.putExtra("AutoLogin", false);
+                startActivity(i);
+                return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+            Log.v(TAG, "Permisos: " + permissions[0] + "was " + grantResults[0]);
+
+        }
+
+    }
     @Override
     protected void onStart() {
-        // initializeCalendar();
         super.onStart();
     }
-
     @Override
     protected void onRestart() {
         super.onRestart();
     }
-
     @Override
     protected void onResume() {
         super.onResume();
     }
-
     @Override
     protected void onPause() {
-        // initializeCalendar();
         super.onPause();
     }
-
     @Override
     protected void onStop() {
-        // initializeCalendar();
         super.onStop();
     }
-
     @Override
     protected void onDestroy() {
-        // initializeCalendar();
         super.onDestroy();
     }
-
 }
