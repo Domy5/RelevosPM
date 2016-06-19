@@ -59,4 +59,6 @@ dependencies {
     //compile 'com.android.support:recyclerview-v7:23.2.0'
     //compile 'com.github.jonisaa:MaterialCalendarview:v1.2.2'
     compile 'com.github.npanigrahy:Custom-Calendar-View:v1.0'
+
+    //compile 'com.android.support.constraint:constraint-layout:1.0.0-alpha3'
 }

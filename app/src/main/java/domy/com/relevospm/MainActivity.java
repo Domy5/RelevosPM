@@ -8,6 +8,7 @@ import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -18,6 +19,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -65,6 +67,9 @@ public class MainActivity extends AppCompatActivity {
     private TextView tv2;
     private TextView tv3;
 
+    private CheckBox cb;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -83,6 +88,8 @@ public class MainActivity extends AppCompatActivity {
         tv1 = (TextView) findViewById(R.id.datosAgente_1);
         tv2 = (TextView) findViewById(R.id.datosAgente_2);
         tv3 = (TextView) findViewById(R.id.datosAgente_3);
+
+        cb = (CheckBox) findViewById(R.id.checkBoxCambios);
 
 
         /*
@@ -226,41 +233,22 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public void PintarCalendario(int i) {
+    public void PintarCalendario(int grupo) {
 
         List decorators = new ArrayList<>();
 
-        DaysDecorator1 g1 = new DaysDecorator1();
-        DaysDecorator3 g3 = new DaysDecorator3();
-        DaysDecorator5 g5 = new DaysDecorator5();
-        DaysDecoratorV Vacas = new DaysDecoratorV();
+        DaysDecorator g1 = new DaysDecorator();
 
-       // Vacas.setFecha1("2016-06-10");
-      //  Vacas.setFecha2("2016-06-15");
+        // Vacas.setFecha1("2016-06-10");
+        //  Vacas.setFecha2("2016-06-15");
 
-        Vacas.setFecha1(datosAgente.DatosAgente().getVACACIONES_I());
-        Vacas.setFecha2(datosAgente.DatosAgente().getVACACIONES_T());
-
+        g1.setFechaV1(datosAgente.DatosAgente().getVACACIONES_I());
+        g1.setFechaV2(datosAgente.DatosAgente().getVACACIONES_T());
+        g1.setGrupo(grupo);
 
         decorators.clear();
 
-        switch (i) {
-
-            case 1:
-                decorators.add(g1);
-                break;
-            case 3:
-                decorators.add(g3);
-                break;
-            case 5:
-                decorators.add(g5);
-                break;
-            default:
-
-                break;
-        }
-
-        decorators.add(Vacas);
+        decorators.add(g1);
 
         calendar.setDecorators(decorators);
         calendar.refreshCalendar(calendar.getCurrentCalendar());
@@ -271,33 +259,30 @@ public class MainActivity extends AppCompatActivity {
 
         List decorators = new ArrayList<>();
 
-        DaysDecorator1 g1 = new DaysDecorator1();
-        DaysDecorator3 g3 = new DaysDecorator3();
-        DaysDecorator5 g5 = new DaysDecorator5();
-        DaysDecoratorV Vacas = new DaysDecoratorV();
+        DaysDecorator g1 = new DaysDecorator();
 
-        Vacas.setFecha1(datosAgente.DatosAgente().getVACACIONES_I());
-        Vacas.setFecha2(datosAgente.DatosAgente().getVACACIONES_T());
+        g1.setFechaV1(datosAgente.DatosAgente().getVACACIONES_I());
+        g1.setFechaV2(datosAgente.DatosAgente().getVACACIONES_T());
 
         decorators.clear();
 
         switch (v.getId()) {
 
             case R.id.G1:
-                decorators.add(g1);
+                g1.setGrupo(1);
                 break;
             case R.id.G3:
-                decorators.add(g3);
+                g1.setGrupo(3);
                 break;
             case R.id.G5:
-                decorators.add(g5);
+                g1.setGrupo(5);
                 break;
             default:
 
                 break;
         }
 
-        decorators.add(Vacas);
+        decorators.add(g1);
 
         calendar.setDecorators(decorators);
         calendar.refreshCalendar(calendar.getCurrentCalendar());
@@ -341,6 +326,15 @@ public class MainActivity extends AppCompatActivity {
                                 "Libra Grupo : " + GL + "\n" +
                                 "Trabaja Grupo : " + GRUPOTRABAJO
                         , Toast.LENGTH_SHORT).show();
+
+                if (cb.isChecked()) {
+                    FragmentManager fragmentManager = getSupportFragmentManager();
+                    DialogoCambioDia dialogo = new DialogoCambioDia();
+                    dialogo.setFecha("hola", FECHA);
+                    dialogo.show(fragmentManager, "tagPersonalizado");
+                }
+
+
 
               //  Calendar currentCalendar1 = Calendar.getInstance(Locale.getDefault());
               //  currentCalendar1.set(Anio_selecion_Calendar, Mes_selecion_Calendar, Dia_selecion_Calendar);

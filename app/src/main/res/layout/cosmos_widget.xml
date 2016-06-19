@@ -15,26 +15,10 @@
         android:orientation="vertical"
         android:padding="5dp">
 
-        <TextView
-            android:id="@+id/LblMensaje"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text=""
-            android:textAlignment="center"
-            android:textColor="#000000" />
-
-        <TextView
-            android:id="@+id/LblHora"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text=""
-            android:textAlignment="center"
-            android:textColor="#000000" />
-
         <LinearLayout
             android:id="@+id/Frm2Widget"
             android:layout_width="match_parent"
-            android:layout_height="32dp"
+            android:layout_height="wrap_content"
             android:background="@color/blanco"
             android:orientation="horizontal"
             android:padding="5dp">
@@ -54,8 +38,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:background="@color/blanco"
-                android:textColor="#000000"
-                android:textStyle="bold"/>
+                android:textColor="#000000" />
 
             <Button
 
@@ -64,8 +47,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:background="@color/blanco"
-                android:textColor="#000000"
-                android:textStyle="bold" />
+                android:textColor="#000000" />
 
             <Button
 
@@ -74,8 +56,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:background="@color/blanco"
-                android:textColor="#000000"
-                android:textStyle="bold" />
+                android:textColor="#000000" />
         </LinearLayout>
 
         <LinearLayout
@@ -91,7 +72,7 @@
                 style="?android:attr/buttonBarButtonStyle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
+                android:layout_weight="80"
                 android:background="@color/grey"
                 android:text="@string/actualizar"
                 android:textColor="#000000" />
@@ -100,10 +81,11 @@
             <Button
                 android:id="@+id/config"
                 style="?android:attr/buttonBarButtonStyle"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:drawableRight="@android:drawable/ic_menu_preferences"
-                android:background="@color/grey"/>
+                android:background="@color/grey"
+                android:layout_weight="20" />
         </LinearLayout>
 
     </LinearLayout>

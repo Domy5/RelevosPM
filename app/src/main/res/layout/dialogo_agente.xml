@@ -7,10 +7,10 @@
 
     <TextView
         android:id="@+id/nombre"
-        android:text="Nombre :"
+        android:text="Nombre: "
         android:textColor="#FF0000"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="wrap_content" />
 
     <Button
         android:layout_width="match_parent"
@@ -22,41 +22,41 @@
         android:id="@+id/turno"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="Turno :" />
+        android:text="Turno: " />
     <TextView
         android:id="@+id/grupo"
-        android:text="Grupo :"
+        android:text="Grupo: "
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
 
     <TextView
         android:id="@+id/Vi"
-        android:text="V i :"
+        android:text="V i: "
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
     <TextView
         android:id="@+id/Vt"
-        android:text="V t :"
+        android:text="V t: "
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
     <TextView
         android:id="@+id/cambio_con"
-        android:text="Cambio con :"
+        android:text="Cambio con: "
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
     <TextView
         android:id="@+id/por"
-        android:text="Por :"
+        android:text="Por: "
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
     <TextView
         android:id="@+id/compesa"
-        android:text="Compesa :"
+        android:text="Compesa: "
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 

@@ -12,7 +12,7 @@ public class DaysDecorator1 implements DayDecorator {
 
     @Override
     public void decorate(DayView dayView){
-        {
+
             //  if (!isPastDay(dayView.getDate())) {
             if (GrupoLibra(dayView.getDate(),1)) {
 
@@ -20,36 +20,6 @@ public class DaysDecorator1 implements DayDecorator {
 
                 //    dayView.setTextColor(0xFF0000);
             }
-        }
-    }
-
-    public void decorate(DayView dayView,int grupo) {
-      //  if (!isPastDay(dayView.getDate())) {
-            if (GrupoLibra(dayView.getDate(),grupo)) {
-
-               dayView.setBackgroundColor(0xFF55FF00);
-
-            //    dayView.setTextColor(0xFF0000);
-        }
-    }
-
-    private boolean isPastDay(Date date) {
-        Calendar c = Calendar.getInstance();
-
-        // set the calendar to start of today
-        c.set(Calendar.HOUR_OF_DAY, 0);
-        c.set(Calendar.MINUTE, 0);
-        c.set(Calendar.SECOND, 0);
-        c.set(Calendar.MILLISECOND, 0);
-
-        // and get that as a Date
-        Date today = c.getTime();
-
-        // test your condition, if Date specified is before today
-        if (date.before(today)) {
-            return true;
-        }
-        return false;
     }
 
     private boolean GrupoLibra(Date date, int grupo) {
