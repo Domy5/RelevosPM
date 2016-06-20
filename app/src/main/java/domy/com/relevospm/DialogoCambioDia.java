@@ -52,12 +52,17 @@ public class DialogoCambioDia extends DialogFragment {
 
         builder.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
+                MainActivity.isFabOpen = false;
+
+                MainActivity.fab.startAnimation(MainActivity.rotate_backward);
                 dialog.cancel();
             }
         });
 
         builder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
+
+                MainActivity.fab.startAnimation(MainActivity.rotate_backward);
                 dialog.cancel();
             }
         });

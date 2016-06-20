@@ -4,8 +4,10 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -18,6 +20,8 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.TextView;
@@ -40,7 +44,7 @@ import domy.com.relevospm.Utiles.Dia4y2;
 import domy.com.relevospm.Utiles.UpdateApp;
 import domy.com.relevospm.login.Login;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener{
 
     private static final String TAG = "PERMISOS";
 
@@ -69,6 +73,9 @@ public class MainActivity extends AppCompatActivity {
 
     private CheckBox cb;
 
+    public static Boolean isFabOpen = false;
+    public static FloatingActionButton fab;
+    public static Animation rotate_forward,rotate_backward;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -231,6 +238,13 @@ public class MainActivity extends AppCompatActivity {
 
         initializeCalendar();
 
+        fab = (FloatingActionButton)findViewById(R.id.botonFlotante);
+
+        rotate_forward = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.rotate_forward);
+        rotate_backward = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.rotate_backward);
+        fab.setOnClickListener(this);
+
+
     }
 
     public void PintarCalendario(int grupo) {
@@ -300,13 +314,19 @@ public class MainActivity extends AppCompatActivity {
         calendar.setShowOverflowDate(true);
 
         SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+        String D[] = df.format(calendar.getCurrentCalendar().getTime()).split("/");
 
-        Log.v("jododo", df.format(calendar.getCurrentCalendar().getTime()));
+        int Dia = Integer.parseInt(D[0]);
+        int Mes = Integer.parseInt(D[1]);
+        int Anio = Integer.parseInt(D[2]);
+
+        FECHA = Dia + "/" + Mes + "/" + Anio;
 
 
         PintarCalendario(datosAgente.DatosAgente().getGRUPO());
 
         calendar.refreshCalendar(currentCalendar);
+
 
         calendar.setCalendarListener(new CalendarListener() {
             @Override
@@ -505,5 +525,35 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
+    }
+
+    @Override
+    public void onClick(View v) {
+        int id = v.getId();
+        switch (id){
+            case R.id.botonFlotante:
+
+                animateFAB();
+                break;
+        }
+    }
+
+    public void animateFAB(){
+
+        if(isFabOpen){
+
+            fab.startAnimation(rotate_backward);
+            isFabOpen = false;
+
+        } else {
+
+            fab.startAnimation(rotate_forward);
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            DialogoCambioDia dialogo = new DialogoCambioDia();
+            dialogo.setFecha("hola", FECHA);
+            dialogo.show(fragmentManager, "tagPersonalizado");
+            isFabOpen = true;
+
+        }
     }
 }

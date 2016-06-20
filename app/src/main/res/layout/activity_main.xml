@@ -9,7 +9,7 @@
     tools:context=".MainActivity">
 
     <!-- Contenido de la actividad -->
-    <include layout="@layout/content_layout" />
+    <include layout="@layout/boton_flotanate" />
 
     <!-- Navigation View -->
     <android.support.design.widget.NavigationView
