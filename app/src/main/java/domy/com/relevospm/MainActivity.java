@@ -55,9 +55,9 @@ public class MainActivity extends AppCompatActivity {
     private DrawerLayout drawerLayout;
     private NavigationView navView;
 
-    private int Dia_selecion_Calendar;
-    private int Mes_selecion_Calendar;
-    private int Anio_selecion_Calendar;
+    //private int Dia_selecion_Calendar;
+    //private int Mes_selecion_Calendar;
+    // private int Anio_selecion_Calendar;
 
     private String dne;
 
@@ -229,7 +229,7 @@ public class MainActivity extends AppCompatActivity {
         tv3.setText(Html.fromHtml(text3), TextView.BufferType.SPANNABLE);
 
 
-        initializeCalendar(Integer.parseInt(String.valueOf(datosAgente.DatosAgente().getGRUPO())));
+        initializeCalendar();
 
     }
 
@@ -289,7 +289,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public void initializeCalendar(int grupo) {
+    public void initializeCalendar() {
         calendar = (CustomCalendarView) findViewById(R.id.calendar_viewNEW);
 
         final Calendar currentCalendar = Calendar.getInstance(Locale.getDefault());
@@ -304,9 +304,10 @@ public class MainActivity extends AppCompatActivity {
         Log.v("jododo", df.format(calendar.getCurrentCalendar().getTime()));
 
 
-        PintarCalendario(grupo);
+        PintarCalendario(datosAgente.DatosAgente().getGRUPO());
 
         calendar.refreshCalendar(currentCalendar);
+
         calendar.setCalendarListener(new CalendarListener() {
             @Override
             public void onDateSelected(Date date) {
@@ -314,9 +315,9 @@ public class MainActivity extends AppCompatActivity {
 
                 String D[] = df.format(date).split("-");
 
-                Dia_selecion_Calendar = Integer.parseInt(D[0]);
-                Mes_selecion_Calendar = Integer.parseInt(D[1]);
-                Anio_selecion_Calendar = Integer.parseInt(D[2]);
+                int Dia_selecion_Calendar = Integer.parseInt(D[0]);
+                int Mes_selecion_Calendar = Integer.parseInt(D[1]);
+                int Anio_selecion_Calendar = Integer.parseInt(D[2]);
 
                 int GL = Dia4y2.GrupoLibra(Dia_selecion_Calendar, Mes_selecion_Calendar, Anio_selecion_Calendar);
                 String GT = Integer.toString(Dia4y2.GrupoTrabaja(Dia_selecion_Calendar, Mes_selecion_Calendar, Anio_selecion_Calendar));
@@ -338,7 +339,26 @@ public class MainActivity extends AppCompatActivity {
                     dialogo.setFecha("hola", FECHA);
                     dialogo.show(fragmentManager, "tagPersonalizado");
                 }
+                //calendar.refreshCalendar(calendar.getCurrentCalendar());
+                PintarCalendario(datosAgente.DatosAgente().getGRUPO());  // pinta para que al selecionar no se borre lo pintado
 
+                /*
+                calendar.setOnLongClickListener(new CalendarListener() {
+                    @Override
+                    public void onDateSelected(Date date) {
+
+
+
+
+                    }
+
+                    @Override
+                    public void onMonthChanged(Date date) {
+
+                    }
+                });
+
+                */
 
                 //  Calendar currentCalendar1 = Calendar.getInstance(Locale.getDefault());
                 //  currentCalendar1.set(Anio_selecion_Calendar, Mes_selecion_Calendar, Dia_selecion_Calendar);
@@ -352,9 +372,9 @@ public class MainActivity extends AppCompatActivity {
 
                 String D[] = df.format(date).split("-");
 
-                Dia_selecion_Calendar = Integer.parseInt(D[0]);
-                Mes_selecion_Calendar = Integer.parseInt(D[1]);
-                Anio_selecion_Calendar = Integer.parseInt(D[2]);
+                int Dia_selecion_Calendar = Integer.parseInt(D[0]);
+                int Mes_selecion_Calendar = Integer.parseInt(D[1]);
+                int Anio_selecion_Calendar = Integer.parseInt(D[2]);
 
                 String fecha = String.valueOf(1) + "/" + String.valueOf(Mes_selecion_Calendar) + "/" + String.valueOf(Anio_selecion_Calendar);
 
@@ -362,7 +382,7 @@ public class MainActivity extends AppCompatActivity {
 
                 datosAgente.setAgente(dne, fecha);
 
-                PintarCalendario(Integer.parseInt(String.valueOf(datosAgente.DatosAgente().getGRUPO())));
+                PintarCalendario(datosAgente.DatosAgente().getGRUPO());
 
                 String text1 = "DNE: <font color='#FFFFFF'>" + datosAgente.DatosAgente().getDNE() + "</font> GRUPO: <font color='#FFFFFF'>" + datosAgente.DatosAgente().getGRUPO() + "</font> TURNO: <font color='#FFFFFF'>" + datosAgente.DatosAgente().getTURNO() + "</font>";
                 String text2 = "V I: <font color='#FFFFFF'>" + datosAgente.DatosAgente().getVACACIONES_I() + "</font> V T: <font color='#FFFFFF'>" + datosAgente.DatosAgente().getVACACIONES_T() + "</font>";
@@ -422,16 +442,22 @@ public class MainActivity extends AppCompatActivity {
 
         switch (item.getItemId()) {
             case android.R.id.home:
+
                 drawerLayout.openDrawer(GravityCompat.START);
-                break;
+                return true;
             case R.id.action_settings:
+
                 Intent i = new Intent(MainActivity.this, Login.class);
                 i.putExtra("AutoLogin", false);
                 startActivity(i);
                 return true;
-        }
+            case R.id.action_salir:
+                finish();
 
-        return super.onOptionsItemSelected(item);
+            default:
+
+                return super.onOptionsItemSelected(item);
+        }
     }
 
     @Override

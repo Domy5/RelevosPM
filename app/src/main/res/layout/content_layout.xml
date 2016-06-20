@@ -195,6 +195,7 @@
                 android:onClick="lanzar_dia_hoy"
                 android:text="@string/Ver_Hoy" />
 
+
             <Button
                 android:id="@+id/Boton_Ver_Lineas"
                 android:layout_width="match_parent"
@@ -204,5 +205,13 @@
 
         </LinearLayout>
     </ScrollView>
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/botonFlotante"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_button_accept"
+            app:fabSize="normal"
+            app:borderWidth="0dp"
+            />
     </FrameLayout>
 </LinearLayout>

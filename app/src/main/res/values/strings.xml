@@ -4,6 +4,9 @@
     <string name="app_Relevos">Relevos PCC</string>
     <string name="action_Opciones">"Opciones de Registro"</string>
     <string name="action_Info">"Infor&#8230;"</string>
+    <string name="action_Salir">"Salir"</string>
+
+
     <string name="P0">""</string>
 
     <string name="L_1">"L 1"</string>
