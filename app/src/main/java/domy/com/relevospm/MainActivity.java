@@ -214,7 +214,7 @@ public class MainActivity extends AppCompatActivity {
         int mes = c.get(Calendar.MONTH) + 1;
         int annio = c.get(Calendar.YEAR);
 
-        String fecha=  String.valueOf(dia)+"/"+ String.valueOf(mes)+"/"+ String.valueOf(annio);
+        String fecha = String.valueOf(dia) + "/" + String.valueOf(mes) + "/" + String.valueOf(annio);
 
         datosAgente = new DatosAgente();
 
@@ -222,7 +222,7 @@ public class MainActivity extends AppCompatActivity {
 
         String text1 = "DNE: <font color='#FFFFFF'>" + datosAgente.DatosAgente().getDNE() + "</font> GRUPO: <font color='#FFFFFF'>" + datosAgente.DatosAgente().getGRUPO() + "</font> TURNO: <font color='#FFFFFF'>" + datosAgente.DatosAgente().getTURNO() + "</font>";
         String text2 = "V I: <font color='#FFFFFF'>" + datosAgente.DatosAgente().getVACACIONES_I() + "</font> V T: <font color='#FFFFFF'>" + datosAgente.DatosAgente().getVACACIONES_T() + "</font>";
-        String text3 = "CAMBIO CON: <font color='#FFFFFF'>" + datosAgente.DatosAgente().getCAMBIO_CON()+ "</font> POR: <font color='#FFFFFF'>" + datosAgente.DatosAgente().getPOR() + "</font> COMPENSA: <font color='#FFFFFF'>" + datosAgente.DatosAgente().getCOMPENSA() + "</font>";
+        String text3 = "CAMBIO CON: <font color='#FFFFFF'>" + datosAgente.DatosAgente().getCAMBIO_CON() + "</font> POR: <font color='#FFFFFF'>" + datosAgente.DatosAgente().getPOR() + "</font> COMPENSA: <font color='#FFFFFF'>" + datosAgente.DatosAgente().getCOMPENSA() + "</font>";
 
         tv1.setText(Html.fromHtml(text1), TextView.BufferType.SPANNABLE);
         tv2.setText(Html.fromHtml(text2), TextView.BufferType.SPANNABLE);
@@ -299,6 +299,11 @@ public class MainActivity extends AppCompatActivity {
         calendar.setFirstDayOfWeek(Calendar.MONDAY);
         calendar.setShowOverflowDate(true);
 
+        SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+
+        Log.v("jododo", df.format(calendar.getCurrentCalendar().getTime()));
+
+
         PintarCalendario(grupo);
 
         calendar.refreshCalendar(currentCalendar);
@@ -335,10 +340,9 @@ public class MainActivity extends AppCompatActivity {
                 }
 
 
-
-              //  Calendar currentCalendar1 = Calendar.getInstance(Locale.getDefault());
-              //  currentCalendar1.set(Anio_selecion_Calendar, Mes_selecion_Calendar, Dia_selecion_Calendar);
-             //   calendar.refreshCalendar(currentCalendar1);
+                //  Calendar currentCalendar1 = Calendar.getInstance(Locale.getDefault());
+                //  currentCalendar1.set(Anio_selecion_Calendar, Mes_selecion_Calendar, Dia_selecion_Calendar);
+                //   calendar.refreshCalendar(currentCalendar1);
 
             }
 
@@ -352,7 +356,7 @@ public class MainActivity extends AppCompatActivity {
                 Mes_selecion_Calendar = Integer.parseInt(D[1]);
                 Anio_selecion_Calendar = Integer.parseInt(D[2]);
 
-                String fecha=  String.valueOf(1)+"/"+ String.valueOf(Mes_selecion_Calendar)+"/"+ String.valueOf(Anio_selecion_Calendar);
+                String fecha = String.valueOf(1) + "/" + String.valueOf(Mes_selecion_Calendar) + "/" + String.valueOf(Anio_selecion_Calendar);
 
                 datosAgente = new DatosAgente();
 
@@ -362,7 +366,7 @@ public class MainActivity extends AppCompatActivity {
 
                 String text1 = "DNE: <font color='#FFFFFF'>" + datosAgente.DatosAgente().getDNE() + "</font> GRUPO: <font color='#FFFFFF'>" + datosAgente.DatosAgente().getGRUPO() + "</font> TURNO: <font color='#FFFFFF'>" + datosAgente.DatosAgente().getTURNO() + "</font>";
                 String text2 = "V I: <font color='#FFFFFF'>" + datosAgente.DatosAgente().getVACACIONES_I() + "</font> V T: <font color='#FFFFFF'>" + datosAgente.DatosAgente().getVACACIONES_T() + "</font>";
-                String text3 = "CAMBIO CON: <font color='#FFFFFF'>" + datosAgente.DatosAgente().getCAMBIO_CON()+ "</font> POR: <font color='#FFFFFF'>" + datosAgente.DatosAgente().getPOR() + "</font> COMPENSA: <font color='#FFFFFF'>" + datosAgente.DatosAgente().getCOMPENSA() + "</font>";
+                String text3 = "CAMBIO CON: <font color='#FFFFFF'>" + datosAgente.DatosAgente().getCAMBIO_CON() + "</font> POR: <font color='#FFFFFF'>" + datosAgente.DatosAgente().getPOR() + "</font> COMPENSA: <font color='#FFFFFF'>" + datosAgente.DatosAgente().getCOMPENSA() + "</font>";
 
                 tv1.setText(Html.fromHtml(text1), TextView.BufferType.SPANNABLE);
                 tv2.setText(Html.fromHtml(text2), TextView.BufferType.SPANNABLE);
@@ -388,6 +392,7 @@ public class MainActivity extends AppCompatActivity {
         i.putExtra("FECHA", FECHA);
         startActivity(i);
     }
+
     public void lanzar_dia_hoy(View view) {
 
         FECHA = DiaDeHoy;
@@ -408,6 +413,7 @@ public class MainActivity extends AppCompatActivity {
         i.putExtra("FECHA", FECHA);
         startActivity(i);
     }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
@@ -427,12 +433,14 @@ public class MainActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
+
     @Override
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
@@ -442,26 +450,32 @@ public class MainActivity extends AppCompatActivity {
         }
 
     }
+
     @Override
     protected void onStart() {
         super.onStart();
     }
+
     @Override
     protected void onRestart() {
         super.onRestart();
     }
+
     @Override
     protected void onResume() {
         super.onResume();
     }
+
     @Override
     protected void onPause() {
         super.onPause();
     }
+
     @Override
     protected void onStop() {
         super.onStop();
     }
+
     @Override
     protected void onDestroy() {
         super.onDestroy();
