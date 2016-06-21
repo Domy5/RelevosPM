@@ -269,7 +269,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                                 "Trabaja Grupo : " + GRUPOTRABAJO
                         , Toast.LENGTH_SHORT).show();
 
-            /*    Snackbar.make(v, FECHA + "\n" +
+                Snackbar.make(drawerLayout, FECHA + "\n" +
                         "Libra Grupo : " + GL + "\n" +
                         "Trabaja Grupo : " + GRUPOTRABAJO, Snackbar.LENGTH_LONG)
                         .setAction("ok", new View.OnClickListener() {
@@ -278,7 +278,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                                 Log.i("Snackbar", "Pulsada acción snackbar!");
                             }
                         })
-                        .show();*/
+                        .show();
 
                 //calendar.refreshCalendar(calendar.getCurrentCalendar());
 
