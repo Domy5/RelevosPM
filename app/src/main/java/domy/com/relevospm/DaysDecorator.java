@@ -1,6 +1,7 @@
 package domy.com.relevospm;
 
 import android.graphics.Color;
+import android.util.Log;
 
 import com.imanoweb.calendarview.DayDecorator;
 import com.imanoweb.calendarview.DayView;
@@ -29,23 +30,18 @@ public class DaysDecorator implements DayDecorator {
     @Override
     public void decorate(DayView dayView) {
 
-        String D1[] = fecha.split("/");
+        Log.v("no me sale",fecha + " "+dayView.getDate());
 
-        int Dia1 = Integer.parseInt(D1[2]);
-        int Mes1 = Integer.parseInt(D1[1]);
-        int anio1 = Integer.parseInt(D1[0]);
+      //  AgenteDAO agenteDao = new AgenteDAO();
 
-        AgenteDAO agenteDao = new AgenteDAO();
+      //  agenteDao.actualizarDatosAgente(dne,fecha);
+      //  Agente agente = agenteDao.getAgente();
 
-        agenteDao.actualizarDatosAgente(dne,fecha);
-        Agente agente = agenteDao.getAgente();
-
-        agente.getDNE();
+      //  agente.getDNE();//ejemplo
 
         String F[] = fecha.split("/");
 
-        Utiles.periodo_Mes(F[0],F[1]);
-
+      //  Log.v("no ", Utiles.periodo_Mes(F[0],F[1]));
 
         switch (grupo) {
 

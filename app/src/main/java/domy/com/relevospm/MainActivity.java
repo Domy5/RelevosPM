@@ -9,6 +9,7 @@ import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.view.GravityCompat;
@@ -268,6 +269,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                                 "Trabaja Grupo : " + GRUPOTRABAJO
                         , Toast.LENGTH_SHORT).show();
 
+            /*    Snackbar.make(v, FECHA + "\n" +
+                        "Libra Grupo : " + GL + "\n" +
+                        "Trabaja Grupo : " + GRUPOTRABAJO, Snackbar.LENGTH_LONG)
+                        .setAction("ok", new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                Log.i("Snackbar", "Pulsada acción snackbar!");
+                            }
+                        })
+                        .show();*/
+
                 //calendar.refreshCalendar(calendar.getCurrentCalendar());
 
             }
@@ -327,10 +339,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     public void PintarCalendario(View v) {
+        // SimpleDateFormat ss = new SimpleDateFormat("dd/MM/yyyy");
+       // String fecha = ss.format(calendar.getCurrentCalendar());
+       // String fecha = "21/6/2016";
+
+        SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+        String fecha = df.format(calendar.getCurrentCalendar().getTime());
 
         List decorators = new ArrayList<>();
 
         DaysDecorator g1 = new DaysDecorator();
+
+        g1.setFecha(fecha);
 
         decorators.clear();
 
@@ -485,11 +505,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         } else {
 
-            fab.startAnimation(rotate_forward);
+
             FragmentManager fragmentManager = getSupportFragmentManager();
             DialogoCambioDia dialogo = new DialogoCambioDia();
             dialogo.setFecha("hola", FECHA);
             dialogo.show(fragmentManager, "tagPersonalizado");
+            fab.startAnimation(rotate_forward);
             isFabOpen = true;
 
         }

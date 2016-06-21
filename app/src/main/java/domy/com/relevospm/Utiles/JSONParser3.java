@@ -66,7 +66,7 @@ public class JSONParser3 {
                 conn.setReadTimeout(10000);
                 conn.setConnectTimeout(15000);
 
-                //conn.connect(); // todo aqui alguna vez no concta.. que podemos hacer
+                conn.connect(); // todo aqui alguna vez no concta.. que podemos hacer
 
                 paramsString = sbParams.toString();
 
