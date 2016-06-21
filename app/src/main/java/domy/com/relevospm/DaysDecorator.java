@@ -11,50 +11,68 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 
 import domy.com.relevospm.Utiles.Dia4y2;
+import domy.com.relevospm.Utiles.Utiles;
 
 public class DaysDecorator implements DayDecorator {
 
-    public String getFechaV1() {
-        return fechaV1;
-    }
+    private DatosAgente datosAgente;
 
-    public void setFechaV1(String fecha1) {
-        this.fechaV1 = fecha1;
-    }
+    private String fecha ;
+    private String dne;
+    private int grupo;
 
-    public String getFechaV2() {
-        return fechaV2;
-    }
+    public void setGrupo(int grupo) {this.grupo = grupo;}
 
-    public void setFechaV2(String fecha2) {
-        this.fechaV2 = fecha2;
-    }
-
-    private String fechaV1 ;
-    private String fechaV2 ;
-    private int Grupo;
-
-
-    public int getGrupo() {
-        return Grupo;
-    }
-    public void setGrupo(int grupo) {
-        Grupo = grupo;
-    }
-
-
-
+    public String getDne() {return dne;}
+    public void setDne(String dne) {this.dne = dne;}
+    public String getFecha() {return fecha;}
+    public void setFecha(String fecha) {this.fecha = fecha;}
 
     @Override
     public void decorate(DayView dayView) {
 
-        String D1[] = fechaV1.split("-");
+        String D1[] = fecha.split("/");
 
         int Dia1 = Integer.parseInt(D1[2]);
         int Mes1 = Integer.parseInt(D1[1]);
         int anio1 = Integer.parseInt(D1[0]);
 
-        String D2[] = fechaV2.split("-");
+        datosAgente = new DatosAgente();
+
+        datosAgente.setAgente(dne, fecha);
+
+        datosAgente.DatosAgente().getDNE();
+
+        String F[] = fecha.split("/");
+
+        Utiles.periodo_Mes(F[0],F[1]);
+
+
+
+        switch (grupo) {
+
+            case 1:
+                if (GrupoLibra(dayView.getDate(),grupo)) {
+                    dayView.setBackgroundColor(0xFF55FF00);
+                }
+                break;
+            case 3:
+                if (GrupoLibra(dayView.getDate(),grupo)) {
+                    dayView.setBackgroundColor(0xff0400ff);
+                }
+                break;
+            case 5:
+                if (GrupoLibra(dayView.getDate(),grupo)) {
+                    dayView.setBackgroundColor(0xFFFF0008);
+                }
+                break;
+            default:
+
+                break;
+        }
+    }
+/*
+        String D2[] = fechaV2.split("/");
 
         int Dia2 = Integer.parseInt(D2[2]);
         int Mes2 = Integer.parseInt(D2[1]);
@@ -72,29 +90,9 @@ public class DaysDecorator implements DayDecorator {
             //dayView.setBackgroundResource(R.drawable.menu);
         }
 
-        switch (Grupo) {
 
-            case 1:
-                if (GrupoLibra(dayView.getDate(),Grupo)) {
-                dayView.setBackgroundColor(0xFF55FF00);
-            }
-                break;
-            case 3:
-                if (GrupoLibra(dayView.getDate(),Grupo)) {
-                dayView.setBackgroundColor(0xff0400ff);
-            }
-                break;
-            case 5:
-                if (GrupoLibra(dayView.getDate(),Grupo)) {
-                dayView.setBackgroundColor(0xFFFF0008);
-            }
-                break;
-            default:
 
-                break;
-        }
-
-    }
+    }*/
 
     private boolean GrupoLibra(Date date, int grupo) {
 

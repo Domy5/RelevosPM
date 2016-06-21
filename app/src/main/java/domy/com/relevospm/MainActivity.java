@@ -59,10 +59,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private DrawerLayout drawerLayout;
     private NavigationView navView;
 
-    //private int Dia_selecion_Calendar;
-    //private int Mes_selecion_Calendar;
-    // private int Anio_selecion_Calendar;
-
     private String dne;
 
     private DatosAgente datosAgente;
@@ -98,31 +94,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         cb = (CheckBox) findViewById(R.id.checkBoxCambios);
 
-
-        /*
-        //Eventos del Drawer Layout
+        /*//Eventos del Drawer Layout
         drawerLayout.setDrawerListener(new DrawerLayout.DrawerListener() {
             @Override
-            public void onDrawerSlide(View drawerView, float slideOffset) {
-
-            }
-
+            public void onDrawerSlide(View drawerView, float slideOffset) {}
             @Override
-            public void onDrawerOpened(View drawerView) {
-
-            }
-
+            public void onDrawerOpened(View drawerView) { }
             @Override
-            public void onDrawerClosed(View drawerView) {
-
-            }
-
+            public void onDrawerClosed(View drawerView) {}
             @Override
-            public void onDrawerStateChanged(int newState) {
-
-            }
-        });
-        */
+            public void onDrawerStateChanged(int newState) {}});*/
 
         navView = (NavigationView) findViewById(R.id.navview);
         navView.setNavigationItemSelectedListener(
@@ -235,7 +216,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         tv2.setText(Html.fromHtml(text2), TextView.BufferType.SPANNABLE);
         tv3.setText(Html.fromHtml(text3), TextView.BufferType.SPANNABLE);
 
-
         initializeCalendar();
 
         fab = (FloatingActionButton)findViewById(R.id.botonFlotante);
@@ -246,63 +226,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
     }
-
-    public void PintarCalendario(int grupo) {
-
-        List decorators = new ArrayList<>();
-
-        DaysDecorator g1 = new DaysDecorator();
-
-        // Vacas.setFecha1("2016-06-10");
-        //  Vacas.setFecha2("2016-06-15");
-
-        g1.setFechaV1(datosAgente.DatosAgente().getVACACIONES_I());
-        g1.setFechaV2(datosAgente.DatosAgente().getVACACIONES_T());
-        g1.setGrupo(grupo);
-
-        decorators.clear();
-
-        decorators.add(g1);
-
-        calendar.setDecorators(decorators);
-        calendar.refreshCalendar(calendar.getCurrentCalendar());
-
-    }
-
-    public void PintarCalendario(View v) {
-
-        List decorators = new ArrayList<>();
-
-        DaysDecorator g1 = new DaysDecorator();
-
-        g1.setFechaV1(datosAgente.DatosAgente().getVACACIONES_I());
-        g1.setFechaV2(datosAgente.DatosAgente().getVACACIONES_T());
-
-        decorators.clear();
-
-        switch (v.getId()) {
-
-            case R.id.G1:
-                g1.setGrupo(1);
-                break;
-            case R.id.G3:
-                g1.setGrupo(3);
-                break;
-            case R.id.G5:
-                g1.setGrupo(5);
-                break;
-            default:
-
-                break;
-        }
-
-        decorators.add(g1);
-
-        calendar.setDecorators(decorators);
-        calendar.refreshCalendar(calendar.getCurrentCalendar());
-
-    }
-
     public void initializeCalendar() {
         calendar = (CustomCalendarView) findViewById(R.id.calendar_viewNEW);
 
@@ -321,19 +244,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         int Anio = Integer.parseInt(D[2]);
 
         FECHA = Dia + "/" + Mes + "/" + Anio;
-
-
-        PintarCalendario(datosAgente.DatosAgente().getGRUPO());
+        //PintarCalendario(datosAgente.DatosAgente().getGRUPO());
+        PintarCalendario(dne,FECHA);
 
         calendar.refreshCalendar(currentCalendar);
-
 
         calendar.setCalendarListener(new CalendarListener() {
             @Override
             public void onDateSelected(Date date) {
-                SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy");
+                SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
 
-                String D[] = df.format(date).split("-");
+                String D[] = df.format(date).split("/");
 
                 int Dia_selecion_Calendar = Integer.parseInt(D[0]);
                 int Mes_selecion_Calendar = Integer.parseInt(D[1]);
@@ -360,49 +281,28 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     dialogo.show(fragmentManager, "tagPersonalizado");
                 }
                 //calendar.refreshCalendar(calendar.getCurrentCalendar());
-                PintarCalendario(datosAgente.DatosAgente().getGRUPO());  // pinta para que al selecionar no se borre lo pintado
-
-                /*
-                calendar.setOnLongClickListener(new CalendarListener() {
-                    @Override
-                    public void onDateSelected(Date date) {
-
-
-
-
-                    }
-
-                    @Override
-                    public void onMonthChanged(Date date) {
-
-                    }
-                });
-
-                */
-
-                //  Calendar currentCalendar1 = Calendar.getInstance(Locale.getDefault());
-                //  currentCalendar1.set(Anio_selecion_Calendar, Mes_selecion_Calendar, Dia_selecion_Calendar);
-                //   calendar.refreshCalendar(currentCalendar1);
 
             }
 
             @Override
             public void onMonthChanged(Date date) {
-                SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy");
+                SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
 
-                String D[] = df.format(date).split("-");
+                String D[] = df.format(date).split("/");
 
                 int Dia_selecion_Calendar = Integer.parseInt(D[0]);
                 int Mes_selecion_Calendar = Integer.parseInt(D[1]);
                 int Anio_selecion_Calendar = Integer.parseInt(D[2]);
 
+                String fecha1 = String.valueOf(Dia_selecion_Calendar) + "/" + String.valueOf(Mes_selecion_Calendar) + "/" + String.valueOf(Anio_selecion_Calendar);
                 String fecha = String.valueOf(1) + "/" + String.valueOf(Mes_selecion_Calendar) + "/" + String.valueOf(Anio_selecion_Calendar);
 
                 datosAgente = new DatosAgente();
 
                 datosAgente.setAgente(dne, fecha);
 
-                PintarCalendario(datosAgente.DatosAgente().getGRUPO());
+                // PintarCalendario(datosAgente.DatosAgente().getGRUPO());
+                PintarCalendario(dne,fecha1);
 
                 String text1 = "DNE: <font color='#FFFFFF'>" + datosAgente.DatosAgente().getDNE() + "</font> GRUPO: <font color='#FFFFFF'>" + datosAgente.DatosAgente().getGRUPO() + "</font> TURNO: <font color='#FFFFFF'>" + datosAgente.DatosAgente().getTURNO() + "</font>";
                 String text2 = "V I: <font color='#FFFFFF'>" + datosAgente.DatosAgente().getVACACIONES_I() + "</font> V T: <font color='#FFFFFF'>" + datosAgente.DatosAgente().getVACACIONES_T() + "</font>";
@@ -412,10 +312,59 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 tv2.setText(Html.fromHtml(text2), TextView.BufferType.SPANNABLE);
                 tv3.setText(Html.fromHtml(text3), TextView.BufferType.SPANNABLE);
 
-                calendar.refreshCalendar(calendar.getCurrentCalendar());
+             //   calendar.refreshCalendar(calendar.getCurrentCalendar());
 
             }
         });
+
+    }
+
+    public void PintarCalendario(String dne,String fecha) {
+
+        List decorators = new ArrayList<>();
+
+        DaysDecorator g1 = new DaysDecorator();
+
+        g1.setDne(dne);
+        g1.setFecha(fecha);
+
+        decorators.clear();
+
+        decorators.add(g1);
+
+        calendar.setDecorators(decorators);
+        calendar.refreshCalendar(calendar.getCurrentCalendar());
+
+    }
+
+    public void PintarCalendario(View v) {
+
+        List decorators = new ArrayList<>();
+
+        DaysDecorator g1 = new DaysDecorator();
+
+        decorators.clear();
+
+        switch (v.getId()) {
+
+            case R.id.G1:
+                g1.setGrupo(1);
+                break;
+            case R.id.G3:
+                g1.setGrupo(3);
+                break;
+            case R.id.G5:
+                g1.setGrupo(5);
+                break;
+            default:
+
+                break;
+        }
+
+        decorators.add(g1);
+
+        calendar.setDecorators(decorators);
+        calendar.refreshCalendar(calendar.getCurrentCalendar());
 
     }
 

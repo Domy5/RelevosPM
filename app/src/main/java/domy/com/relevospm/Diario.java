@@ -11,6 +11,7 @@ import java.util.Vector;
 
 import domy.com.relevospm.Utiles.Dia4y2;
 import domy.com.relevospm.Utiles.JSONParser3;
+import domy.com.relevospm.Utiles.Utiles;
 import domy.com.relevospm.Utiles.dia;
 
 public class Diario {
@@ -37,26 +38,7 @@ public class Diario {
 
         GrupoLibra = Dia4y2.GrupoLibra(dia, mes, anho);
 
-        String a000_mes = null;
-
-        if (mes == 1) a000_mes = "a010_Enero";
-        else if (mes == 2) a000_mes = "a020_Febrero";
-        else if (mes == 3) a000_mes = "a030_Marzo";
-        else if (mes == 4) a000_mes = "a040_Abril";
-        else if (mes == 5) a000_mes = "a050_Mayo";
-        else if (mes == 6) a000_mes = "a060_Junio";
-        else if (mes == 7 && dia < 23) a000_mes = "a071_V1";
-        else if (mes == 7 && dia > 22) a000_mes = "a072_V2";
-        else if (mes == 8 && dia < 14) a000_mes = "a072_V2";
-        else if (mes == 8 && dia > 13) a000_mes = "a073_V3";
-        else if (mes == 9 && dia < 5) a000_mes = "a073_V3";
-        else if (mes == 9 && dia > 4 && dia < 27) a000_mes = "a074_V4";
-        else if (mes == 9 && dia > 25) a000_mes = "a090_Septiembre";
-        else if (mes == 10) a000_mes = "a100_Octubre";
-        else if (mes == 11) a000_mes = "a110_Noviembre";
-        else if (mes == 12) a000_mes = "a120_Diciembre";
-
-        String ordenSQLTrabajan = "SELECT * FROM " + a000_mes + " ORDER BY ESCALAFON ASC";
+        String ordenSQLTrabajan = "SELECT * FROM " + Utiles.periodo_Mes(F[0],F[1]) + " ORDER BY ESCALAFON ASC";
 
         ConsultaDiaSQL("UPDATE users SET inicios_widget = inicios_widget + 1 WHERE username = " + DNE);
 

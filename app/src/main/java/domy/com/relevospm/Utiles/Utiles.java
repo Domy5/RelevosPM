@@ -76,7 +76,7 @@ public class Utiles {
         @Override
         protected Boolean doInBackground(Void... params) {
 
-            for(int i=1; i<=10; i++) {
+            for (int i = 1; i <= 10; i++) {
                 try {
                     Thread.sleep(1000);
                 } catch (InterruptedException e) {
@@ -101,7 +101,7 @@ public class Utiles {
 
         @Override
         protected void onPostExecute(Boolean result) {
-            if(result){
+            if (result) {
                 progressDialog.dismiss();
             }
         }
@@ -118,6 +118,33 @@ public class Utiles {
             return true;
         }
         return false;
+    }
+
+    public static String periodo_Mes(String dia, String mes) {
+
+        int d = Integer.parseInt(dia);
+        int m = Integer.parseInt(mes);
+
+        String a000_mes = null;
+
+        if (m == 1) a000_mes = "a010_Enero";
+        else if (m == 2) a000_mes = "a020_Febrero";
+        else if (m == 3) a000_mes = "a030_Marzo";
+        else if (m == 4) a000_mes = "a040_Abril";
+        else if (m == 5) a000_mes = "a050_Mayo";
+        else if (m == 6) a000_mes = "a060_Junio";
+        else if (m == 7 && d < 23) a000_mes = "a071_V1";
+        else if (m == 7 && d > 22) a000_mes = "a072_V2";
+        else if (m == 8 && d < 14) a000_mes = "a072_V2";
+        else if (m == 8 && d > 13) a000_mes = "a073_V3";
+        else if (m == 9 && d < 5) a000_mes = "a073_V3";
+        else if (m == 9 && d > 4 && d < 27) a000_mes = "a074_V4";
+        else if (m == 9 && d > 25) a000_mes = "a090_Septiembre";
+        else if (m == 10) a000_mes = "a100_Octubre";
+        else if (m == 11) a000_mes = "a110_Noviembre";
+        else if (m == 12) a000_mes = "a120_Diciembre";
+
+        return a000_mes;
     }
 
 
