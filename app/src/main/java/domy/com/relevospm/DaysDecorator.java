@@ -15,8 +15,6 @@ import domy.com.relevospm.Utiles.Utiles;
 
 public class DaysDecorator implements DayDecorator {
 
-    private DatosAgente datosAgente;
-
     private String fecha ;
     private String dne;
     private int grupo;
@@ -37,16 +35,16 @@ public class DaysDecorator implements DayDecorator {
         int Mes1 = Integer.parseInt(D1[1]);
         int anio1 = Integer.parseInt(D1[0]);
 
-        datosAgente = new DatosAgente();
+        AgenteDAO agenteDao = new AgenteDAO();
 
-        datosAgente.setAgente(dne, fecha);
+        agenteDao.actualizarDatosAgente(dne,fecha);
+        Agente agente = agenteDao.getAgente();
 
-        datosAgente.DatosAgente().getDNE();
+        agente.getDNE();
 
         String F[] = fecha.split("/");
 
         Utiles.periodo_Mes(F[0],F[1]);
-
 
 
         switch (grupo) {

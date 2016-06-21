@@ -61,13 +61,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private String dne;
 
-    private DatosAgente datosAgente;
-
     private TextView tv1;
     private TextView tv2;
     private TextView tv3;
-
-    private CheckBox cb;
 
     public static Boolean isFabOpen = false;
     public static FloatingActionButton fab;
@@ -91,8 +87,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         tv1 = (TextView) findViewById(R.id.datosAgente_1);
         tv2 = (TextView) findViewById(R.id.datosAgente_2);
         tv3 = (TextView) findViewById(R.id.datosAgente_3);
-
-        cb = (CheckBox) findViewById(R.id.checkBoxCambios);
 
         /*//Eventos del Drawer Layout
         drawerLayout.setDrawerListener(new DrawerLayout.DrawerListener() {
@@ -204,13 +198,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         String fecha = String.valueOf(dia) + "/" + String.valueOf(mes) + "/" + String.valueOf(annio);
 
-        datosAgente = new DatosAgente();
+        AgenteDAO agenteDao = new AgenteDAO();
 
-        datosAgente.setAgente(dne, fecha);
+        agenteDao.actualizarDatosAgente(dne,fecha);
+        Agente agente = agenteDao.getAgente();
 
-        String text1 = "DNE: <font color='#FFFFFF'>" + datosAgente.DatosAgente().getDNE() + "</font> GRUPO: <font color='#FFFFFF'>" + datosAgente.DatosAgente().getGRUPO() + "</font> TURNO: <font color='#FFFFFF'>" + datosAgente.DatosAgente().getTURNO() + "</font>";
-        String text2 = "V I: <font color='#FFFFFF'>" + datosAgente.DatosAgente().getVACACIONES_I() + "</font> V T: <font color='#FFFFFF'>" + datosAgente.DatosAgente().getVACACIONES_T() + "</font>";
-        String text3 = "CAMBIO CON: <font color='#FFFFFF'>" + datosAgente.DatosAgente().getCAMBIO_CON() + "</font> POR: <font color='#FFFFFF'>" + datosAgente.DatosAgente().getPOR() + "</font> COMPENSA: <font color='#FFFFFF'>" + datosAgente.DatosAgente().getCOMPENSA() + "</font>";
+        String text1 = "DNE: <font color='#FFFFFF'>" + agente.getDNE() + "</font> GRUPO: <font color='#FFFFFF'>" + agente.getGRUPO() + "</font> TURNO: <font color='#FFFFFF'>" + agente.getTURNO() + "</font>";
+        String text2 = "V I: <font color='#FFFFFF'>" + agente.getVACACIONES_I() + "</font> V T: <font color='#FFFFFF'>" + agente.getVACACIONES_T() + "</font>";
+        String text3 = "CAMBIO CON: <font color='#FFFFFF'>" + agente.getCAMBIO_CON() + "</font> POR: <font color='#FFFFFF'>" + agente.getPOR() + "</font> COMPENSA: <font color='#FFFFFF'>" + agente.getCOMPENSA() + "</font>";
 
         tv1.setText(Html.fromHtml(text1), TextView.BufferType.SPANNABLE);
         tv2.setText(Html.fromHtml(text2), TextView.BufferType.SPANNABLE);
@@ -223,7 +218,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         rotate_forward = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.rotate_forward);
         rotate_backward = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.rotate_backward);
         fab.setOnClickListener(this);
-
 
     }
     public void initializeCalendar() {
@@ -274,12 +268,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                                 "Trabaja Grupo : " + GRUPOTRABAJO
                         , Toast.LENGTH_SHORT).show();
 
-                if (cb.isChecked()) {
-                    FragmentManager fragmentManager = getSupportFragmentManager();
-                    DialogoCambioDia dialogo = new DialogoCambioDia();
-                    dialogo.setFecha("hola", FECHA);
-                    dialogo.show(fragmentManager, "tagPersonalizado");
-                }
                 //calendar.refreshCalendar(calendar.getCurrentCalendar());
 
             }
@@ -297,16 +285,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 String fecha1 = String.valueOf(Dia_selecion_Calendar) + "/" + String.valueOf(Mes_selecion_Calendar) + "/" + String.valueOf(Anio_selecion_Calendar);
                 String fecha = String.valueOf(1) + "/" + String.valueOf(Mes_selecion_Calendar) + "/" + String.valueOf(Anio_selecion_Calendar);
 
-                datosAgente = new DatosAgente();
+                AgenteDAO agenteDao = new AgenteDAO();
 
-                datosAgente.setAgente(dne, fecha);
+                agenteDao.actualizarDatosAgente(dne,fecha);
+                Agente agente = agenteDao.getAgente();
 
                 // PintarCalendario(datosAgente.DatosAgente().getGRUPO());
                 PintarCalendario(dne,fecha1);
 
-                String text1 = "DNE: <font color='#FFFFFF'>" + datosAgente.DatosAgente().getDNE() + "</font> GRUPO: <font color='#FFFFFF'>" + datosAgente.DatosAgente().getGRUPO() + "</font> TURNO: <font color='#FFFFFF'>" + datosAgente.DatosAgente().getTURNO() + "</font>";
-                String text2 = "V I: <font color='#FFFFFF'>" + datosAgente.DatosAgente().getVACACIONES_I() + "</font> V T: <font color='#FFFFFF'>" + datosAgente.DatosAgente().getVACACIONES_T() + "</font>";
-                String text3 = "CAMBIO CON: <font color='#FFFFFF'>" + datosAgente.DatosAgente().getCAMBIO_CON() + "</font> POR: <font color='#FFFFFF'>" + datosAgente.DatosAgente().getPOR() + "</font> COMPENSA: <font color='#FFFFFF'>" + datosAgente.DatosAgente().getCOMPENSA() + "</font>";
+                String text1 = "DNE: <font color='#FFFFFF'>" + agente.getDNE() + "</font> GRUPO: <font color='#FFFFFF'>" + agente.getGRUPO() + "</font> TURNO: <font color='#FFFFFF'>" + agente.getTURNO() + "</font>";
+                String text2 = "V I: <font color='#FFFFFF'>" + agente.getVACACIONES_I() + "</font> V T: <font color='#FFFFFF'>" + agente.getVACACIONES_T() + "</font>";
+                String text3 = "CAMBIO CON: <font color='#FFFFFF'>" + agente.getCAMBIO_CON() + "</font> POR: <font color='#FFFFFF'>" + agente.getPOR() + "</font> COMPENSA: <font color='#FFFFFF'>" + agente.getCOMPENSA() + "</font>";
 
                 tv1.setText(Html.fromHtml(text1), TextView.BufferType.SPANNABLE);
                 tv2.setText(Html.fromHtml(text2), TextView.BufferType.SPANNABLE);
