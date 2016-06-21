@@ -16,47 +16,68 @@ import domy.com.relevospm.Utiles.Utiles;
 
 public class DaysDecorator implements DayDecorator {
 
-    private String fecha ;
+    private String fecha;
     private String dne;
     private int grupo;
 
-    public void setGrupo(int grupo) {this.grupo = grupo;}
+    public void setGrupo(int grupo) {
+        this.grupo = grupo;
+    }
 
-    public String getDne() {return dne;}
-    public void setDne(String dne) {this.dne = dne;}
-    public String getFecha() {return fecha;}
-    public void setFecha(String fecha) {this.fecha = fecha;}
+    public String getDne() {
+        return dne;
+    }
+
+    public void setDne(String dne) {
+        this.dne = dne;
+    }
+
+    public String getFecha() {
+        return fecha;
+    }
+
+    public void setFecha(String fecha) {
+        this.fecha = fecha;
+    }
 
     @Override
     public void decorate(DayView dayView) {
 
-        Log.v("no me sale",fecha + " "+dayView.getDate());
+        Calendar cal = Calendar.getInstance();
 
-      //  AgenteDAO agenteDao = new AgenteDAO();
+        cal.setTime(dayView.getDate());
 
-      //  agenteDao.actualizarDatosAgente(dne,fecha);
-      //  Agente agente = agenteDao.getAgente();
+        int d = cal.get(Calendar.DATE);
+        int m  = cal.get(Calendar.MONTH) + 1; // ojo es un mes mas
+        int y = cal.get(Calendar.YEAR);
 
-      //  agente.getDNE();//ejemplo
+       // Log.v("decorate: ", d +" "+ m +" " + " "+ y);
+
+        //  AgenteDAO agenteDao = new AgenteDAO();
+
+        //  agenteDao.actualizarDatosAgente(dne,fecha);
+        //  Agente agente = agenteDao.getAgente();
+
+        //  agente.getDNE();//ejemplo
 
         String F[] = fecha.split("/");
 
-      //  Log.v("no ", Utiles.periodo_Mes(F[0],F[1]));
+        //  Log.v("no ", Utiles.periodo_Mes(F[0],F[1]));
 
         switch (grupo) {
 
             case 1:
-                if (GrupoLibra(dayView.getDate(),grupo)) {
+                if (GrupoLibra(dayView.getDate(), grupo)) {
                     dayView.setBackgroundColor(0xFF55FF00);
                 }
                 break;
             case 3:
-                if (GrupoLibra(dayView.getDate(),grupo)) {
+                if (GrupoLibra(dayView.getDate(), grupo)) {
                     dayView.setBackgroundColor(0xff0400ff);
                 }
                 break;
             case 5:
-                if (GrupoLibra(dayView.getDate(),grupo)) {
+                if (GrupoLibra(dayView.getDate(), grupo)) {
                     dayView.setBackgroundColor(0xFFFF0008);
                 }
                 break;

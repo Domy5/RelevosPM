@@ -263,22 +263,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 Boton_Ver_Lineas = (Button) findViewById(R.id.Boton_Ver_Lineas);
                 Boton_Ver_Lineas.setText("Ver Lineas de -->" + FECHA);
 
-                Toast.makeText(getApplicationContext(),
-                        FECHA + "\n" +
-                                "Libra Grupo : " + GL + "\n" +
-                                "Trabaja Grupo : " + GRUPOTRABAJO
-                        , Toast.LENGTH_SHORT).show();
+              //  Toast.makeText(getApplicationContext(),
+              //          FECHA + "\n" +
+              //                  "Libra Grupo : " + GL + "\n" +
+              //                  "Trabaja Grupo : " + GRUPOTRABAJO
+              //          , Toast.LENGTH_SHORT).show();
 
-                Snackbar.make(drawerLayout, FECHA + "\n" +
-                        "Libra Grupo : " + GL + "\n" +
-                        "Trabaja Grupo : " + GRUPOTRABAJO, Snackbar.LENGTH_LONG)
-                        .setAction("ok", new View.OnClickListener() {
-                            @Override
-                            public void onClick(View view) {
-                                Log.i("Snackbar", "Pulsada acción snackbar!");
-                            }
-                        })
-                        .show();
+                Snackbar.make(drawerLayout, FECHA + "\n" + "Libra: " + GL + " Trabaja: " + GRUPOTRABAJO, Snackbar.LENGTH_SHORT).show();
+
+                Snackbar snackbar = Snackbar
+                        .make(drawerLayout, FECHA + "\n" + "Libra: " + GL + " Trabaja: " + GRUPOTRABAJO, Snackbar.LENGTH_LONG);
+
+                snackbar.setActionTextColor(Color.RED);
+                snackbar.show();
 
                 //calendar.refreshCalendar(calendar.getCurrentCalendar());
 
