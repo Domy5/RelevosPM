@@ -8,8 +8,14 @@
         android:title="@string/action_Opciones"
         app:showAsAction="never" />
     <item
+        android:id="@+id/action_permisos"
+        android:orderInCategory="200"
+        android:title="@string/action_permiso"
+        app:showAsAction="never" />
+
+    <item
         android:id="@+id/action_salir"
-        android:orderInCategory="100"
+        android:orderInCategory="300"
         android:title="@string/action_Salir"
         app:showAsAction="never" />
 

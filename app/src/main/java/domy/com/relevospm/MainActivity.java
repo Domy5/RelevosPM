@@ -6,8 +6,10 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.graphics.Typeface;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
@@ -158,11 +160,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                                 startActivity(i);
                                 break;
                             case R.id.menu_opcion_2:
+
+                                atualizaAppBeta.setActivity(MainActivity.this);
                                 atualizaAppBeta.setContext(MainActivity.this);
                                 atualizaAppBeta.execute("http://domy.asuscomm.com/app-debug.apk");
                                 break;
 
                             case R.id.menu_opcion_3:
+
+                                atualizaAppBeta.setActivity(MainActivity.this);
                                 atualizaAppBeta.setContext(MainActivity.this);
                                 atualizaAppBeta.execute("http://domy.asuscomm.com/beta.apk");
                                 break;
@@ -447,6 +453,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 i.putExtra("AutoLogin", false);
                 startActivity(i);
                 return true;
+
+            case R.id.action_permisos:
+
+            Intent intent = new Intent();
+            intent.setAction(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+            Uri uri = Uri.fromParts("package", getPackageName(), null);
+            intent.setData(uri);
+            startActivity(intent);
+
+            return true;
+
             case R.id.action_salir:
                 finish();
 

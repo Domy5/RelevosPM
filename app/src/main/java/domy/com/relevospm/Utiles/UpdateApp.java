@@ -1,6 +1,7 @@
 package domy.com.relevospm.Utiles;
 
 import android.Manifest;
+import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -26,6 +27,7 @@ import java.net.URL;
 public class UpdateApp extends AsyncTask<String, Void, Void> {
     private static final String TAG = "permisos";
     private Context context;
+    private Activity activity;
     ProgressDialog pDialog;
 
     public void setContext(Context context) {
@@ -35,6 +37,10 @@ public class UpdateApp extends AsyncTask<String, Void, Void> {
         pDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
         pDialog.setTitle("Procesando la informacion");
         pDialog.setMessage("Descargando...");
+
+    }
+    public void setActivity(Activity activity) {
+        this.activity = activity;
     }
 
     @Override
@@ -47,6 +53,8 @@ public class UpdateApp extends AsyncTask<String, Void, Void> {
             c.connect();
 
             String PATH = "/mnt/sdcard/Download/";
+
+            Log.v("descargarr", PATH);
             File file = new File(PATH);
             file.mkdirs();
             File outputFile = new File(file, "app-debug.apk");
@@ -64,6 +72,8 @@ public class UpdateApp extends AsyncTask<String, Void, Void> {
             }
             fos.close();
             is.close();
+
+            Utiles.isStoragePermissionGranted(context,activity);  // todo tengo que darle una vuelta a los permisos
 
             Intent intent = new Intent(Intent.ACTION_VIEW);
             intent.setDataAndType(Uri.fromFile(new File("/mnt/sdcard/Download/app-debug.apk")), "application/vnd.android.package-archive");
