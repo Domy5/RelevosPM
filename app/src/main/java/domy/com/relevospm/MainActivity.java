@@ -10,8 +10,6 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
@@ -27,19 +25,17 @@ import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.animation.AccelerateInterpolator;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.view.animation.BounceInterpolator;
+import android.view.animation.Interpolator;
+import android.view.animation.LinearInterpolator;
 import android.widget.Button;
-import android.widget.CheckBox;
-import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.imanoweb.calendarview.CalendarListener;
 import com.imanoweb.calendarview.CustomCalendarView;
-
-import org.json.JSONArray;
-import org.json.JSONException;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -52,7 +48,7 @@ import domy.com.relevospm.Utiles.Dia4y2;
 import domy.com.relevospm.Utiles.UpdateApp;
 import domy.com.relevospm.login.Login;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = "PERMISOS";
 
@@ -73,9 +69,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private TextView tv2;
     private TextView tv3;
 
-    public static Boolean isFabOpen = false;
+    public static Boolean isFabRota = false;
+    public static Boolean isFabMove = false;
+
     public static FloatingActionButton fab;
-    public static Animation rotate_forward, rotate_backward;
+    public static Animation rotate_forward, rotate_backward, move_forward, move_backward;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -85,8 +83,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         appbar = (Toolbar) findViewById(R.id.appbar);
         setSupportActionBar(appbar);
 
-        if (getSupportActionBar()!=null) {
-        getSupportActionBar().setHomeAsUpIndicator(R.drawable.menu);}
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setHomeAsUpIndicator(R.drawable.menu);
+        }
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -198,7 +197,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         //  Date date = new Date();
         DiaDeHoy = ss.format(new Date());
 
-        if (boton_Ver_Hoy!=null) {
+        if (boton_Ver_Hoy != null) {
             boton_Ver_Hoy.setText("HOY --> ".concat(DiaDeHoy));
         }
 
@@ -232,7 +231,28 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         rotate_forward = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.rotate_forward);
         rotate_backward = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.rotate_backward);
-        fab.setOnClickListener(this);
+
+        move_forward = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.move_forward);
+        move_backward = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.move_backward);
+
+        move_backward.setInterpolator(new  CustomBounceInterpolator(500));
+        move_forward.setInterpolator(new  CustomBounceInterpolator(500));
+
+        fab.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+               animateFABmove();
+
+                return true;
+            }
+        });
+
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                animateFAB();
+            }
+        });
 
     }
 
@@ -246,7 +266,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         calendar.setFirstDayOfWeek(Calendar.MONDAY);
         calendar.setShowOverflowDate(true);
 
-        SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy",Locale.getDefault());
+        SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
         String D[] = df.format(calendar.getCurrentCalendar().getTime()).split("/");
 
         int Dia = Integer.parseInt(D[0]);
@@ -262,7 +282,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         calendar.setCalendarListener(new CalendarListener() {
             @Override
             public void onDateSelected(Date date) {
-                SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy",Locale.getDefault());
+                SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
 
                 String D[] = df.format(date).split("/");
 
@@ -285,7 +305,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 //                  "Trabaja Grupo : " + GRUPOTRABAJO
                 //          , Toast.LENGTH_SHORT).show();
 
-              //  Snackbar.make(drawerLayout, FECHA + "\n" + "Libra: " + GL + " Trabaja: " + GRUPOTRABAJO, Snackbar.LENGTH_SHORT).show();
+                //  Snackbar.make(drawerLayout, FECHA + "\n" + "Libra: " + GL + " Trabaja: " + GRUPOTRABAJO, Snackbar.LENGTH_SHORT).show();
 
                 Snackbar snackbar = Snackbar
                         .make(drawerLayout, FECHA + "\n" + "Libra: " + GL + " Trabaja: " + GRUPOTRABAJO, Snackbar.LENGTH_LONG);
@@ -310,7 +330,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             @Override
             public void onMonthChanged(Date date) {
-                SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy",Locale.getDefault());
+                SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
 
                 String D[] = df.format(date).split("/");
 
@@ -367,7 +387,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         // String fecha = ss.format(calendar.getCurrentCalendar());
         // String fecha = "21/6/2016";
 
-        SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy",Locale.getDefault());
+        SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
         String fecha = df.format(calendar.getCurrentCalendar().getTime());
 
         List decorators = new ArrayList<>();
@@ -456,13 +476,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             case R.id.action_permisos:
 
-            Intent intent = new Intent();
-            intent.setAction(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
-            Uri uri = Uri.fromParts("package", getPackageName(), null);
-            intent.setData(uri);
-            startActivity(intent);
+                Intent intent = new Intent();
+                intent.setAction(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+                Uri uri = Uri.fromParts("package", getPackageName(), null);
+                intent.setData(uri);
+                startActivity(intent);
 
-            return true;
+                return true;
 
             case R.id.action_salir:
                 finish();
@@ -472,21 +492,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 return super.onOptionsItemSelected(item);
         }
     }
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
-    }
-@NonNull
-    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-            Log.v(TAG, "Permisos: " + permissions[0] + "was " + grantResults[0]);
-
-        }
-
     }
 
     @Override
@@ -519,23 +529,24 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onDestroy();
     }
 
-    @Override
+   /* @Override
     public void onClick(View v) {
         int id = v.getId();
         switch (id) {
             case R.id.botonFlotante:
 
                 animateFAB();
+                // animateFABmove();
                 break;
         }
-    }
+    }*/
 
     public void animateFAB() {
 
-        if (isFabOpen) {
+        if (isFabRota) {
 
             fab.startAnimation(rotate_backward);
-            isFabOpen = false;
+            isFabRota = false;
 
         } else {
 
@@ -545,8 +556,44 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             dialogo.setFecha("hola", FECHA);
             dialogo.show(fragmentManager, "tagPersonalizado");
             fab.startAnimation(rotate_forward);
-            isFabOpen = true;
+            isFabRota = true;
 
         }
     }
+    public void animateFABmove() {
+
+        if (isFabMove) {
+
+            fab.startAnimation(move_forward);
+            isFabMove = false;
+            Log.v("mover", isFabMove.toString());
+        } else {
+
+            fab.startAnimation(move_backward);
+            isFabMove = true;
+
+            Log.v("mover", isFabMove.toString());
+        }
+    }
+    public class CustomBounceInterpolator implements Interpolator {
+
+        private float timeDivider;
+        private AccelerateInterpolator a;
+        private BounceInterpolator b;
+
+        public CustomBounceInterpolator(float timeDivider) {
+            a = new AccelerateInterpolator();
+            b = new BounceInterpolator();
+            this.timeDivider = timeDivider;
+        }
+
+        public float getInterpolation(float t) {
+            if (t < timeDivider)
+                return a.getInterpolation(t);
+            else
+                return b.getInterpolation(t);
+        }
+
+    }
+
 }

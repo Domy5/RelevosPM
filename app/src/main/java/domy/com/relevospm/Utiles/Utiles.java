@@ -52,7 +52,7 @@ public class Utiles {
         return true;
     }
 
-    public static boolean isStoragePermissionGranted(Context context, Activity activity) {
+ /*   public static boolean isStoragePermissionGranted(Context context, Activity activity) {
         if (Build.VERSION.SDK_INT >= 23) {
             if (context.checkSelfPermission(android.Manifest.permission.WRITE_EXTERNAL_STORAGE)
                     == PackageManager.PERMISSION_GRANTED) {
@@ -69,7 +69,7 @@ public class Utiles {
         }
 
 
-    }
+  /  }*/
 
     private class TareaDialogo extends AsyncTask<Void, Void, Boolean> {
 

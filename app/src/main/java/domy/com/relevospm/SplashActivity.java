@@ -15,7 +15,9 @@ import android.os.Handler;
 import android.os.StrictMode;
 import android.support.v4.app.ActivityCompat;
 import android.util.Log;
+import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -76,6 +78,7 @@ public class SplashActivity extends Activity {
         urlpath = "http://domimtz.synology.me/" + ApkName;
 
 
+        boolean permisoAceptado
         if (Utiles.isOnline(getApplicationContext())) {
 
             GetVersionFromServer(BuildVersionPath);
@@ -88,8 +91,9 @@ public class SplashActivity extends Activity {
             tvVerApp.setText(" NameApp    : " + versionNameApp + " CodeApp    : " + versionCodeApp);
 
             checkInstalledApp(AppName);
-         //   TareaAsincrona tareaAsincrona = new TareaAsincrona();
-         //   tareaAsincrona.execute();
+
+          //  TareaAsincrona tareaAsincrona = new TareaAsincrona();
+          //  tareaAsincrona.execute();
 
         } else {
 
@@ -182,7 +186,6 @@ public class SplashActivity extends Activity {
                             switch (which) {
                                 case DialogInterface.BUTTON_POSITIVE:
 
-                                    isStoragePermissionGranted();
 
                                     UpdateApp atualizaApp = new UpdateApp();
                                     atualizaApp.setContext(getApplicationContext());
@@ -251,105 +254,4 @@ public class SplashActivity extends Activity {
         return res;
     }
 
-    public boolean isStoragePermissionGranted() {
-
-
-        if (Build.VERSION.SDK_INT >= 23) {
-            if (checkSelfPermission(android.Manifest.permission.WRITE_EXTERNAL_STORAGE)
-                    == PackageManager.PERMISSION_GRANTED) {
-                Log.v(TAG, "Permission is granted");
-                return true;
-            } else {
-
-                Log.v(TAG, "Permission is revoked");
-                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
-                return false;
-            }
-        } else {
-            Log.v(TAG, "Permission is granted");
-            return true;
-        }
-
-
-    }
-
-    private class TareaAsincrona extends AsyncTask<Void, Void, Void> {
-
-        //Es lo primero en ejecutar en nuestra tarea, se suele utilizar para inicializar variables
-        //inicializar la interfaz, etc
-        @Override
-        protected void onPreExecute() {
-        }
-
-        //El metodo m�s importante, es el que contendr� la tarea principal del hilo
-        //Se ejecuta en un hilo secundario, mientras que todos los demas se ejecutan en el hilo
-        //principal
-        @Override
-        protected Void doInBackground(Void... params) {
-            GetVersionFromServer(BuildVersionPath);
-
-            return null;
-        }
-
-
-
-        //Este metodo se ejecutara cuando termine el metodo doInBackground, el parametro de entrada
-        //es el valor retornado por el m�todo
-        @Override
-        protected void onPostExecute(Void result) {
-            tvVerSer = (TextView) findViewById(R.id.versionServidor);
-            tvVerSer.setText(" NameServer : " + VersionName + " CodeServer : " + VersionCode);
-
-            tvVerApp = (TextView) findViewById(R.id.versionApp);
-            tvVerApp.setText(" NameApp    : " + versionNameApp + " CodeApp    : " + versionCodeApp);
-        }
-
-        public void GetVersionFromServer(String BuildVersionPath) {
-            String s = "";
-
-            URL u;
-            try {
-                u = new URL(BuildVersionPath);
-                String str1;
-                String str2 = "";
-
-                BufferedReader in = new BufferedReader(new InputStreamReader(u.openStream()));
-
-                while ((str1 = in.readLine()) != null) {
-                    str2 = str2 + str1;
-                }
-                in.close();
-                s = str2;
-
-            } catch (MalformedURLException e) {
-                Log.w("", "MALFORMED URL EXCEPTION");
-            } catch (IOException e) {
-                Log.w(e.getMessage(), e);
-            }
-
-            String temp = "";
-
-            for (int i = 0; i < s.length(); i++) {
-                i = s.indexOf("=") + 1;
-                while (s.charAt(i) == ' ') // Skip Spaces
-                {
-                    i++; // Move to Next.
-                }
-                while (s.charAt(i) != ';' && (s.charAt(i) >= '0' && s.charAt(i) <= '9' || s.charAt(i) == '.')) {
-                    temp = temp.concat(Character.toString(s.charAt(i)));
-                    i++;
-                }
-                //
-                s = s.substring(i); // Move to Next to Process.!
-                temp = temp + " "; // Separate w.r.t Space Version Code and Version Name.
-
-            }
-            String[] fields = temp.split(" ");// Make Array for Version Code and Version Name.
-
-            VersionCode = Integer.parseInt(fields[0]);
-            VersionName = fields[1];
-
-        }
-
-    }
 }

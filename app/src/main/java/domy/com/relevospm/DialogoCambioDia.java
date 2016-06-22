@@ -45,14 +45,13 @@ public class DialogoCambioDia extends DialogFragment {
         TextView fecha_selecionada = (TextView) rootView.findViewById(R.id.fechaSelect);
         RadioButton r1 = (RadioButton) rootView.findViewById(R.id.r1);
 
-
         fecha_selecionada.setText(fecha);
 
         builder.setView(rootView);
 
         builder.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
-                MainActivity.isFabOpen = false;
+                MainActivity.isFabRota = false;
 
                 MainActivity.fab.startAnimation(MainActivity.rotate_backward);
                 dialog.cancel();
@@ -61,7 +60,7 @@ public class DialogoCambioDia extends DialogFragment {
 
         builder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
-                MainActivity.isFabOpen = false;
+                MainActivity.isFabRota = false;
                 
                 MainActivity.fab.startAnimation(MainActivity.rotate_backward);
                 dialog.cancel();

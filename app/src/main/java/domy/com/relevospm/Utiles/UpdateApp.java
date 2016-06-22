@@ -21,6 +21,8 @@ import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
+import domy.com.relevospm.SplashActivity;
+
 
 //http://www.iteramos.com/pregunta/6334/android-instalar-apk-mediante-programacion
 
@@ -73,8 +75,6 @@ public class UpdateApp extends AsyncTask<String, Void, Void> {
             fos.close();
             is.close();
 
-            Utiles.isStoragePermissionGranted(context,activity);  // todo tengo que darle una vuelta a los permisos
-
             Intent intent = new Intent(Intent.ACTION_VIEW);
             intent.setDataAndType(Uri.fromFile(new File("/mnt/sdcard/Download/app-debug.apk")), "application/vnd.android.package-archive");
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK); // without this flag android returned a intent error!
@@ -96,4 +96,6 @@ public class UpdateApp extends AsyncTask<String, Void, Void> {
     protected void onPostExecute(Void aVoid) {
         pDialog.dismiss();
     }
+
+
 }
