@@ -6,7 +6,10 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.graphics.Typeface;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
@@ -18,6 +21,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.Html;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -25,6 +29,7 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -45,7 +50,7 @@ import domy.com.relevospm.Utiles.Dia4y2;
 import domy.com.relevospm.Utiles.UpdateApp;
 import domy.com.relevospm.login.Login;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener{
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     private static final String TAG = "PERMISOS";
 
@@ -68,7 +73,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     public static Boolean isFabOpen = false;
     public static FloatingActionButton fab;
-    public static Animation rotate_forward,rotate_backward;
+    public static Animation rotate_forward, rotate_backward;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,7 +83,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         appbar = (Toolbar) findViewById(R.id.appbar);
         setSupportActionBar(appbar);
 
-        getSupportActionBar().setHomeAsUpIndicator(R.drawable.menu);
+        if (getSupportActionBar()!=null) {
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.menu);}
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -182,11 +188,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 });
 
 
-        SimpleDateFormat ss = new SimpleDateFormat("dd/MM/yyyy");
+        SimpleDateFormat ss = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()); // todo ojo con el locale
         //  Date date = new Date();
         DiaDeHoy = ss.format(new Date());
 
-        boton_Ver_Hoy.setText("HOY --> " + DiaDeHoy);
+        if (boton_Ver_Hoy!=null) {
+            boton_Ver_Hoy.setText("HOY --> ".concat(DiaDeHoy));
+        }
 
         SharedPreferences prefs = getApplicationContext().getSharedPreferences("WidgetPrefs", Context.MODE_PRIVATE);
         dne = prefs.getString("Dne", ":");
@@ -201,7 +209,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         AgenteDAO agenteDao = new AgenteDAO();
 
-        agenteDao.actualizarDatosAgente(dne,fecha);
+        agenteDao.actualizarDatosAgente(dne, fecha);
         Agente agente = agenteDao.getAgente();
 
         String text1 = "DNE: <font color='#FFFFFF'>" + agente.getDNE() + "</font> GRUPO: <font color='#FFFFFF'>" + agente.getGRUPO() + "</font> TURNO: <font color='#FFFFFF'>" + agente.getTURNO() + "</font>";
@@ -214,13 +222,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         initializeCalendar();
 
-        fab = (FloatingActionButton)findViewById(R.id.botonFlotante);
+        fab = (FloatingActionButton) findViewById(R.id.botonFlotante);
 
-        rotate_forward = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.rotate_forward);
-        rotate_backward = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.rotate_backward);
+        rotate_forward = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.rotate_forward);
+        rotate_backward = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.rotate_backward);
         fab.setOnClickListener(this);
 
     }
+
     public void initializeCalendar() {
         calendar = (CustomCalendarView) findViewById(R.id.calendar_viewNEW);
 
@@ -231,7 +240,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         calendar.setFirstDayOfWeek(Calendar.MONDAY);
         calendar.setShowOverflowDate(true);
 
-        SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+        SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy",Locale.getDefault());
         String D[] = df.format(calendar.getCurrentCalendar().getTime()).split("/");
 
         int Dia = Integer.parseInt(D[0]);
@@ -240,14 +249,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         FECHA = Dia + "/" + Mes + "/" + Anio;
         //PintarCalendario(datosAgente.DatosAgente().getGRUPO());
-        PintarCalendario(dne,FECHA);
+        PintarCalendario(dne, FECHA);
 
         calendar.refreshCalendar(currentCalendar);
 
         calendar.setCalendarListener(new CalendarListener() {
             @Override
             public void onDateSelected(Date date) {
-                SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+                SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy",Locale.getDefault());
 
                 String D[] = df.format(date).split("/");
 
@@ -261,21 +270,33 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 GRUPOTRABAJO = GT.substring(0, 1) + " y " + GT.substring(1, 2);
                 FECHA = Dia_selecion_Calendar + "/" + Mes_selecion_Calendar + "/" + Anio_selecion_Calendar;
                 Boton_Ver_Lineas = (Button) findViewById(R.id.Boton_Ver_Lineas);
-                Boton_Ver_Lineas.setText("Ver Lineas de -->" + FECHA);
 
-              //  Toast.makeText(getApplicationContext(),
-              //          FECHA + "\n" +
-              //                  "Libra Grupo : " + GL + "\n" +
-              //                  "Trabaja Grupo : " + GRUPOTRABAJO
-              //          , Toast.LENGTH_SHORT).show();
+                Boton_Ver_Lineas.setText("Ver Lineas de -->".concat(FECHA));
 
-                Snackbar.make(drawerLayout, FECHA + "\n" + "Libra: " + GL + " Trabaja: " + GRUPOTRABAJO, Snackbar.LENGTH_SHORT).show();
+                //  Toast.makeText(getApplicationContext(),
+                //          FECHA + "\n" +
+                //                  "Libra Grupo : " + GL + "\n" +
+                //                  "Trabaja Grupo : " + GRUPOTRABAJO
+                //          , Toast.LENGTH_SHORT).show();
+
+              //  Snackbar.make(drawerLayout, FECHA + "\n" + "Libra: " + GL + " Trabaja: " + GRUPOTRABAJO, Snackbar.LENGTH_SHORT).show();
 
                 Snackbar snackbar = Snackbar
                         .make(drawerLayout, FECHA + "\n" + "Libra: " + GL + " Trabaja: " + GRUPOTRABAJO, Snackbar.LENGTH_LONG);
 
                 snackbar.setActionTextColor(Color.RED);
+
+                View sbView = snackbar.getView();
+                TextView textView = (TextView) sbView.findViewById(android.support.design.R.id.snackbar_text);
+                textView.setTextColor(Color.YELLOW);
+
+                if (Build.VERSION.SDK_INT > Build.VERSION_CODES.JELLY_BEAN) {
+                    textView.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+                }
+                textView.setGravity(Gravity.CENTER_HORIZONTAL);
+
                 snackbar.show();
+
 
                 //calendar.refreshCalendar(calendar.getCurrentCalendar());
 
@@ -283,7 +304,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             @Override
             public void onMonthChanged(Date date) {
-                SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+                SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy",Locale.getDefault());
 
                 String D[] = df.format(date).split("/");
 
@@ -296,11 +317,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                 AgenteDAO agenteDao = new AgenteDAO();
 
-                agenteDao.actualizarDatosAgente(dne,fecha);
+                agenteDao.actualizarDatosAgente(dne, fecha);
                 Agente agente = agenteDao.getAgente();
 
                 // PintarCalendario(datosAgente.DatosAgente().getGRUPO());
-                PintarCalendario(dne,fecha1);
+                PintarCalendario(dne, fecha1);
 
                 String text1 = "DNE: <font color='#FFFFFF'>" + agente.getDNE() + "</font> GRUPO: <font color='#FFFFFF'>" + agente.getGRUPO() + "</font> TURNO: <font color='#FFFFFF'>" + agente.getTURNO() + "</font>";
                 String text2 = "V I: <font color='#FFFFFF'>" + agente.getVACACIONES_I() + "</font> V T: <font color='#FFFFFF'>" + agente.getVACACIONES_T() + "</font>";
@@ -310,14 +331,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 tv2.setText(Html.fromHtml(text2), TextView.BufferType.SPANNABLE);
                 tv3.setText(Html.fromHtml(text3), TextView.BufferType.SPANNABLE);
 
-             //   calendar.refreshCalendar(calendar.getCurrentCalendar());
+                //   calendar.refreshCalendar(calendar.getCurrentCalendar());
 
             }
         });
 
     }
 
-    public void PintarCalendario(String dne,String fecha) {
+    public void PintarCalendario(String dne, String fecha) {
 
         List decorators = new ArrayList<>();
 
@@ -337,10 +358,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     public void PintarCalendario(View v) {
         // SimpleDateFormat ss = new SimpleDateFormat("dd/MM/yyyy");
-       // String fecha = ss.format(calendar.getCurrentCalendar());
-       // String fecha = "21/6/2016";
+        // String fecha = ss.format(calendar.getCurrentCalendar());
+        // String fecha = "21/6/2016";
 
-        SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+        SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy",Locale.getDefault());
         String fecha = df.format(calendar.getCurrentCalendar().getTime());
 
         List decorators = new ArrayList<>();
@@ -441,8 +462,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
-
-    @Override
+@NonNull
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
@@ -485,7 +505,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View v) {
         int id = v.getId();
-        switch (id){
+        switch (id) {
             case R.id.botonFlotante:
 
                 animateFAB();
@@ -493,9 +513,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
-    public void animateFAB(){
+    public void animateFAB() {
 
-        if(isFabOpen){
+        if (isFabOpen) {
 
             fab.startAnimation(rotate_backward);
             isFabOpen = false;
