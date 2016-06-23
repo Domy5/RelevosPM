@@ -184,7 +184,7 @@ public class Diario {
     public static JSONArray ConsultaDiaSQL(String ConSql) {
 
         JSONParser3 jsonParser3 = new JSONParser3();
-        String URL = "http://domimtz.synology.me/bd/ConsultaSQL.php"; // todo: tengo que hacer el php
+        String URL = "http://domimtz.synology.me/bd/ConsultaSQL.php";
 
         ///  String  ConSql = "SELECT * FROM `a010_Enero`";
 
@@ -193,8 +193,10 @@ public class Diario {
 
         Log.d("request!", "starting");
         // getting product details by making HTTP request
-        JSONArray jsonObjRecv = jsonParser3.makeHttpRequest(URL, "POST",
-                params);
+
+        JSONArray jsonObjRecv = jsonParser3.makeHttpRequest(URL, "POST", params);
+
+
       //  Log.d("Sql exitoso!", jsonObjRecv.toString());
 
 

@@ -14,9 +14,11 @@ import android.widget.Toast;
  */
 public class GestorPermisos {
 
-    public static boolean checkearPermiso(Context context,String permiso){
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            if (ActivityCompat.checkSelfPermission(context, permiso) != PackageManager.PERMISSION_GRANTED ) {
+    public static boolean checkearPermiso(Context context, String permiso) {
+
+        if (Build.VERSION.SDK_INT >= 23) {
+
+            if (ActivityCompat.checkSelfPermission(context, permiso) != PackageManager.PERMISSION_GRANTED) {
                 //Requiere permisos para Android 6.0, así que le solititamos al usuario que nos los
                 //proporcione
                 //Esto mostrará un dialogo pidiendonos que aceptemos o declinemos el permiso
@@ -29,7 +31,8 @@ public class GestorPermisos {
                 Log.i("Location", "Permisos necesarios OK!.");
                 return true;
             }
-        }else {
+
+        } else {
             Log.v("MainActivity", "Versión de SDK inferior a la 6.0, los permisos ya se dieron cuando se instalo la aplicación");
             return true;
         }

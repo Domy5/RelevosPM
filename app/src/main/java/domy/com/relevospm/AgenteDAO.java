@@ -1,5 +1,7 @@
 package domy.com.relevospm;
 
+import android.os.AsyncTask;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 
@@ -24,7 +26,7 @@ public class AgenteDAO {
 
         //  Log.v("Holaaaaaaaaaaaaaaaaaa","dddd");
 
-        JsonTodo = Diario.ConsultaDiaSQL(ordenSQL);
+        JsonTodo = Diario.ConsultaDiaSQL(ordenSQL);  //todo: tendria que  hacer una AsyncTask ya que sale fuera a internet
 
         int x = 0;
 
@@ -55,6 +57,14 @@ public class AgenteDAO {
         }
 
         return true;
+
+    }
+
+    private class UpdateTask extends AsyncTask<String, String,String> {
+        protected String doInBackground(String... urls) {
+
+            return null;
+        }
 
     }
 }

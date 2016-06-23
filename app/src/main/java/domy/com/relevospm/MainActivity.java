@@ -9,6 +9,7 @@ import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.provider.Settings;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
@@ -31,7 +32,9 @@ import android.view.animation.AnimationUtils;
 import android.view.animation.BounceInterpolator;
 import android.view.animation.Interpolator;
 import android.view.animation.LinearInterpolator;
+import android.view.animation.TranslateAnimation;
 import android.widget.Button;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.imanoweb.calendarview.CalendarListener;
@@ -74,11 +77,20 @@ public class MainActivity extends AppCompatActivity {
 
     public static FloatingActionButton fab;
     public static Animation rotate_forward, rotate_backward, move_forward, move_backward;
+    RelativeLayout rl_footer;
+
+    //http://es.androids.help/q1094
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        ///
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build(); // todo lo puse por el problema de salir a fuera en vez de crear la   Asynctask
+        StrictMode.setThreadPolicy(policy);
+      ///
+
+        rl_footer = (RelativeLayout) findViewById(R.id.rl_footer);
 
         appbar = (Toolbar) findViewById(R.id.appbar);
         setSupportActionBar(appbar);
@@ -214,7 +226,12 @@ public class MainActivity extends AppCompatActivity {
 
         AgenteDAO agenteDao = new AgenteDAO();
 
+
+        Log.e("problema de conc", dne);
+        Log.e("problema de conc", fecha);
+
         agenteDao.actualizarDatosAgente(dne, fecha);
+
         Agente agente = agenteDao.getAgente();
 
         String text1 = "DNE: <font color='#FFFFFF'>" + agente.getDNE() + "</font> GRUPO: <font color='#FFFFFF'>" + agente.getGRUPO() + "</font> TURNO: <font color='#FFFFFF'>" + agente.getTURNO() + "</font>";
@@ -235,8 +252,8 @@ public class MainActivity extends AppCompatActivity {
         move_forward = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.move_forward);
         move_backward = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.move_backward);
 
-        move_backward.setInterpolator(new  CustomBounceInterpolator(500));
-        move_forward.setInterpolator(new  CustomBounceInterpolator(500));
+        move_backward.setInterpolator(new CustomBounceInterpolator(500));
+        move_forward.setInterpolator(new CustomBounceInterpolator(500));
 
         fab.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
@@ -492,6 +509,7 @@ public class MainActivity extends AppCompatActivity {
                 return super.onOptionsItemSelected(item);
         }
     }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -560,21 +578,23 @@ public class MainActivity extends AppCompatActivity {
 
         }
     }
+
     public void animateFABmove() {
 
         if (isFabMove) {
 
-            fab.startAnimation(move_forward);
+         //   fab.startAnimation(move_forward);
+            SlideToDown();
             isFabMove = false;
-            Log.v("mover", isFabMove.toString());
         } else {
 
-            fab.startAnimation(move_backward);
+         //   fab.startAnimation(move_backward);
+            SlideToAbove();
             isFabMove = true;
 
-            Log.v("mover", isFabMove.toString());
         }
     }
+
     public class CustomBounceInterpolator implements Interpolator {
 
         private float timeDivider;
@@ -595,5 +615,83 @@ public class MainActivity extends AppCompatActivity {
         }
 
     }
+
+    public void SlideToAbove() {
+        Animation slide = null;
+
+        //slide = new TranslateAnimation(Animation.RELATIVE_TO_SELF, 0.0f, Animation.RELATIVE_TO_SELF, -70.0f,Animation.RELATIVE_TO_SELF, 0.0f, Animation.RELATIVE_TO_SELF, 0.0f);
+         slide = new TranslateAnimation(Animation.RELATIVE_TO_SELF, 0.0f, Animation.RELATIVE_TO_SELF, 0.0f, Animation.RELATIVE_TO_SELF, 0.0f, Animation.RELATIVE_TO_SELF, -5.0f);
+
+        slide.setDuration(400);
+        slide.setFillAfter(true);
+        slide.setFillEnabled(false);
+        rl_footer.startAnimation(slide);
+
+        slide.setAnimationListener(new Animation.AnimationListener() {
+
+            @Override
+            public void onAnimationStart(Animation animation) {
+
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+            }
+
+            @Override
+            public void onAnimationEnd(Animation animation) {
+
+                rl_footer.clearAnimation();
+
+                RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(
+                        rl_footer.getWidth(), rl_footer.getHeight());
+                // lp.setMargins(0, 0, 0, 0);
+                lp.addRule(RelativeLayout.ALIGN_PARENT_TOP);
+                rl_footer.setLayoutParams(lp);
+
+            }
+
+        });
+
+    }
+
+    public void SlideToDown() {
+        Animation slide = null;
+        //  slide = new TranslateAnimation(Animation.RELATIVE_TO_SELF, -70.0f, Animation.RELATIVE_TO_SELF, 0.0f,Animation.RELATIVE_TO_SELF, 0.0f,Animation.RELATIVE_TO_SELF, 0.0f);
+        slide = new TranslateAnimation(Animation.RELATIVE_TO_SELF, 0.0f, Animation.RELATIVE_TO_SELF, 0.0f, Animation.RELATIVE_TO_SELF, 0.0f, Animation.RELATIVE_TO_SELF, 5.0f);
+
+
+        slide.setDuration(400);
+        slide.setFillAfter(true);
+        slide.setFillEnabled(false);
+        rl_footer.startAnimation(slide);
+
+        slide.setAnimationListener(new Animation.AnimationListener() {
+
+            @Override
+            public void onAnimationStart(Animation animation) {
+
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+            }
+
+            @Override
+            public void onAnimationEnd(Animation animation) {
+
+                rl_footer.clearAnimation();
+
+                RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams( rl_footer.getWidth(), rl_footer.getHeight());
+                lp.setMargins(0, rl_footer.getWidth(), 0, 0);
+                lp.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
+                rl_footer.setLayoutParams(lp);
+
+            }
+
+        });
+
+    }
+
 
 }

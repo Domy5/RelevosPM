@@ -66,7 +66,10 @@ public class JSONParser3 {
                 conn.setReadTimeout(10000);
                 conn.setConnectTimeout(15000);
 
-                conn.connect(); // todo aqui alguna vez no concta.. que podemos hacer
+                conn.connect(); // todo aqui alguna vez no concta.. que podemos hacer.. creo que era porque saliamos a net y tengo que hacer una  AsyncTask cada vez que sale tambien puse
+
+                //StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+                //StrictMode.setThreadPolicy(policy);
 
                 paramsString = sbParams.toString();
 

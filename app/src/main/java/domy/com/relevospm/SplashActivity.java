@@ -30,6 +30,7 @@ import java.util.List;
 import domy.com.relevospm.Utiles.UpdateApp;
 import domy.com.relevospm.Utiles.Utiles;
 import domy.com.relevospm.login.Login;
+import domy.com.relevospm.permisos.GestorPermisos;
 
 public class SplashActivity extends Activity {
 
@@ -56,7 +57,8 @@ public class SplashActivity extends Activity {
     public String PackageName;
     public String InstallAppPackageName;
 
-    static Context cc;
+    static Context context;
+    static Activity activity;
     static String versionNameApp = BuildConfig.VERSION_NAME; //1.2
     static int versionCodeApp = BuildConfig.VERSION_CODE; //3
 
@@ -77,8 +79,9 @@ public class SplashActivity extends Activity {
         PackageName = "package:domy.com.relevospm";
         urlpath = "http://domimtz.synology.me/" + ApkName;
 
+        activity = this;
+        context = getBaseContext();
 
-        boolean permisoAceptado
         if (Utiles.isOnline(getApplicationContext())) {
 
             GetVersionFromServer(BuildVersionPath);
@@ -92,8 +95,8 @@ public class SplashActivity extends Activity {
 
             checkInstalledApp(AppName);
 
-          //  TareaAsincrona tareaAsincrona = new TareaAsincrona();
-          //  tareaAsincrona.execute();
+            //  TareaAsincrona tareaAsincrona = new TareaAsincrona();
+            //  tareaAsincrona.execute();
 
         } else {
 
@@ -219,9 +222,22 @@ public class SplashActivity extends Activity {
                     new Handler().postDelayed(new Runnable() {
                         public void run() {
 
-                            Intent intent = new Intent(SplashActivity.this, Login.class);
-                            startActivity(intent);
-                            finish();
+                            String permiso = Manifest.permission.WRITE_EXTERNAL_STORAGE;
+
+                            int requestCode = 100;
+
+                            boolean permisosCheck = GestorPermisos.checkearPermiso(context, permiso);
+
+                            if (!permisosCheck) {
+
+                                ActivityCompat.requestPermissions(activity, new String[]{permiso}, requestCode);
+
+                            } else {
+
+                                Intent intent = new Intent(SplashActivity.this, Login.class);
+                                startActivity(intent);
+                                finish();
+                            }
                         }
                     }, DURACION_SPLASH);
 
@@ -252,6 +268,26 @@ public class SplashActivity extends Activity {
             res.add(newInfo);
         }
         return res;
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions,
+                                           int[] grantResults) {
+        if (requestCode == 100) {
+            if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                Toast.makeText(this, " permisos dados "
+                        , Toast.LENGTH_SHORT).show();
+
+                Intent intent = new Intent(SplashActivity.this, Login.class);
+                startActivity(intent);
+                finish();
+
+            } else {
+                Toast.makeText(this, "Hasta que no des permisos no se podrás acceder"
+                        , Toast.LENGTH_SHORT).show();
+                finish();
+            }
+        }
     }
 
 }
