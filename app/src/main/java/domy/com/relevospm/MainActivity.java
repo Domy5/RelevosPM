@@ -14,6 +14,7 @@ import android.provider.Settings;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.view.GravityCompat;
@@ -68,9 +69,9 @@ public class MainActivity extends AppCompatActivity {
 
     private String dne;
 
-    private TextView tv1;
-    private TextView tv2;
-    private TextView tv3;
+    public static TextView tv1;
+    public static TextView tv2;
+    public static TextView tv3;
 
     public static Boolean isFabRota = false;
     public static Boolean isFabMove = false;
@@ -225,18 +226,13 @@ public class MainActivity extends AppCompatActivity {
         String fecha = String.valueOf(dia) + "/" + String.valueOf(mes) + "/" + String.valueOf(annio);
 
         AgenteDAO agenteDao = new AgenteDAO();
-
-
-        Log.e("problema de conc", dne);
-        Log.e("problema de conc", fecha);
-
         agenteDao.actualizarDatosAgente(dne, fecha);
 
-        Agente agente = agenteDao.getAgente();
+       // Agente agente = agenteDao.getAgente();
 
-        String text1 = "DNE: <font color='#FFFFFF'>" + agente.getDNE() + "</font> GRUPO: <font color='#FFFFFF'>" + agente.getGRUPO() + "</font> TURNO: <font color='#FFFFFF'>" + agente.getTURNO() + "</font>";
-        String text2 = "V I: <font color='#FFFFFF'>" + agente.getVACACIONES_I() + "</font> V T: <font color='#FFFFFF'>" + agente.getVACACIONES_T() + "</font>";
-        String text3 = "CAMBIO CON: <font color='#FFFFFF'>" + agente.getCAMBIO_CON() + "</font> POR: <font color='#FFFFFF'>" + agente.getPOR() + "</font> COMPENSA: <font color='#FFFFFF'>" + agente.getCOMPENSA() + "</font>";
+        String text1 ="";
+        String text2 ="";
+        String text3 ="";
 
         tv1.setText(Html.fromHtml(text1), TextView.BufferType.SPANNABLE);
         tv2.setText(Html.fromHtml(text2), TextView.BufferType.SPANNABLE);
@@ -258,7 +254,7 @@ public class MainActivity extends AppCompatActivity {
         fab.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
-               animateFABmove();
+             //  animateFABmove();
 
                 return true;
             }
@@ -361,18 +357,18 @@ public class MainActivity extends AppCompatActivity {
                 AgenteDAO agenteDao = new AgenteDAO();
 
                 agenteDao.actualizarDatosAgente(dne, fecha);
-                Agente agente = agenteDao.getAgente();
+
+              //  Agente agente = agenteDao.getAgente();
 
                 // PintarCalendario(datosAgente.DatosAgente().getGRUPO());
                 PintarCalendario(dne, fecha1);
 
-                String text1 = "DNE: <font color='#FFFFFF'>" + agente.getDNE() + "</font> GRUPO: <font color='#FFFFFF'>" + agente.getGRUPO() + "</font> TURNO: <font color='#FFFFFF'>" + agente.getTURNO() + "</font>";
-                String text2 = "V I: <font color='#FFFFFF'>" + agente.getVACACIONES_I() + "</font> V T: <font color='#FFFFFF'>" + agente.getVACACIONES_T() + "</font>";
-                String text3 = "CAMBIO CON: <font color='#FFFFFF'>" + agente.getCAMBIO_CON() + "</font> POR: <font color='#FFFFFF'>" + agente.getPOR() + "</font> COMPENSA: <font color='#FFFFFF'>" + agente.getCOMPENSA() + "</font>";
+               // String text1 = "DNE: <font color='#FFFFFF'>" + agente.getDNE() + "</font> GRUPO: <font color='#FFFFFF'>" + agente.getGRUPO() + "</font> TURNO: <font color='#FFFFFF'>" + agente.getTURNO() + "</font>";
+               //// String text3 = "CAMBIO CON: <font color='#FFFFFF'>" + agente.getCAMBIO_CON() + "</font> POR: <font color='#FFFFFF'>" + agente.getPOR() + "</font> COMPENSA: <font color='#FFFFFF'>" + agente.getCOMPENSA() + "</font>";
 
-                tv1.setText(Html.fromHtml(text1), TextView.BufferType.SPANNABLE);
-                tv2.setText(Html.fromHtml(text2), TextView.BufferType.SPANNABLE);
-                tv3.setText(Html.fromHtml(text3), TextView.BufferType.SPANNABLE);
+               // tv1.setText(Html.fromHtml(text1), TextView.BufferType.SPANNABLE);
+               // tv2.setText(Html.fromHtml(text2), TextView.BufferType.SPANNABLE);
+              //  tv3.setText(Html.fromHtml(text3), TextView.BufferType.SPANNABLE);
 
                 //   calendar.refreshCalendar(calendar.getCurrentCalendar());
 
@@ -572,6 +568,8 @@ public class MainActivity extends AppCompatActivity {
             FragmentManager fragmentManager = getSupportFragmentManager();
             DialogoCambioDia dialogo = new DialogoCambioDia();
             dialogo.setFecha("hola", FECHA);
+
+           // dialogo.setStyle(DialogFragment.STYLE_NO_INPUT,android.R.style.Theme_Holo);
             dialogo.show(fragmentManager, "tagPersonalizado");
             fab.startAnimation(rotate_forward);
             isFabRota = true;
@@ -584,12 +582,12 @@ public class MainActivity extends AppCompatActivity {
         if (isFabMove) {
 
          //   fab.startAnimation(move_forward);
-            SlideToDown();
+            Fab_Izquierda();
             isFabMove = false;
         } else {
 
          //   fab.startAnimation(move_backward);
-            SlideToAbove();
+             Fab_Derecha();
             isFabMove = true;
 
         }
@@ -616,11 +614,11 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public void SlideToAbove() {
+    public void Fab_Derecha() {
         Animation slide = null;
 
-        //slide = new TranslateAnimation(Animation.RELATIVE_TO_SELF, 0.0f, Animation.RELATIVE_TO_SELF, -70.0f,Animation.RELATIVE_TO_SELF, 0.0f, Animation.RELATIVE_TO_SELF, 0.0f);
-         slide = new TranslateAnimation(Animation.RELATIVE_TO_SELF, 0.0f, Animation.RELATIVE_TO_SELF, 0.0f, Animation.RELATIVE_TO_SELF, 0.0f, Animation.RELATIVE_TO_SELF, -5.0f);
+        slide = new TranslateAnimation(Animation.RELATIVE_TO_SELF, 0.0f, Animation.RELATIVE_TO_SELF, -70.0f,Animation.RELATIVE_TO_SELF, 0.0f, Animation.RELATIVE_TO_SELF, 0.0f);
+        // slide = new TranslateAnimation(Animation.RELATIVE_TO_SELF, 0.0f, Animation.RELATIVE_TO_SELF, 0.0f, Animation.RELATIVE_TO_SELF, 0.0f, Animation.RELATIVE_TO_SELF, -5.0f);
 
         slide.setDuration(400);
         slide.setFillAfter(true);
@@ -643,10 +641,9 @@ public class MainActivity extends AppCompatActivity {
 
                 rl_footer.clearAnimation();
 
-                RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(
-                        rl_footer.getWidth(), rl_footer.getHeight());
-                // lp.setMargins(0, 0, 0, 0);
-                lp.addRule(RelativeLayout.ALIGN_PARENT_TOP);
+                RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(rl_footer.getWidth(), rl_footer.getHeight());
+             //   lp.setMargins(0, 0, 0, 0);
+                lp.addRule( RelativeLayout.ALIGN_PARENT_END);
                 rl_footer.setLayoutParams(lp);
 
             }
@@ -655,10 +652,10 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public void SlideToDown() {
+    public void Fab_Izquierda() {
         Animation slide = null;
-        //  slide = new TranslateAnimation(Animation.RELATIVE_TO_SELF, -70.0f, Animation.RELATIVE_TO_SELF, 0.0f,Animation.RELATIVE_TO_SELF, 0.0f,Animation.RELATIVE_TO_SELF, 0.0f);
-        slide = new TranslateAnimation(Animation.RELATIVE_TO_SELF, 0.0f, Animation.RELATIVE_TO_SELF, 0.0f, Animation.RELATIVE_TO_SELF, 0.0f, Animation.RELATIVE_TO_SELF, 5.0f);
+          slide = new TranslateAnimation(Animation.RELATIVE_TO_SELF, -70.0f, Animation.RELATIVE_TO_SELF, 0.0f,Animation.RELATIVE_TO_SELF, 0.0f,Animation.RELATIVE_TO_SELF, 0.0f);
+        //slide = new TranslateAnimation(Animation.RELATIVE_TO_SELF, 0.0f, Animation.RELATIVE_TO_SELF, 0.0f, Animation.RELATIVE_TO_SELF, 0.0f, Animation.RELATIVE_TO_SELF, 5.0f);
 
 
         slide.setDuration(400);
@@ -683,8 +680,8 @@ public class MainActivity extends AppCompatActivity {
                 rl_footer.clearAnimation();
 
                 RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams( rl_footer.getWidth(), rl_footer.getHeight());
-                lp.setMargins(0, rl_footer.getWidth(), 0, 0);
-                lp.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
+              //  lp.setMargins(0, rl_footer.getWidth(), 0, 0);
+                lp.addRule(RelativeLayout.ALIGN_PARENT_START);
                 rl_footer.setLayoutParams(lp);
 
             }

@@ -181,24 +181,15 @@ public class Diario {
         return posicion;
     }
 
-    public static JSONArray ConsultaDiaSQL(String ConSql) {
+    public static JSONArray ConsultaDiaSQL(String ConSql) { // todo hacer asyntask
 
         JSONParser3 jsonParser3 = new JSONParser3();
         String URL = "http://domimtz.synology.me/bd/ConsultaSQL.php";
 
-        ///  String  ConSql = "SELECT * FROM `a010_Enero`";
-
         HashMap<String, String> params = new HashMap<>();
         params.put("sql", ConSql);
 
-        Log.d("request!", "starting");
-        // getting product details by making HTTP request
-
         JSONArray jsonObjRecv = jsonParser3.makeHttpRequest(URL, "POST", params);
-
-
-      //  Log.d("Sql exitoso!", jsonObjRecv.toString());
-
 
         return jsonObjRecv;
     }

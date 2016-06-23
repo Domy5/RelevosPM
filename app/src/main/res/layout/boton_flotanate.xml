@@ -8,8 +8,9 @@
     <RelativeLayout
         android:id="@+id/rl_footer"
         android:layout_width="wrap_content"
-        android:layout_height="70dp"
-        android:layout_alignParentBottom="true" >
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true">
 
 
 
@@ -20,12 +21,9 @@
         android:src="@drawable/ic__boton_lus"
         app:fabSize="normal"
         app:borderWidth="0dp"
-
         android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:layout_marginBottom="25dp"
-        android:layout_marginRight="25dp"
-        />
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="60dp" />
 
     </RelativeLayout>
 </RelativeLayout>

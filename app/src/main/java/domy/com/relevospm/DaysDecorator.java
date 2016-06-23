@@ -52,17 +52,19 @@ public class DaysDecorator implements DayDecorator {
         int y = cal.get(Calendar.YEAR);
 
        // Log.v("decorate: ", d +" "+ m +" " + " "+ y);
-
-        //  AgenteDAO agenteDao = new AgenteDAO();
-
-        //  agenteDao.actualizarDatosAgente(dne,fecha);
-        //  Agente agente = agenteDao.getAgente();
-
-        //  agente.getDNE();//ejemplo
-
         String F[] = fecha.split("/");
 
-        //  Log.v("no ", Utiles.periodo_Mes(F[0],F[1]));
+          AgenteDAO agenteDao = new AgenteDAO();
+
+          agenteDao.actualizarDatosAgentePeriodo(dne,Utiles.periodo_Mes("28",String.valueOf(Integer.parseInt(F[1])-1)));
+          Agente agente = agenteDao.getAgente();
+         // agente.getDNE();//ejemplo
+
+
+          Log.v("no   ", Utiles.periodo_Mes(F[0],F[1]));
+          Log.v("no -1", Utiles.periodo_Mes("28",String.valueOf(Integer.parseInt(F[1])-1)));
+          Log.v("no +1", Utiles.periodo_Mes("1", String.valueOf(Integer.parseInt(F[1])+1)));
+
 
         switch (grupo) {
 

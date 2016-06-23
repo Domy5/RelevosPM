@@ -1,44 +1,21 @@
 package domy.com.relevospm;
 
-import android.Manifest;
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.pm.PackageManager;
-import android.os.Build;
 import android.os.Bundle;
-
-import android.support.v4.app.DialogFragment;
-import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v4.app.Fragment;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.ActionBar.OnNavigationListener;
-
-
 import android.util.Log;
 import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-
-import java.util.HashMap;
 import java.util.Properties;
 import java.util.Vector;
 
 import domy.com.relevospm.Utiles.AutoResizeTextView;
-import domy.com.relevospm.Utiles.Dia4y2;
-import domy.com.relevospm.Utiles.JSONParser3;
-import domy.com.relevospm.Utiles.UpdateApp;
-import domy.com.relevospm.Utiles.Utiles;
-import domy.com.relevospm.Utiles.dia;
-import domy.com.relevospm.login.Login;
 
 public class Tabla_Diaria2 extends AppCompatActivity implements View.OnClickListener {
 
